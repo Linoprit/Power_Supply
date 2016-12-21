@@ -1,0 +1,39 @@
+delete:
+
+    /src/[main.c, Timer.c]  <-- komplett
+    /include/Timer.h        <-- komplett
+    /system/include/cmsis/[stm32f4xx.h,system_stm32f4xx.h]
+    /system/src/cmsis/[system_stm32f4xx.c,vectors_stm32f4xx.c]
+
+    
+prepare startup files:
+copy
+    STM32Cube_FW_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/gcc
+    startup_stm32f401xe.s
+to
+   /system/src/cmsis 
+rename to    
+   startup_stm32f401xe.S (capital 's')
+   
+copy
+    STM32Cube_FW_F4/Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates
+    system_stm32f4xx.c
+to
+    /system/src/cmsis
+    
+exclude template-files from build
+exclude DSP-lib
+
+
+richtiges mem.ld kopieren
+
+
+gdb starten:
+    arm-none-eabi-gdb
+flashen: 
+    stlink starten (listening at port 4242)
+    tar ext :4242
+    load example.elf
+    disconnect
+    
+    
