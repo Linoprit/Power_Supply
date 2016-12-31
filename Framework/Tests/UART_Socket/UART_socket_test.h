@@ -11,13 +11,13 @@
 #include "Devices/Comm_Layer/Comm_Layer_socket.h"
 
 
-class Comm_Layer_socket_test
+class UART_socket_test
 {
 public:
-  Comm_Layer_socket_test();
+  UART_socket_test();
 
   virtual
-  ~Comm_Layer_socket_test() {};
+  ~UART_socket_test() {};
 
   void loop (void);
 

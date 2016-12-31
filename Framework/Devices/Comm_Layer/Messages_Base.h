@@ -12,8 +12,9 @@
 
 #ifdef QT_TARGET
 #include <QDebug>
-#define ECHO_TEST_ENABLE
+#define COMMLAYER_TEST_ENABLE
 #else
+#define COMMLAYER_TEST_ENABLE
 //#include <util/crc16.h>
 //#include "../../ApplicationModules/PPM_InOut/PPM_bitbanging.h"
 #endif
@@ -26,6 +27,7 @@
 #define CHK_SUM_LENGTH       1
 #define MAX_MESSAGE_LEN     30 // Maximum bytelength of received message
 
+
 #ifdef QT_TARGET
 uint8_t _crc_ibutton_update(uint8_t crc, uint8_t data);
 #else
@@ -34,8 +36,7 @@ uint8_t _crc_ibutton_update(uint8_t crc, uint8_t data);
 #endif
 
 
-
-//------------ do not change ------------
+//------------ < do not change > ------------
 // header part of serial messages
 typedef struct PACKED
 {
@@ -45,105 +46,110 @@ typedef struct PACKED
 } rcv_header_struct;
 const uint8_t HEADER_LENGTH = sizeof(rcv_header_struct);
 
-#define MSG_STRUCT(payload_type)			\
-	typedef struct PACKED					\
-	{										\
-	uint8_t               sync_char[2];		\
-	rcv_header_struct 	header;				\
-	payload_type 	payload;				\
-	uint8_t               checksum;			\
-	} msg_##payload_type;					\
+#define MSG_STRUCT(payload_type)						\
+	typedef struct PACKED								\
+	{													\
+	uint8_t               sync_char[2];					\
+	rcv_header_struct 	  header;						\
+	payload_type 	      payload;						\
+	uint8_t               checksum;						\
+	} msg_##payload_type;								\
 	const uint8_t MSG_##payload_type##_LEN = sizeof(msg_##payload_type)
-//--------------------------------------
 
+#define INIT_MSG(msg_instance, CLASS_ID, MSG_ID) 		      	\
+	msg_instance.sync_char[0]       = SYNC_CHAR_1; 	      		\
+	msg_instance.sync_char[1]       = SYNC_CHAR_2; 	      		\
+	msg_instance.header.msg_class   = CLASS_ID;   		  		\
+	msg_instance.header.msg_id      = MSG_ID;       		  	\
+	msg_instance.header.payload_len =							\
+	  sizeof(msg_instance) - 2 - HEADER_LENGTH - 1;
+//------------ </ do not change > ------------
 
-#define PPM_INOUT_CLASS		3
-static const uint8_t MAX_PPM_CHANNELS = 10;
+#define POWER_SUPPLY_CLASS		5
 
-enum ppm_command_enum { write2eeprom, send_stored_params };
-#define PPM_COMMAND_ID		1
+// message class command_type
+enum command_enum { write2eeprom, send_stored_params };
+#define COMMAND_MSG_ID		1
 typedef struct PACKED
 {
-  ppm_command_enum     command;
-} ppm_command_type;
-MSG_STRUCT(ppm_command_type);
+  command_enum     command;
+} command_type;
+//MSG_STRUCT(command_type); only needed for tx
 
-#define PPM_RAW_CHANNELS_ID	5
+// ...more POWER_SUPPLY_CLASS messages
+
+
+// test message class
+#ifdef  COMMLAYER_TEST_ENABLE
+#define COMMLAYER_TEST_CLASS    254
+
+#define TEST_MSG_01_ID        	1
 typedef struct PACKED
 {
-  uint16_t value[MAX_PPM_CHANNELS];
-} ppm_raw_channels_type;
-MSG_STRUCT(ppm_raw_channels_type);
-
-#define PPM_NORM_CHANNELS_ID	7
-typedef struct PACKED
-{
-  uint16_t value[MAX_PPM_CHANNELS];
-} ppm_norm_channels_type;
-MSG_STRUCT(ppm_norm_channels_type);
-
-#define PPM_CH_PARAMS_ID	11
-typedef struct PACKED
-{
-  int16_t 	center;
-  int16_t	range_half;
-}ch_param_type;
-
-typedef struct PACKED
-{
-  ch_param_type     stick[4];
-  ch_param_type     others[MAX_PPM_CHANNELS - 4 ];
-} ppm_ch_params_type;
-MSG_STRUCT(ppm_ch_params_type);
-
-#define PPM_CH_MAPPING_ID	13
-typedef struct PACKED
-{
-  uint8_t	Roll		:4; // Aileron
-  uint8_t	Pitch		:4;	// Elevator
-  uint8_t   Yaw			:4;	// Rudder
-  uint8_t   Throttle	:4;
-} ppm_ch_mapping_type;
-MSG_STRUCT(ppm_ch_mapping_type);
-
-#ifdef  ECHO_TEST_ENABLE
-#define ECHO_TEST_CLASS     254
-#define ECHO_TEST_ID        1
-typedef struct PACKED
-{
-  uint8_t     value_1;
+  uint32_t    counter;
   uint16_t    value_2;
-  int8_t      value_3;
   int16_t     value_4;
-} echo_test_data_type;
-MSG_STRUCT(echo_test_data_type);
+  int8_t      value_3;
+} test_01_type;
+MSG_STRUCT(test_01_type);
+
+#define TEST_MSG_02_ID        	2
+typedef struct PACKED
+{
+  uint32_t    counter;
+  uint16_t    value_2;
+  int16_t     value_4;
+  int8_t      value_3;
+} test_02_type;
+MSG_STRUCT(test_02_type);
+
+#define TEST_MSG_03_ID        	3
+typedef struct PACKED
+{
+  uint32_t    counter;
+  uint16_t    value_2;
+  int16_t     value_4;
+  int8_t      value_3;
+} test_03_type;
+MSG_STRUCT(test_03_type);
+
 #endif
+
+
+
 
 
 class Messages_Base
 {
 public:
-  static msg_ppm_command_type		msg_ppm_command;
-  static msg_ppm_raw_channels_type	msg_ppm_raw_channels;
-  static msg_ppm_norm_channels_type	msg_ppm_norm_channels;
-  static msg_ppm_ch_params_type		msg_ppm_ch_params;
-  static msg_ppm_ch_mapping_type	msg_ppm_ch_mapping;
+  static command_type		command_rx;
+
 
 
   Messages_Base ();
+
   // we use init() instead the constructor in static classes
   static void init();
 
   static void 	 put_payload_to_struct(
 	  uint8_t *msg_buf, rcv_header_struct *rcv_header);
+
   static uint8_t calc_checksum(
 	  rcv_header_struct *rcv_header, uint8_t *msg_buffer);
+
   static uint8_t calc_checksum(
 	  rcv_header_struct *rcv_header);
 
-#ifdef  ECHO_TEST_ENABLE
-  static msg_echo_test_data_type 	msg_echo_test_data_tx;
-  static echo_test_data_type 		echo_test_data_rx;
+
+#ifdef  COMMLAYER_TEST_ENABLE
+  static msg_test_01_type 	msg_test_01_tx;
+  static test_01_type 		test_01_rx;
+
+  static msg_test_02_type 	msg_test_02_tx;
+  static test_02_type 		test_02_rx;
+
+  static msg_test_03_type 	msg_test_03_tx;
+  static test_03_type 		test_03_rx;
 #endif
 };
 

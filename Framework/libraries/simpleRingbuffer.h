@@ -28,10 +28,10 @@ public:
   uint8_t Get(void);
 
 private:
+  uint8_t *buffer;
   uint8_t size;
   uint8_t readIndex;
   uint8_t writeIndex;
-  uint8_t *buffer;
 
 };
 

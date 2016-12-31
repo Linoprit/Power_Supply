@@ -31,34 +31,32 @@ class Comm_Layer:
 {
 
 public:
-    struct tx_message_type
-    {
-        uint8_t*  ptr_to_message;
-        uint16_t  msg_length;
-    };
+	  struct tx_message_type
+	  {
+		uint8_t*  ptr_to_message;
+		uint16_t  msg_length;
+	  };
 
-    Comm_Layer (Rx_Tx_interface *comm_socket);
+	  Comm_Layer (Rx_Tx_interface *comm_socket);
 
-    void inspect_received_data(void);
-    bool pack_n_queue_msg(rcv_header_struct *tx_header);
-    uint8_t compare_chksum_ibutton(
-    	uint8_t* msg_buffer, rcv_header_struct* rcv_header);
-    Rx_Tx_interface* get_rx_tx_interface(void);
+	  void inspect_received_data(void);
+	  bool pack_n_queue_msg(rcv_header_struct *tx_header);
+	  uint8_t compare_chksum_ibutton(
+		  uint8_t* msg_buffer, rcv_header_struct* rcv_header);
+	  Rx_Tx_interface* get_rx_tx_interface(void);
 
-    // cycle
-    void software_event_callback(
-    	SoftwareEvents::Event_Names_enum event_name);
-
-private:
-    rcv_header_struct rcv_header;
-    uint8_t           *rcv_header_ptr;
-    simpleRingbuffer  *tx_queue;
-
-    bool get_next_tx_message(tx_message_type *tx_message_ptr);
-    void send_from_queue(void);
+	  // cycle
+	  void software_event_callback(
+		  SoftwareEvents::Event_Names_enum event_name);
 
 private:
-    Rx_Tx_interface *comm_socket;
+	  uint8_t           *rcv_header_ptr;
+	  simpleRingbuffer  *tx_queue;
+	  Rx_Tx_interface   *comm_socket;
+	  rcv_header_struct rcv_header;
+
+	  bool get_next_tx_message(tx_message_type *tx_message_ptr);
+	  void send_from_queue(void);
 
 };
 

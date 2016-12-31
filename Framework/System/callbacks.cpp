@@ -34,6 +34,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	{
 	  keypad_GPIO_callback->callback_fcn();
 	}
+
+  if (GPIO_Pin == Rotary_Encoder_INT_Pin)
+	{
+	  // rotary_encoder_callback
+	  HAL_GPIO_TogglePin(LD10_GPIO_Port, LD10_Pin);
+	  //HAL_GPIO_WritePin(LD10_GPIO_Port, LD10_Pin, GPIO_PIN_SET);
+	}
 }
 
 void keypad_callback_set(ISR_callback* callback)

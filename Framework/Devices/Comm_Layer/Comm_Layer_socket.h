@@ -17,7 +17,6 @@
 #include "stm32f3xx_hal_usart.h"
 
 
-#define RX_RINGBUFFER_SIZE 20
 
 class Comm_Layer_socket:
 	Rx_Tx_interface,
@@ -43,16 +42,16 @@ public:
 	  void timer_hit_callback(void);
 
 private:
-	  // we use Timer event Tic_1ms!!
-	  const uint8_t TimerDuration       = 5;   // 5 = 5ms
-	  SoftwareTimer *timer;
-
-	  const uint8_t	uart_rx_buffer_len 	= 10;
-	  uint8_t 		*uart_rx_buffer;
-	  const uint8_t RX_PAD_CHAR			= 4; // 4 = EOT
-
+	  SoftwareTimer 		*timer;
+	  uint8_t 				*uart_rx_buffer;
 	  UART_HandleTypeDef 	*usart;
 	  simpleRingbuffer 		*rx_ringbuffer;
+
+
+	  // we use Timer event Tic_1ms!!
+	  const uint8_t TimerDuration        = 5;   // 5 = 5ms
+	  const uint8_t	uart_rx_buffer_len 	 = 10;
+	  const uint8_t RX_PAD_CHAR			 = 4; // 4 = EOT
 	  const uint8_t simpleRingbuffer_len = 24;
 
 };

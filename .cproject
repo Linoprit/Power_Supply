@@ -63,16 +63,16 @@
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.310133784" name="Cross ARM GNU Assembler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler">
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.usepreprocessor.37601359" name="Use preprocessor" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.usepreprocessor" value="true" valueType="boolean"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.include.paths.957980158" name="Include paths (-I)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Drivers/CMSIS/Device/ST/STM32F3xx/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Drivers/CMSIS/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Drivers/STM32F3xx_HAL_Driver/Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Middlewares/Third_Party/FatFs/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/gnuarmeclipse/system/include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/gnuarmeclipse/system/include/cmsis}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/gnuarmeclipse/system/include/stm32f3xx}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Application}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Framework}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/CMSIS/Device/ST/STM32F3xx/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/CMSIS/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/STM32F3xx_HAL_Driver/Inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Middlewares/Third_Party/FatFs/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/cmsis}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/stm32f3xx}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/Application}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/Framework}&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs.2144134666" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="DEBUG"/>
@@ -83,16 +83,16 @@
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.310153935" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler">
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths.640900328" name="Include paths (-I)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Drivers/CMSIS/Device/ST/STM32F3xx/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Drivers/CMSIS/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Drivers/STM32F3xx_HAL_Driver/Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Middlewares/Third_Party/FatFs/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/gnuarmeclipse/system/include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/gnuarmeclipse/system/include/cmsis}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/gnuarmeclipse/system/include/stm32f3xx}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Application}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Framework}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/CMSIS/Device/ST/STM32F3xx/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/CMSIS/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/STM32F3xx_HAL_Driver/Inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Middlewares/Third_Party/FatFs/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/cmsis}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/stm32f3xx}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/Application}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/Framework}&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.missingprototypes.1310060126" name="Warn if a global function has no prototype (-Wmissing-prototypes)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.missingprototypes" useByScannerDiscovery="true" value="true" valueType="boolean"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.strictprototypes.1676819775" name="Warn if a function has no arg type (-Wstrict-prototypes)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.strictprototypes" useByScannerDiscovery="true" value="true" valueType="boolean"/>
@@ -106,16 +106,16 @@
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.1565102702" name="Cross ARM C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler">
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.include.paths.1141735469" name="Include paths (-I)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.include.paths" useByScannerDiscovery="false" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Drivers/CMSIS/Device/ST/STM32F3xx/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Drivers/CMSIS/Include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Drivers/STM32F3xx_HAL_Driver/Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/cube/Middlewares/Third_Party/FatFs/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/gnuarmeclipse/system/include}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/gnuarmeclipse/system/include/cmsis}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/gnuarmeclipse/system/include/stm32f3xx}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Application}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Framework}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/CMSIS/Device/ST/STM32F3xx/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/CMSIS/Include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/STM32F3xx_HAL_Driver/Inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Inc}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Middlewares/Third_Party/FatFs/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/cmsis}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/stm32f3xx}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/Application}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/Framework}&quot;"/>
 								</option>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs.1133135966" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="DEBUG"/>
@@ -171,10 +171,10 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Framework|Tests|Application|cube" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name=""/>
+						<entry excluding="Framework|Application|cube|Comm_Layer|Tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Application"/>
 						<entry excluding="Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
-						<entry excluding="Middlewares/Third_Party/FatFs/src/option/cc950.c|Drivers/CMSIS/RTOS|Middlewares/Third_Party/FatFs/src/option/cc932.c|Middlewares/Third_Party/FatFs/src/option/cc936.c|Drivers/CMSIS/DSP_Lib|Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_msp_template.c|Middlewares/Third_Party/FatFs/src/option/ccsbcs.c|Middlewares/Third_Party/FatFs/src/option/cc949.c" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="cube"/>
+						<entry excluding="Middlewares/Third_Party/FatFs/src/option/cc950.c|Drivers/CMSIS/RTOS|Middlewares/Third_Party/FatFs/src/option/cc932.c|Middlewares/Third_Party/FatFs/src/option/cc936.c|Drivers/CMSIS/DSP_Lib|Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_msp_template.c|Middlewares/Third_Party/FatFs/src/option/ccsbcs.c|Middlewares/Third_Party/FatFs/src/option/cc949.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cube"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -323,7 +323,8 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Application"/>
-						<entry excluding="Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
+						<entry excluding="Tests/Comm_Layer|Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework/Tests/Comm_Layer"/>
 						<entry excluding="option/ccsbcs.c|option/cc949.c|option/cc950.c|option/cc932.c|option/cc936.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cube/Middlewares/Third_Party/FatFs/src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="gnuarmeclipse/system"/>
 					</sourceEntries>

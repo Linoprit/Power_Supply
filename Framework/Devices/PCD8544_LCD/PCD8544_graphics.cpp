@@ -349,7 +349,7 @@ void PCD8544_graphics::draw_bitmap(uint8_t x,
 		{
 		  if (*(bitmap + i + (j/8)*width) & _BV(j%8))
 			{
-			  set_pixel(x+i, y+j, color);
+			  set_pixel( x+i, y+j, color);
 			}
 		}
 	}
@@ -379,9 +379,9 @@ void PCD8544_graphics::set_pixel(uint8_t x,
 
   // x is which column
   if (color)
-	graphics_buffer[x+ (y/8)*DISPLAY_WIDTH_px] |= _BV(y%8);
+	graphics_buffer[x+ (y/8)*DISPLAY_WIDTH_px] |= (uint8_t) _BV(y%8);
   else
-	graphics_buffer[x+ (y/8)*DISPLAY_WIDTH_px] &= ~_BV(y%8);
+	graphics_buffer[x+ (y/8)*DISPLAY_WIDTH_px] &= (uint8_t) ~_BV(y%8);
 
   updateBoundingBox(x,y,x,y);
 }

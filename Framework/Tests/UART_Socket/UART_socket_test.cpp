@@ -5,9 +5,9 @@
  *      Author: harald
  */
 
-#include "Comm_Layer_socket_test.h"
 #include "Instances/Common.h"
 #include <Devices/keypad/Keypad.h>
+#include <Tests/UART_Socket/UART_socket_test.h>
 #include "System/SoftwareEvents.h"
 #include "stm32f3xx_hal.h"
 #include "libraries/itoa.h"
@@ -39,13 +39,13 @@
  *
  */
 
-Comm_Layer_socket_test::Comm_Layer_socket_test ()
+UART_socket_test::UART_socket_test ()
 {
   socket = new Comm_Layer_socket( get_UART_1() );
 }
 
 
-void Comm_Layer_socket_test::loop (void)
+void UART_socket_test::loop (void)
 {
   SoftwareEvents* 	  sw_events 	= Common::get_sw_events();
   PCD8544_graphics*	  LCD		 	= Common::get_LCD_grfx();
@@ -131,7 +131,7 @@ void Comm_Layer_socket_test::loop (void)
 }
 
 
-void Comm_Layer_socket_test::get_uart_state_str(
+void UART_socket_test::get_uart_state_str(
 	UART_HandleTypeDef *uart, char *textbuffer)
 {
   HAL_UART_StateTypeDef state = HAL_UART_GetState(uart);
@@ -172,7 +172,7 @@ void Comm_Layer_socket_test::get_uart_state_str(
   }
 }
 
-void Comm_Layer_socket_test::clearTextbuffer(char *textbuffer, uint8_t len)
+void UART_socket_test::clearTextbuffer(char *textbuffer, uint8_t len)
 {
   for (uint8_t i=0; i < len; i++)
 	textbuffer[i] = ' ';

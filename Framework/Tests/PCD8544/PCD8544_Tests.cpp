@@ -53,8 +53,6 @@ void PCD8544_Tests::write_char_map(void)
   uint8_t i,j, char_width = LCD_basis->get_actual_fontwidth();
   uint8_t chars_per_line =  (DISPLAY_WIDTH_px - 1) / char_width;
 
-  uint8_t blah = (DISPLAY_WIDTH_px - 1) / char_width;
-
   LCD_basis->clear();
   for(i=0; i<6; i++) // 5 lines, fixed
 	{

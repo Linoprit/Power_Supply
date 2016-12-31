@@ -31,10 +31,10 @@ void Common::initialize_devices()
 
 void Common::init_comm_layer(void)
 {
-  Comm_Layer_socket* socket =
-	  new Comm_Layer_socket( get_UART_1() );
+  Comm_Layer_socket* socket = new Comm_Layer_socket( get_UART_1() );
 
   comm_layer = new Comm_Layer( (Rx_Tx_interface*) socket );
+  Messages_Base::init();
 }
 
 void Common::init_keypad(void)
@@ -121,6 +121,11 @@ void Common::init_SD_Card(void)
 
   // usage: http://elm-chan.org/fsw/ff/res/app1.c
 
+}
+
+uint32_t Common::get_tick(void)
+{
+  return HAL_GetTick();
 }
 
 

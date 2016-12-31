@@ -30,6 +30,8 @@ public:
   static void initialize_devices(void);
   static SoftwareEvents*    get_sw_events(void);
 
+  static uint32_t get_tick(void);
+
   //static PCD8544_basis* 	get_LCD_basis(void);
   static PCD8544_graphics*  get_LCD_grfx(void);
   static Keypad*			get_keypad(void);

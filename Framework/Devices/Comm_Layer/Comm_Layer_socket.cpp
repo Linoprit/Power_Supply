@@ -10,6 +10,8 @@
 #include "stm32f3xx_hal.h"
 #include <string.h>
 
+#include "gpio.h"
+
 
 Comm_Layer_socket::Comm_Layer_socket (UART_HandleTypeDef *huart)
 {
@@ -24,10 +26,10 @@ Comm_Layer_socket::Comm_Layer_socket (UART_HandleTypeDef *huart)
 
   HAL_UART_Receive_DMA(this->usart, uart_rx_buffer, uart_rx_buffer_len);
 
-  //timer = new SoftwareTimer(TimerDuration, this, SoftwareEvents::Tic_1ms);
+  timer = new SoftwareTimer(TimerDuration, this, SoftwareEvents::Tic_1ms);
 
   // use this timer for socket-testing
-  timer = new SoftwareTimer(20, this, SoftwareEvents::Tic_100ms);
+  //timer = new SoftwareTimer(20, this, SoftwareEvents::Tic_100ms);
 
 }
 
@@ -86,6 +88,7 @@ void Comm_Layer_socket::callback_fcn (void)
 void Comm_Layer_socket::timer_hit_callback(void)
 {
   uint8_t i;
+
 
   for (i = 0; i < uart_rx_buffer_len; i++)
 	{

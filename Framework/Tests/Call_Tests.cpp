@@ -5,12 +5,13 @@
  *      Author: harald
  */
 
+#include <Tests/UART_Socket/UART_socket_test.h>
 #include "Call_Tests.h"
 
 #include "PCD8544/PCD8544_Tests.h"
 #include "Sw_Timer/Sw_Timer_Test.h"
 #include "Keypad/Keypadtest.h"
-#include "Comm_Layer/Comm_Layer_socket_test.h"
+#include "Comm_Layer/Comm_Layer_test.h"
 
 
 Call_Tests::Call_Tests ()
@@ -31,11 +32,13 @@ void Call_Tests::cycle()
   //Keypadtest *keypadtest 		= new Keypadtest();
   //keypadtest->Do_keypadtest();
 
-   //Comm_Layer_socket_test* comm_layer_socket_test =
-   //	  new Comm_Layer_socket_test();
-   //comm_layer_socket_test->loop();
+  //UART_socket_test* uart_socket_test =
+  //	  new UART_socket_test();
+  //uart_socket_test->loop();
 
-
+  // Comm_Layer tests
+  Comm_Layer_test *comm_layer_test = new Comm_Layer_test();
+  comm_layer_test->loop();
 
 
 
