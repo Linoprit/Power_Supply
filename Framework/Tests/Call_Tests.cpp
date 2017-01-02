@@ -12,6 +12,7 @@
 #include "Sw_Timer/Sw_Timer_Test.h"
 #include "Keypad/Keypadtest.h"
 #include "Comm_Layer/Comm_Layer_test.h"
+#include "Rotary_Encoder/Rotary_Encoder_Tests.h"
 
 
 Call_Tests::Call_Tests ()
@@ -37,10 +38,11 @@ void Call_Tests::cycle()
   //uart_socket_test->loop();
 
   // Comm_Layer tests
-  Comm_Layer_test *comm_layer_test = new Comm_Layer_test();
-  comm_layer_test->loop();
+  // Comm_Layer_test *comm_layer_test = new Comm_Layer_test();
+  // comm_layer_test->loop();
 
-
+  Rotary_Encoder_Tests *encoder_test = new Rotary_Encoder_Tests();
+  encoder_test->loop();
 
 
 }

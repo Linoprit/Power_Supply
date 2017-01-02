@@ -6,15 +6,36 @@
  */
 
 #include <Devices/Rotary_Encoder/Rotary_Encoder_socket.h>
+#include "stm32f3xx_hal.h"
+#include "stm32f3xx_hal_i2c.h"
 
-Rotary_Encoder_socket::Rotary_Encoder_socket ()
+
+
+Rotary_Encoder_socket::Rotary_Encoder_socket(
+	I2C_HandleTypeDef* i2c_handle_in)
+
 {
-  // TODO Auto-generated constructor stub
-
+  i2c_handle = i2c_handle_in;
+  ringbuffer = new simpleRingbuffer(simpleRingbuffer_len);
+  rotary_encoder_callback_set((ISR_callback*) this);
 }
 
 Rotary_Encoder_socket::~Rotary_Encoder_socket ()
+{}
+
+void Rotary_Encoder_socket::callback_fcn(void)
 {
-  // TODO Auto-generated destructor stub
+  uint8_t data = 0;
+
+  // TODO remove later
+  HAL_GPIO_TogglePin(LD9_GPIO_Port, LD9_Pin);
+
+  HAL_I2C_Master_Receive(i2c_handle, device_address, &data, 1, Timeout);
+  ringbuffer->Write(~data);
 }
 
+
+simpleRingbuffer* Rotary_Encoder_socket::rx_ringbuffer(void)
+{
+  return ringbuffer;
+}

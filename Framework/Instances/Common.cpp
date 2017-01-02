@@ -8,7 +8,7 @@
 #include "Common.h"
 #include "stm32f3xx_hal.h"
 #include "main.h"
-#include "System/callbacks.h"
+#include "Instances/callbacks.h"
 
 
 
@@ -122,6 +122,19 @@ void Common::init_SD_Card(void)
   // usage: http://elm-chan.org/fsw/ff/res/app1.c
 
 }
+
+
+void Common::init_rotary_encoder()
+{
+  // TODO
+}
+
+Rotary_Encoder* Common::get_rotary_encoder(void)
+{
+  return rotary_encoder;
+}
+
+
 
 uint32_t Common::get_tick(void)
 {

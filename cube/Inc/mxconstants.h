@@ -4,7 +4,7 @@
   * Description        : This file contains the common defines of the application
   ******************************************************************************
   *
-  * COPYRIGHT(c) 2016 STMicroelectronics
+  * COPYRIGHT(c) 2017 STMicroelectronics
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -42,10 +42,6 @@
 #define CS_I2C_SPI_GPIO_Port GPIOE
 #define Rotary_Encoder_INT_Pin GPIO_PIN_10
 #define Rotary_Encoder_INT_GPIO_Port GPIOF
-#define Rotary_Encoder_SDA_Pin GPIO_PIN_0
-#define Rotary_Encoder_SDA_GPIO_Port GPIOF
-#define Rotary_Encoder_SCL_Pin GPIO_PIN_1
-#define Rotary_Encoder_SCL_GPIO_Port GPIOF
 #define B1_Pin GPIO_PIN_0
 #define B1_GPIO_Port GPIOA
 #define SPI1_MISO_Pin GPIO_PIN_7

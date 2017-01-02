@@ -18,6 +18,7 @@
 SPI_HandleTypeDef* 	get_LCD_SPI(void);
 UART_HandleTypeDef* get_UART_1(void);
 SPI_HandleTypeDef* 	get_SD_SPI(void);
+I2C_HandleTypeDef* 	get_I2C_1(void);
 
 
 #ifdef __cplusplus

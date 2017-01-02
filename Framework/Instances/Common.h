@@ -18,6 +18,9 @@
 #include "Devices/Comm_Layer/Comm_Layer.h"
 #include "sd_spi_stm32.h"
 #include "ff_gen_drv.h"
+#include "Devices/Rotary_Encoder/Rotary_Encoder_socket.h"
+#include "Devices/Rotary_Encoder/Rotary_Encoder.h"
+
 
 
 class Common
@@ -36,6 +39,7 @@ public:
   static PCD8544_graphics*  get_LCD_grfx(void);
   static Keypad*			get_keypad(void);
   static Comm_Layer*		get_comm_layer(void);
+  static Rotary_Encoder* 	get_rotary_encoder(void);
 
   static inline void delay(uint32_t delay)
   { HAL_Delay(delay); }
@@ -55,6 +59,10 @@ private:
   static void init_SD_Card(void);
   static Diskio_drvTypeDef* sd_card_drv;
   // TODO get_sd_card handler...
+
+  static void init_rotary_encoder(void);
+  static Rotary_Encoder* rotary_encoder;
+
 
   static SoftwareEvents    *sw_events;
 };

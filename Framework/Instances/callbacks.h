@@ -23,6 +23,6 @@ void keypad_callback_clear(void);
 
 void uart1_callback_set(ISR_callback* callback);
 
-
+void rotary_encoder_callback_set(ISR_callback* callback);
 
 #endif /* CALLBACKS_H_ */

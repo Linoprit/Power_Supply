@@ -12,7 +12,7 @@
 #include <stdint.h>
 #include <Sockets/RX_TX_interface.h>
 #include "libraries/simpleRingbuffer.h"
-#include "System/callbacks.h"
+#include "Instances/callbacks.h"
 #include "stm32f3xx_hal.h"
 #include "stm32f3xx_hal_usart.h"
 
@@ -40,6 +40,7 @@ public:
 
 	  // timer, flush rx-buffer if expired
 	  void timer_hit_callback(void);
+
 
 private:
 	  SoftwareTimer 		*timer;

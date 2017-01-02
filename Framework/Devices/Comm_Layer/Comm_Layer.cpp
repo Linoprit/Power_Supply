@@ -17,6 +17,7 @@ Comm_Layer::Comm_Layer (Rx_Tx_interface *comm_socket_in)
 	  new simpleRingbuffer(TX_QUEUE_SIZE * sizeof(tx_message_type));
   rcv_header_ptr	= NULL;
 
+  // TODO create a cycle and call it from scheduler
   SoftwareEvents::hookIn(this, SoftwareEvents::Tic_10ms);
 }
 
