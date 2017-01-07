@@ -69,7 +69,7 @@ simpleRingbuffer* Comm_Layer_socket::get_rx_ringbuffer()
 }
 
 
-void Comm_Layer_socket::callback_fcn (void)
+void Comm_Layer_socket::ISR_callback_fcn (void)
 {
   uint8_t i=0;
 

@@ -47,7 +47,7 @@ public:
   ~Rotary_Encoder_socket ();
 
   // ISR_callback
-  void callback_fcn(void);
+  void ISR_callback_fcn(void);
 
   // RX_interface
   simpleRingbuffer* rx_ringbuffer();

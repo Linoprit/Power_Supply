@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cdtprojectproperties>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.IncludePaths">
+<language name="Assembly Source File">
+<includepath workspace_path="true">/Power_Supply/cube/Drivers/CMSIS/Device/ST/STM32F3xx/Include</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Drivers/CMSIS/Include</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Drivers/STM32F3xx_HAL_Driver/Inc</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Inc</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Middlewares/Third_Party/FatFs/src</includepath>
+<includepath workspace_path="true">/Power_Supply/gnuarmeclipse/system/include</includepath>
+<includepath workspace_path="true">/Power_Supply/gnuarmeclipse/system/include/cmsis</includepath>
+<includepath workspace_path="true">/Power_Supply/gnuarmeclipse/system/include/stm32f3xx</includepath>
+<includepath workspace_path="true">/Power_Supply/Application</includepath>
+<includepath workspace_path="true">/Power_Supply/Framework</includepath>
+
+</language>
+<language name="C Source File">
+<includepath workspace_path="true">/Power_Supply/cube/Drivers/CMSIS/Device/ST/STM32F3xx/Include</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Drivers/CMSIS/Include</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Drivers/STM32F3xx_HAL_Driver/Inc</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Inc</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Middlewares/Third_Party/FatFs/src</includepath>
+<includepath workspace_path="true">/Power_Supply/gnuarmeclipse/system/include</includepath>
+<includepath workspace_path="true">/Power_Supply/gnuarmeclipse/system/include/cmsis</includepath>
+<includepath workspace_path="true">/Power_Supply/gnuarmeclipse/system/include/stm32f3xx</includepath>
+<includepath workspace_path="true">/Power_Supply/Application</includepath>
+<includepath workspace_path="true">/Power_Supply/Framework</includepath>
+
+</language>
+<language name="C++ Source File">
+<includepath workspace_path="true">/Power_Supply/cube/Drivers/CMSIS/Device/ST/STM32F3xx/Include</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Drivers/CMSIS/Include</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Drivers/STM32F3xx_HAL_Driver/Inc</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Inc</includepath>
+<includepath workspace_path="true">/Power_Supply/cube/Middlewares/Third_Party/FatFs/src</includepath>
+<includepath workspace_path="true">/Power_Supply/gnuarmeclipse/system/include</includepath>
+<includepath workspace_path="true">/Power_Supply/gnuarmeclipse/system/include/cmsis</includepath>
+<includepath workspace_path="true">/Power_Supply/gnuarmeclipse/system/include/stm32f3xx</includepath>
+<includepath workspace_path="true">/Power_Supply/Application</includepath>
+<includepath workspace_path="true">/Power_Supply/Framework</includepath>
+
+</language>
+<language name="Object File">
+
+</language>
+</section>
+<section name="org.eclipse.cdt.internal.ui.wizards.settingswizards.Macros">
+<language name="Assembly Source File">
+<macro>
+<name>DEBUG</name><value/>
+</macro>
+<macro>
+<name>TRACE</name><value/>
+</macro>
+<macro>
+<name>STM32F303xC</name><value/>
+</macro>
+
+</language>
+<language name="C Source File">
+<macro>
+<name>DEBUG</name><value/>
+</macro>
+<macro>
+<name>TRACE</name><value/>
+</macro>
+<macro>
+<name>STM32F303xC</name><value/>
+</macro>
+
+</language>
+<language name="C++ Source File">
+<macro>
+<name>DEBUG</name><value/>
+</macro>
+<macro>
+<name>TRACE</name><value/>
+</macro>
+<macro>
+<name>STM32F303xC</name><value/>
+</macro>
+
+</language>
+<language name="Object File">
+
+</language>
+</section>
+</cdtprojectproperties>

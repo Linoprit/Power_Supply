@@ -23,17 +23,14 @@ Rotary_Encoder_socket::Rotary_Encoder_socket(
 Rotary_Encoder_socket::~Rotary_Encoder_socket ()
 {}
 
-void Rotary_Encoder_socket::callback_fcn(void)
+void Rotary_Encoder_socket::ISR_callback_fcn(void)
 {
   uint8_t data = 0;
 
-  // TODO remove later
-  HAL_GPIO_TogglePin(LD9_GPIO_Port, LD9_Pin);
-
+  // Blocking 180us... do we need a second callback?
   HAL_I2C_Master_Receive(i2c_handle, device_address, &data, 1, Timeout);
   ringbuffer->Write(~data);
 }
-
 
 simpleRingbuffer* Rotary_Encoder_socket::rx_ringbuffer(void)
 {

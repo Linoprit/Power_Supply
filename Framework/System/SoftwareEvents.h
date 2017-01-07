@@ -12,21 +12,16 @@
 
 #include <stdint.h>
 
-
-
-
-
 #ifdef __cplusplus
 
 #include <stdlib.h>
 #include "libraries/simpleRingbuffer.h"
 
 
-
 // This many callbacks can hook in
-const uint8_t EVENTS_TABLE_LEN  = 20;
-// This many events can be buffered
-const uint8_t newEVENTS_BUFFER_LEN = 10;
+const uint8_t EVENTS_TABLE_LEN  = 10; // TODO value = 30
+// This many occoured events can be buffered
+const uint8_t EVENTS_BUFFER_LEN = 10;
 
 
 class SoftwareEvents_base;
@@ -34,8 +29,12 @@ class SoftwareEvents_base;
 class SoftwareEvents
 {
 public:
-  enum Event_Names_enum {None, All, Tic_1ms, Tic_10ms, Tic_100ms,
-	key_released, key_pressed, key_held};
+  enum Event_Names_enum {None, All,
+	Tic_1ms, Tic_10ms, Tic_100ms,
+	key_released, key_pressed, key_held,
+	btn_released, btn_pressed, btn_held,
+	rotenc_increment, rotenc_decrement
+  };
   // type "All" is only allowed for listening!
 
   struct EventSet
@@ -62,10 +61,6 @@ public:
 
   static void sendEvent(Event_Names_enum event_name);
   static void checkTicks(uint32_t sysTick);
-
-
-  //static EventSet EventTable[newEVENTS_TABLE_LEN];
-
 
 
 private:

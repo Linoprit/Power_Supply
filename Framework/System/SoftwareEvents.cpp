@@ -9,7 +9,7 @@
 #include "stm32f3xx_hal.h"
 
 
-simpleRingbuffer swe_ringbuffer(newEVENTS_BUFFER_LEN);
+simpleRingbuffer swe_ringbuffer(EVENTS_BUFFER_LEN);
 SoftwareEvents::EventSet SoftwareEvents::EventTable[EVENTS_TABLE_LEN];
 
 
@@ -45,6 +45,7 @@ void SoftwareEvents::execute_callbacks(Event_Names_enum event_name)
 {
   uint8_t i;
 
+  // TODO does event "all" work?
   for (i=0; i < EVENTS_TABLE_LEN; i++)
 	{
 	  if ((EventTable[i].class_pointer != NULL) &&

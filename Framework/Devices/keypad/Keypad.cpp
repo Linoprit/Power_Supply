@@ -45,7 +45,7 @@ Keypad::Keypad (Keypad_socket *socket)
 }
 
 
-void Keypad::callback_fcn(void)
+void Keypad::ISR_callback_fcn(void)
 {
   uint8_t countToRotate;
   uint8_t alignedVal;

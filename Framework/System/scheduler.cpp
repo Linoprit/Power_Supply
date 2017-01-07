@@ -57,12 +57,13 @@ void scheduler::cycle(void)
   PCD8544_graphics*	LCD		 	= Common::get_LCD_grfx();
   Keypad* 			keypad 		= Common::get_keypad();
   Comm_Layer*		comm		= Common::get_comm_layer();
+  // TODO do not call it every cycle!!
   Messages_Base::init(); // put it to Common.cpp?
 
 
   // TODO remove callback?
   //sw_events->checkTicks(tick);
-
+  sw_events->loop();
 
 
   // 1ms cycle

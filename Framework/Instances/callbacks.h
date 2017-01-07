@@ -13,7 +13,7 @@
 
 class ISR_callback {
 public:
-  virtual void callback_fcn (void) = 0;
+  virtual void ISR_callback_fcn (void) = 0;
   virtual ~ISR_callback(void) { };
 };
 

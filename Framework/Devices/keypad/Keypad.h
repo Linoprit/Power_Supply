@@ -45,7 +45,7 @@ public:
 
 
 	  // actually private, but called by ISR handler, or timer callback
-	  void callback_fcn (void);
+	  void ISR_callback_fcn (void);
 	  void timer_hit_callback(void);
 
 

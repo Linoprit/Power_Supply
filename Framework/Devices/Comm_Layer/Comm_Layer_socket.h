@@ -36,7 +36,7 @@ public:
 
 
 	  // callback usart receive complete
-	  void callback_fcn (void);
+	  void ISR_callback_fcn (void);
 
 	  // timer, flush rx-buffer if expired
 	  void timer_hit_callback(void);
