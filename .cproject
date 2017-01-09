@@ -171,7 +171,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Framework|Application|cube|Comm_Layer|Tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Framework|Application|Char_LCD|cube|Comm_Layer|Tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Application"/>
 						<entry excluding="Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
 						<entry excluding="Middlewares/Third_Party/FatFs/src/option/cc950.c|Drivers/CMSIS/RTOS|Middlewares/Third_Party/FatFs/src/option/cc932.c|Middlewares/Third_Party/FatFs/src/option/cc936.c|Drivers/CMSIS/DSP_Lib|Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_msp_template.c|Middlewares/Third_Party/FatFs/src/option/ccsbcs.c|Middlewares/Third_Party/FatFs/src/option/cc949.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cube"/>
@@ -323,7 +323,9 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Application"/>
-						<entry excluding="Tests/Comm_Layer|Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
+						<entry excluding="Tests/Char_LCD|Devices/Char_LCD|Tests/Comm_Layer|Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework/Devices/Char_LCD"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework/Tests/Char_LCD"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework/Tests/Comm_Layer"/>
 						<entry excluding="option/ccsbcs.c|option/cc949.c|option/cc950.c|option/cc932.c|option/cc936.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cube/Middlewares/Third_Party/FatFs/src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="gnuarmeclipse/system"/>

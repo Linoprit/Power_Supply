@@ -20,6 +20,7 @@ Comm_Layer*			Common::comm_layer	= NULL;
 Diskio_drvTypeDef*  Common::sd_card_drv = NULL;
 
 
+
 void Common::initialize_devices()
 {
   init_PCD8574();

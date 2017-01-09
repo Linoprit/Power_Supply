@@ -13,6 +13,7 @@
 #include "Keypad/Keypadtest.h"
 #include "Comm_Layer/Comm_Layer_test.h"
 #include "Rotary_Encoder/Rotary_Encoder_Tests.h"
+#include "Char_LCD/Char_LCD_test.h"
 
 
 Call_Tests::Call_Tests ()
@@ -41,8 +42,12 @@ void Call_Tests::cycle()
   // Comm_Layer_test *comm_layer_test = new Comm_Layer_test();
   // comm_layer_test->loop();
 
-  Rotary_Encoder_Tests *encoder_test = new Rotary_Encoder_Tests();
-  encoder_test->loop();
+  // Rotary_Encoder_Tests *encoder_test = new Rotary_Encoder_Tests();
+  // encoder_test->loop();
+
+  // Char LCD
+  Char_LCD_test* LCD_test = new Char_LCD_test();
+  LCD_test->loop();
 
 
 }

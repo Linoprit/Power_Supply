@@ -70,6 +70,10 @@
 #define LCD_CS_GPIO_Port GPIOB
 #define LCD_Data_Command_Pin GPIO_PIN_14
 #define LCD_Data_Command_GPIO_Port GPIOB
+#define Char_LCD_RS_Pin GPIO_PIN_8
+#define Char_LCD_RS_GPIO_Port GPIOD
+#define Char_LCD_EN_Pin GPIO_PIN_9
+#define Char_LCD_EN_GPIO_Port GPIOD
 #define DM_Pin GPIO_PIN_11
 #define DM_GPIO_Port GPIOA
 #define DP_Pin GPIO_PIN_12
