@@ -6,6 +6,7 @@
  */
 
 #include "Char_LCD_test.h"
+#include <string.h>
 #include "Instances/Common.h"
 #include "Devices/Char_LCD/Char_LCD_socket.h"
 #include "libraries/HelpersLib.h"
@@ -13,7 +14,7 @@
 
 Char_LCD_test::Char_LCD_test ()
 {
-  SPI_HandleTypeDef* spi = get_LCD_SPI();
+  SPI_HandleTypeDef* spi = get_SPI_3();
 
   Char_LCD_socket::char_LCD_pinspack_type*
   char_LCD_pinspack = new Char_LCD_socket::char_LCD_pinspack_type
@@ -46,11 +47,8 @@ void Char_LCD_test::loop(void)
 
   while(1)
 	{
-	  if (Common::get_tick() - old_ticks > 1)
+	  if (Common::get_tick() - old_ticks > 100)
 		{
-		  //strncpy(buffer_lines[0][0], (const char*) "btn_3", 5);
-		  //LCD->display();
-
 		  do_LCD_print();
 
 		  old_ticks = Common::get_tick();
@@ -60,23 +58,19 @@ void Char_LCD_test::loop(void)
 
 void Char_LCD_test::do_LCD_print(void)
 {
-	uint8_t i;
-	long int some_value;
+	static uint16_t i = 0;
 
-	// init interface and write into the buffer
-	some_value = 1234567;
-	// for measurement                 01234567890123456789
-	strncpy(&LCD->buffer_lines[0][0], "value2char:", 11);
-	HelpersLib::value2char(&LCD->buffer_lines[0][12], 8, 2, some_value);
-	strncpy(&LCD->buffer_lines[1][0], "01234567890123456789", 20);
-	strncpy(&LCD->buffer_lines[2][0], "Some text displayed.", 20);
-	strncpy(&LCD->buffer_lines[3][0], "That's Text from ram", 20);
-	// template for measuring          01234567890123456789
+	// for measurement                 0123456789012345
+	strncpy(&LCD->buffer_lines[0][0], "Cycle: ", 7);
+	HelpersLib::value2char(&LCD->buffer_lines[0][8], 8, 0, i++);
+	strncpy(&LCD->buffer_lines[1][0], "0123456789012345", 16);
+	// template for measuring          0123456789012345
 
-	// bring the buffer to the device
-	// every cycle another line is updated
-	for (i=0; i<4; i++)
-	  LCD->display();
+	// You could step through every line...
+	//for (uint8_t i=0; i<4; i++)
+	//  LCD->display_step();
+	// ...or push them all to the display
+	LCD->display();
 }
 
 

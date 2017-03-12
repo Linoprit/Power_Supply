@@ -8,9 +8,14 @@
 #ifndef DEVICES_ROTARY_ENCODER_ROTARY_ENCODER_H_
 #define DEVICES_ROTARY_ENCODER_ROTARY_ENCODER_H_
 
+#include <Devices/Rotary_Encoder/Button_Machine.h>
+#include "ALPS_Encoder.h"
+#include "Grayhill_Encoder.h"
 #include "Rotary_Encoder_socket.h"
-#include "Button_State_Machine.h"
-#include "Rotary_Encoder_State_Machine.h"
+
+
+//#define ALPS
+#define GRAYHILL
 
 
 class Rotary_Encoder
@@ -30,7 +35,8 @@ public:
   void cycle(void);
   last_key_enum get_last_key(void);
 
-
+  // Alps Board
+#ifdef ALPS
   const uint8_t mask_button_1  = 0b00000100;
   const uint8_t mask_encoder_1 = 0b00000011;
   const uint8_t mask_button_2  = 0b00100000;
@@ -38,15 +44,46 @@ public:
   const uint8_t mask_button_3  = 0b01000000;
   const uint8_t mask_button_4  = 0b10000000;
 
+  const uint8_t offset_button_1  = 2;
+  const uint8_t offset_encoder_1 = 0;
+  const uint8_t offset_button_2  = 5;
+  const uint8_t offset_encoder_2 = 3;
+  const uint8_t offset_button_3  = 6;
+  const uint8_t offset_button_4  = 7;
+#endif
+
+  // Grayhill Board
+#ifdef GRAYHILL
+  const uint8_t mask_button_2  = 0b00010000;
+  const uint8_t mask_encoder_2 = 0b00000011;
+  const uint8_t mask_button_1  = 0b00100000;
+  const uint8_t mask_encoder_1 = 0b00001100;
+  const uint8_t mask_button_3  = 0b01000000;
+  const uint8_t mask_button_4  = 0b10000000;
+
+  const uint8_t offset_button_2  = 4;
+  const uint8_t offset_encoder_2 = 0;
+  const uint8_t offset_button_1  = 5;
+  const uint8_t offset_encoder_1 = 2;
+  const uint8_t offset_button_3  = 6;
+  const uint8_t offset_button_4  = 7;
+#endif
+
 
 private:
   Rotary_Encoder_socket* 		socket;
-  Rotary_Encoder_State_Machine*	enc_left;
-  Rotary_Encoder_State_Machine* enc_right;
-  Button_State_Machine*			button_left;
-  Button_State_Machine*			button_right;
-  Button_State_Machine*			button_3;
-  Button_State_Machine*			button_4;
+#ifdef ALPS
+  ALPS_Encoder*	  enc_left;
+  ALPS_Encoder*   enc_right;
+#endif
+#ifdef GRAYHILL
+  Grayhill_Encoder*  enc_left;
+  Grayhill_Encoder*  enc_right;
+#endif
+  Button_Machine*			button_left;
+  Button_Machine*			button_right;
+  Button_Machine*			button_3;
+  Button_Machine*			button_4;
 
   uint8_t button_val_left;
   uint8_t button_val_right;

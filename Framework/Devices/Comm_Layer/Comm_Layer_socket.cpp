@@ -10,7 +10,7 @@
 #include "stm32f3xx_hal.h"
 #include <string.h>
 
-#include "gpio.h"
+//#include "gpio.h"
 
 
 Comm_Layer_socket::Comm_Layer_socket (UART_HandleTypeDef *huart)

@@ -1,0 +1,578 @@
+EESchema Schematic File Version 2
+LIBS:Netzteil_Progammable-rescue
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:Netzteil_Parts
+LIBS:Netzteil_Progammable-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 5
+Title "Power Supply - Main Supply"
+Date "2017-03-06"
+Rev "1.1"
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Wire Wire Line
+	5850 6200 5850 5550
+Connection ~ 6600 5550
+Wire Wire Line
+	5850 5550 7700 5550
+Connection ~ 1300 4100
+Wire Wire Line
+	5000 5350 3850 5350
+Wire Wire Line
+	3850 5350 3850 5750
+Wire Wire Line
+	3850 5750 1300 5750
+Wire Wire Line
+	1300 5750 1300 3250
+Connection ~ 8100 5950
+Wire Wire Line
+	8100 5850 8100 6050
+Connection ~ 7450 5550
+Connection ~ 9100 2100
+Wire Wire Line
+	9100 3350 9100 2100
+Wire Wire Line
+	6500 2100 6500 4100
+Wire Wire Line
+	4800 1150 4800 4300
+Connection ~ 6500 3350
+Wire Wire Line
+	6300 3350 9100 3350
+Wire Wire Line
+	4800 4300 7500 4300
+Wire Wire Line
+	4200 2950 8250 2950
+Connection ~ 1300 3250
+Connection ~ 4200 2950
+Wire Wire Line
+	4200 2950 4200 4100
+Wire Wire Line
+	4200 4100 1300 4100
+Wire Wire Line
+	3000 1900 3600 1900
+Wire Wire Line
+	1600 1300 3600 1300
+Wire Wire Line
+	1600 1300 1600 1600
+Wire Wire Line
+	3350 1000 3350 1700
+Wire Wire Line
+	5850 3750 6500 3750
+Connection ~ 5650 1000
+Wire Wire Line
+	1300 1000 8250 1000
+Wire Wire Line
+	8250 1000 8250 1250
+Connection ~ 6850 4300
+Wire Wire Line
+	6850 4550 6850 4300
+Wire Wire Line
+	6500 4100 8350 4100
+Wire Wire Line
+	1700 5400 2300 5400
+Wire Wire Line
+	2600 4900 2950 4900
+Wire Wire Line
+	2300 4500 2300 4700
+Connection ~ 2100 3550
+Wire Wire Line
+	2200 2100 2100 2100
+Wire Wire Line
+	1300 3250 2200 3250
+Wire Wire Line
+	1600 1600 1300 1600
+Wire Wire Line
+	4800 3750 5450 3750
+Wire Wire Line
+	1300 1000 1300 1400
+Connection ~ 6500 3750
+Connection ~ 4800 3750
+Connection ~ 1300 1600
+Wire Wire Line
+	3600 3150 3000 3150
+Connection ~ 3350 1000
+Wire Wire Line
+	2100 3550 2200 3550
+Wire Wire Line
+	2200 2000 1700 2000
+Wire Wire Line
+	1700 3450 2200 3450
+Wire Wire Line
+	2300 5400 2300 5100
+Connection ~ 1700 3450
+Wire Wire Line
+	5650 1000 5650 1250
+Wire Wire Line
+	3450 4900 9450 4900
+Connection ~ 5650 2950
+Wire Wire Line
+	4800 1150 7400 1150
+Wire Wire Line
+	7400 1150 7400 2100
+Connection ~ 4800 2100
+Connection ~ 3350 1700
+Wire Wire Line
+	3350 1700 3000 1700
+Connection ~ 3600 1900
+Wire Wire Line
+	3600 1300 3600 3150
+Wire Wire Line
+	2200 1800 1300 1800
+Wire Wire Line
+	1300 1800 1300 3050
+Wire Wire Line
+	1700 2000 1700 5400
+Connection ~ 1700 2600
+Wire Wire Line
+	2100 2100 2100 3700
+Connection ~ 2100 2600
+Wire Wire Line
+	8000 4300 8350 4300
+Wire Wire Line
+	9450 4550 8250 4550
+Wire Wire Line
+	8250 4550 8250 4300
+Connection ~ 8250 4300
+Wire Wire Line
+	4800 3350 5900 3350
+Connection ~ 4800 3350
+Wire Wire Line
+	8750 5350 8750 5550
+Wire Wire Line
+	1300 2700 600  2700
+Connection ~ 1300 2700
+Wire Wire Line
+	600  2700 600  7050
+Wire Wire Line
+	600  7050 5000 7050
+Wire Wire Line
+	4150 6200 4150 7300
+Wire Wire Line
+	4150 7300 6600 7300
+Wire Wire Line
+	6600 7300 6600 5950
+Wire Wire Line
+	6600 5950 8750 5950
+$Comp
+L CP1-RESCUE-Netzteil_Progammable C3
+U 1 1 50E825F1
+P 6600 5750
+F 0 "C3" H 6650 5850 50  0000 L CNN
+F 1 "1000µF/50V" H 6650 5650 50  0000 L CNN
+F 2 "" H 6600 5750 60  0001 C CNN
+F 3 "" H 6600 5750 60  0001 C CNN
+	1    6600 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L BRIDGE D4
+U 1 1 50E8255D
+P 5000 6200
+F 0 "D4" H 5000 6250 70  0000 C CNN
+F 1 "1500mA" H 5000 6150 70  0000 C CNN
+F 2 "" H 5000 6200 60  0001 C CNN
+F 3 "" H 5000 6200 60  0001 C CNN
+	1    5000 6200
+	1    0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG3
+U 1 1 5027F6DD
+P 7450 5450
+F 0 "#FLG3" H 7450 5720 30  0001 C CNN
+F 1 "PWR_FLAG" H 7450 5680 30  0000 C CNN
+F 2 "" H 7450 5450 60  0001 C CNN
+F 3 "" H 7450 5450 60  0001 C CNN
+	1    7450 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR25
+U 1 1 5027F6B7
+P 8750 5350
+F 0 "#PWR25" H 8750 5440 20  0001 C CNN
+F 1 "+5V" H 8800 5450 30  0000 C CNN
+F 2 "" H 8750 5350 60  0001 C CNN
+F 3 "" H 8750 5350 60  0001 C CNN
+	1    8750 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L C-RESCUE-Netzteil_Progammable C5
+U 1 1 5027F682
+P 8750 5750
+F 0 "C5" H 8800 5850 50  0000 L CNN
+F 1 "0.1µF" H 8800 5650 50  0000 L CNN
+F 2 "" H 8750 5750 60  0001 C CNN
+F 3 "" H 8750 5750 60  0001 C CNN
+	1    8750 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L C-RESCUE-Netzteil_Progammable C4
+U 1 1 5027F67A
+P 7450 5750
+F 0 "C4" H 7500 5850 50  0000 L CNN
+F 1 "100nF" H 7500 5650 50  0000 L CNN
+F 2 "" H 7450 5750 60  0001 C CNN
+F 3 "" H 7450 5750 60  0001 C CNN
+	1    7450 5750
+	1    0    0    -1  
+$EndComp
+$Comp
+L 7805 U2
+U 1 1 5027F64E
+P 8100 5600
+F 0 "U2" H 8250 5404 60  0000 C CNN
+F 1 "7805" H 8100 5800 60  0000 C CNN
+F 2 "" H 8100 5600 60  0001 C CNN
+F 3 "" H 8100 5600 60  0001 C CNN
+	1    8100 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP1-RESCUE-Netzteil_Progammable C1
+U 1 1 5027F609
+P 6100 3350
+F 0 "C1" H 6150 3450 50  0000 L CNN
+F 1 "2000µF/50V" H 6150 3250 50  0000 L CNN
+F 2 "" H 6100 3350 60  0001 C CNN
+F 3 "" H 6100 3350 60  0001 C CNN
+	1    6100 3350
+	0    1    1    0   
+$EndComp
+Text Notes 7350 4600 0    60   ~ 0
+4x0.1Ohm\nParallel & Serie
+$Comp
+L R-RESCUE-Netzteil_Progammable R9
+U 1 1 5027F4F1
+P 7750 4300
+F 0 "R9" V 7830 4300 50  0000 C CNN
+F 1 "0.1" V 7750 4300 50  0000 C CNN
+F 2 "" H 7750 4300 60  0001 C CNN
+F 3 "" H 7750 4300 60  0001 C CNN
+	1    7750 4300
+	0    1    1    0   
+$EndComp
+$Comp
+L DIODE D3
+U 1 1 5027F436
+P 1900 2600
+F 0 "D3" H 1900 2700 40  0000 C CNN
+F 1 "1N4148" H 1900 2500 40  0000 C CNN
+F 2 "" H 1900 2600 60  0001 C CNN
+F 3 "" H 1900 2600 60  0001 C CNN
+	1    1900 2600
+	-1   0    0    -1  
+$EndComp
+$Comp
+L BRIDGE D2
+U 1 1 5027F24E
+P 8250 2100
+F 0 "D2" H 8250 2150 70  0000 C CNN
+F 1 "D600G / 6A" H 8250 2050 70  0000 C CNN
+F 2 "" H 8250 2100 60  0001 C CNN
+F 3 "" H 8250 2100 60  0001 C CNN
+	1    8250 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L NPN Q1
+U 1 1 5027F1F1
+P 2400 4900
+F 0 "Q1" H 2400 4750 50  0000 R CNN
+F 1 "BC548" H 2400 5050 50  0000 R CNN
+F 2 "" H 2400 4900 60  0001 C CNN
+F 3 "" H 2400 4900 60  0001 C CNN
+	1    2400 4900
+	-1   0    0    -1  
+$EndComp
+$Comp
+L R-RESCUE-Netzteil_Progammable R10
+U 1 1 502022E2
+P 3200 4900
+F 0 "R10" V 3280 4900 50  0000 C CNN
+F 1 "1k" V 3200 4900 50  0000 C CNN
+F 2 "" H 3200 4900 60  0001 C CNN
+F 3 "" H 3200 4900 60  0001 C CNN
+	1    3200 4900
+	0    1    1    0   
+$EndComp
+$Comp
+L GND-RESCUE-Netzteil_Progammable #PWR24
+U 1 1 50201F62
+P 6850 4550
+F 0 "#PWR24" H 6850 4550 30  0001 C CNN
+F 1 "GND" H 6850 4480 30  0001 C CNN
+F 2 "" H 6850 4550 60  0001 C CNN
+F 3 "" H 6850 4550 60  0001 C CNN
+	1    6850 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L +24V #PWR22
+U 1 1 50201F43
+P 8250 3950
+F 0 "#PWR22" H 8250 3900 20  0001 C CNN
+F 1 "+24V" H 8250 4100 30  0000 C CNN
+F 2 "" H 8250 3950 60  0001 C CNN
+F 3 "" H 8250 3950 60  0001 C CNN
+	1    8250 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L +5V #PWR23
+U 1 1 50201A64
+P 2300 4500
+F 0 "#PWR23" H 2300 4590 20  0001 C CNN
+F 1 "+5V" H 2300 4590 30  0000 C CNN
+F 2 "" H 2300 4500 60  0001 C CNN
+F 3 "" H 2300 4500 60  0001 C CNN
+	1    2300 4500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L GND-RESCUE-Netzteil_Progammable #PWR21
+U 1 1 50201970
+P 2100 3700
+F 0 "#PWR21" H 2100 3700 30  0001 C CNN
+F 1 "GND" H 2100 3630 30  0001 C CNN
+F 2 "" H 2100 3700 60  0001 C CNN
+F 3 "" H 2100 3700 60  0001 C CNN
+	1    2100 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_2 P6
+U 1 1 50201794
+P 950 3150
+F 0 "P6" V 900 3150 40  0000 C CNN
+F 1 "Trafo_IN_2" V 1000 3150 40  0000 C CNN
+F 2 "" H 950 3150 60  0001 C CNN
+F 3 "" H 950 3150 60  0001 C CNN
+	1    950  3150
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_2 P7
+U 1 1 50201731
+P 8700 4200
+F 0 "P7" V 8650 4200 40  0000 C CNN
+F 1 "+24_PWR" V 8750 4200 40  0000 C CNN
+F 2 "" H 8700 4200 60  0001 C CNN
+F 3 "" H 8700 4200 60  0001 C CNN
+	1    8700 4200
+	1    0    0    -1  
+$EndComp
+$Comp
+L RELAY_1RT K2
+U 1 1 5020169C
+P 2650 3400
+F 0 "K2" H 2600 3800 70  0000 C CNN
+F 1 "RELAY_1RT" H 2750 3100 70  0000 C CNN
+F 2 "" H 2650 3400 60  0001 C CNN
+F 3 "" H 2650 3400 60  0001 C CNN
+	1    2650 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L BRIDGE D1
+U 1 1 50201622
+P 5650 2100
+F 0 "D1" H 5650 2150 70  0000 C CNN
+F 1 "D600G / 6A" H 5650 2050 70  0000 C CNN
+F 2 "" H 5650 2100 60  0001 C CNN
+F 3 "" H 5650 2100 60  0001 C CNN
+	1    5650 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L CP1-RESCUE-Netzteil_Progammable C2
+U 1 1 502015D8
+P 5650 3750
+F 0 "C2" H 5700 3850 50  0000 L CNN
+F 1 "2000µF/50V" H 5700 3650 50  0000 L CNN
+F 2 "" H 5650 3750 60  0001 C CNN
+F 3 "" H 5650 3750 60  0001 C CNN
+	1    5650 3750
+	0    1    1    0   
+$EndComp
+$Comp
+L CONN_2 P5
+U 1 1 50201499
+P 950 1500
+F 0 "P5" V 900 1500 40  0000 C CNN
+F 1 "Trafo_IN_1" V 1000 1500 40  0000 C CNN
+F 2 "" H 950 1500 60  0001 C CNN
+F 3 "" H 950 1500 60  0001 C CNN
+	1    950  1500
+	-1   0    0    1   
+$EndComp
+$Comp
+L RELAY_1RT K1
+U 1 1 50201453
+P 2650 1950
+F 0 "K1" H 2600 2350 70  0000 C CNN
+F 1 "RELAY_1RT" H 2750 1650 70  0000 C CNN
+F 2 "" H 2650 1950 60  0001 C CNN
+F 3 "" H 2650 1950 60  0001 C CNN
+	1    2650 1950
+	1    0    0    -1  
+$EndComp
+Connection ~ 8750 5450
+Connection ~ 8750 5950
+Connection ~ 9100 3350
+NoConn ~ 3000 3350
+Wire Wire Line
+	8750 5550 8500 5550
+Connection ~ 7450 5950
+Wire Wire Line
+	7450 5450 7450 5550
+$Comp
+L PWR_FLAG #FLG2
+U 1 1 589D1F88
+P 7950 3950
+F 0 "#FLG2" H 7950 4045 50  0001 C CNN
+F 1 "PWR_FLAG" H 7950 4130 50  0000 C CNN
+F 2 "" H 7950 3950 50  0000 C CNN
+F 3 "" H 7950 3950 50  0000 C CNN
+	1    7950 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR26
+U 1 1 589D4417
+P 8100 6050
+F 0 "#PWR26" H 8100 5800 50  0001 C CNN
+F 1 "GND" H 8100 5900 50  0000 C CNN
+F 2 "" H 8100 6050 50  0000 C CNN
+F 3 "" H 8100 6050 50  0000 C CNN
+	1    8100 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L PWR_FLAG #FLG4
+U 1 1 589E4EEB
+P 8750 6050
+F 0 "#FLG4" H 8750 6145 50  0001 C CNN
+F 1 "PWR_FLAG" H 8750 6230 50  0000 C CNN
+F 2 "" H 8750 6050 50  0000 C CNN
+F 3 "" H 8750 6050 50  0000 C CNN
+	1    8750 6050
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_01X08 P1
+U 1 1 58A000E7
+P 9700 1150
+F 0 "P1" H 9700 1600 50  0000 C CNN
+F 1 "Power Board" V 9800 1150 50  0000 C CNN
+F 2 "" H 9700 1150 50  0001 C CNN
+F 3 "" H 9700 1150 50  0000 C CNN
+	1    9700 1150
+	-1   0    0    -1  
+$EndComp
+Text Notes 9700 2850 0    60   ~ 0
+Power\n1 = HI/LO\n2 = +24\n3 = +5\n4 = GND\n5 = I_Sense\n6 = GND\n7 = U_Sense*\n8 = NC\n* U_Sense is connected \n  to U_out
+Text GLabel 10100 1200 2    60   Input ~ 0
+I_Sense
+Wire Wire Line
+	9900 1200 10100 1200
+$Comp
+L GND #PWR20
+U 1 1 58A000F1
+P 10650 1400
+F 0 "#PWR20" H 10650 1150 50  0001 C CNN
+F 1 "GND" H 10650 1250 50  0000 C CNN
+F 2 "" H 10650 1400 50  0000 C CNN
+F 3 "" H 10650 1400 50  0000 C CNN
+	1    10650 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9900 1300 10650 1300
+Wire Wire Line
+	10650 1100 10650 1400
+Wire Wire Line
+	9900 1100 10650 1100
+Connection ~ 10650 1300
+$Comp
+L +5V #PWR19
+U 1 1 58A000FD
+P 10650 1000
+F 0 "#PWR19" H 10650 1090 20  0001 C CNN
+F 1 "+5V" H 10650 1150 30  0000 C CNN
+F 2 "" H 10650 1000 60  0001 C CNN
+F 3 "" H 10650 1000 60  0001 C CNN
+	1    10650 1000
+	1    0    0    -1  
+$EndComp
+NoConn ~ 9900 1500
+Wire Wire Line
+	9900 1000 10650 1000
+$Comp
+L +24V #PWR18
+U 1 1 58A00105
+P 10500 900
+F 0 "#PWR18" H 10500 750 50  0001 C CNN
+F 1 "+24V" H 10500 1040 50  0000 C CNN
+F 2 "" H 10500 900 50  0000 C CNN
+F 3 "" H 10500 900 50  0000 C CNN
+	1    10500 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9900 900  10500 900 
+Text GLabel 10050 800  2    60   Output ~ 0
+HI/LO
+Wire Wire Line
+	9900 800  10050 800 
+Text GLabel 9450 4900 2    60   Output ~ 0
+HI/LO
+Text GLabel 9450 4550 2    60   Input ~ 0
+I_Sense
+Wire Wire Line
+	8250 3950 8250 4100
+Connection ~ 8250 4100
+Wire Wire Line
+	7950 3950 7950 4100
+Connection ~ 7950 4100
+NoConn ~ 9900 1400
+Wire Wire Line
+	8750 5950 8750 6050
+$EndSCHEMATC

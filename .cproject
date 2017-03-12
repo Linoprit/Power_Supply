@@ -67,7 +67,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/CMSIS/Include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/STM32F3xx_HAL_Driver/Inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Middlewares/Third_Party/FatFs/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/cmsis}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/stm32f3xx}&quot;"/>
@@ -77,7 +76,7 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs.2144134666" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="DEBUG"/>
 									<listOptionValue builtIn="false" value="TRACE"/>
-									<listOptionValue builtIn="false" value="STM32F303xC"/>
+									<listOptionValue builtIn="false" value="STM32F303xE"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.1222635501" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
 							</tool>
@@ -87,7 +86,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/CMSIS/Include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/STM32F3xx_HAL_Driver/Inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Middlewares/Third_Party/FatFs/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/cmsis}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/stm32f3xx}&quot;"/>
@@ -100,7 +98,7 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.334538634" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="DEBUG"/>
 									<listOptionValue builtIn="false" value="TRACE"/>
-									<listOptionValue builtIn="false" value="STM32F303xC"/>
+									<listOptionValue builtIn="false" value="STM32F303xE"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.2096258922" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
 							</tool>
@@ -110,7 +108,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/CMSIS/Include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Drivers/STM32F3xx_HAL_Driver/Inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Inc}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/cube/Middlewares/Third_Party/FatFs/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/cmsis}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Power_Supply/gnuarmeclipse/system/include/stm32f3xx}&quot;"/>
@@ -120,7 +117,7 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs.1133135966" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="DEBUG"/>
 									<listOptionValue builtIn="false" value="TRACE"/>
-									<listOptionValue builtIn="false" value="STM32F303xC"/>
+									<listOptionValue builtIn="false" value="STM32F303xE"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input.776419504" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input"/>
 							</tool>
@@ -157,7 +154,9 @@
 								</inputType>
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver.1781746942" name="Cross ARM GNU Archiver" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.archiver"/>
-							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.createflash.1134375878" name="Cross ARM GNU Create Flash Image" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.createflash"/>
+							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.createflash.1134375878" name="Cross ARM GNU Create Flash Image" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.createflash">
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.createflash.choice.2071858670" name="Output file format (-O)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.createflash.choice" useByScannerDiscovery="false" value="ilg.gnuarmeclipse.managedbuild.cross.option.createflash.choice.binary" valueType="enumerated"/>
+							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.createlisting.253135949" name="Cross ARM GNU Create Listing" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.createlisting">
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.createlisting.source.1252141307" name="Display source (--source|-S)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.createlisting.source" value="true" valueType="boolean"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.createlisting.allheaders.272762281" name="Display all headers (--all-headers|-x)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.createlisting.allheaders" value="true" valueType="boolean"/>
@@ -171,10 +170,10 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Framework|Application|Char_LCD|cube|Comm_Layer|Tests" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Debug_Comm|Debug/gnuarmeclipse/system/src/diag_old|Framework|Comm_Layer|Tests|Application|Char_LCD|cube" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Application"/>
-						<entry excluding="Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
-						<entry excluding="Middlewares/Third_Party/FatFs/src/option/cc950.c|Drivers/CMSIS/RTOS|Middlewares/Third_Party/FatFs/src/option/cc932.c|Middlewares/Third_Party/FatFs/src/option/cc936.c|Drivers/CMSIS/DSP_Lib|Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_msp_template.c|Middlewares/Third_Party/FatFs/src/option/ccsbcs.c|Middlewares/Third_Party/FatFs/src/option/cc949.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cube"/>
+						<entry excluding="Tests/UART_Socket|Tests/Sw_Timer|Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
+						<entry excluding="Drivers/CMSIS/Device/ST/STM32F3xx/Source|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_timebase_tim_template.c|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_timebase_rtc_wakeup_template.c|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_timebase_rtc_alarm_template.c|attic|Middlewares/Third_Party/FatFs/src/option/cc950.c|Drivers/CMSIS/RTOS|Middlewares/Third_Party/FatFs/src/option/cc932.c|Middlewares/Third_Party/FatFs/src/option/cc936.c|Drivers/CMSIS/DSP_Lib|Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_msp_template.c|Middlewares/Third_Party/FatFs/src/option/ccsbcs.c|Middlewares/Third_Party/FatFs/src/option/cc949.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cube"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -245,6 +244,9 @@
 									<listOptionValue builtIn="false" value="&quot;/${ProjName}/Framework&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Application}&quot;"/>
 								</option>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs.1342376039" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.assembler.defs" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="STM32F303xE"/>
+								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input.1523538965" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.assembler.input"/>
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.500982661" name="Cross ARM C Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler">
@@ -260,6 +262,10 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.missingprototypes.1341687954" name="Warn if a global function has no prototype (-Wmissing-prototypes)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.missingprototypes" useByScannerDiscovery="true" value="true" valueType="boolean"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.strictprototypes.1494377567" name="Warn if a function has no arg type (-Wstrict-prototypes)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.strictprototypes" useByScannerDiscovery="true" value="true" valueType="boolean"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.badfunctioncast.1183183972" name="Warn if wrong cast  (-Wbad-function-cast)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.warning.badfunctioncast" useByScannerDiscovery="true" value="true" valueType="boolean"/>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.780814134" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" useByScannerDiscovery="true" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="RCC_CFGR_PLLSRC_HSI_PREDIV"/>
+									<listOptionValue builtIn="false" value="STM32F303xE"/>
+								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.671550034" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.296701960" name="Cross ARM C++ Compiler" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler">
@@ -270,6 +276,9 @@
 									<listOptionValue builtIn="false" value="&quot;../gnuarmeclipse/system/include/stm32f3xx&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;/${ProjName}/Framework&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/Application}&quot;"/>
+								</option>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs.102978436" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs" useByScannerDiscovery="true" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="STM32F303xE"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input.481707835" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input"/>
 							</tool>
@@ -323,11 +332,8 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Application"/>
-						<entry excluding="Tests/Char_LCD|Devices/Char_LCD|Tests/Comm_Layer|Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
+						<entry excluding="Tests/Debug_Comm|Tests/UART_Socket|Tests/Rotary_Encoder|Tests/Sw_Timer|Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Tests/Comm_Layer|Devices/PCD8544_LCD/test|Tests/Char_LCD|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP|Devices/Char_LCD" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework/Devices/Char_LCD"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework/Tests/Char_LCD"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework/Tests/Comm_Layer"/>
-						<entry excluding="option/ccsbcs.c|option/cc949.c|option/cc950.c|option/cc932.c|option/cc936.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cube/Middlewares/Third_Party/FatFs/src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="gnuarmeclipse/system"/>
 					</sourceEntries>
 				</configuration>

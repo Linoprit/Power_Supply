@@ -13,12 +13,19 @@ Rotary_Encoder::Rotary_Encoder (Rotary_Encoder_socket* socket_in)
 {
   socket = socket_in;
 
-  enc_left 		= new Rotary_Encoder_State_Machine();
-  enc_right  	= new Rotary_Encoder_State_Machine();
-  button_left	= new Button_State_Machine();
-  button_right	= new Button_State_Machine();
-  button_3		= new Button_State_Machine();
-  button_4		= new Button_State_Machine();
+#ifdef ALPS
+  enc_left 		= new ALPS_Encoder();
+  enc_right  	= new ALPS_Encoder();
+#endif
+#ifdef GRAYHILL
+  enc_left 		= new Grayhill_Encoder();
+  enc_right		= new Grayhill_Encoder();
+#endif
+
+  button_left	= new Button_Machine();
+  button_right	= new Button_Machine();
+  button_3		= new Button_Machine();
+  button_4		= new Button_Machine();
 
   button_val_left  = 0;
   button_val_right = 0;
@@ -39,15 +46,17 @@ void Rotary_Encoder::cycle(void)
 	{
 	  input = socket->rx_ringbuffer()->Read();
 
-	  button_val_left 	= (input & mask_button_1)  	>> 2;
-	  button_val_right 	= (input & mask_button_2)  	>> 5;
-	  button_val_3 		= (input & mask_button_3)  	>> 6;
-	  button_val_4 		= (input & mask_button_4)  	>> 7;
+	  button_val_left 	= (input & mask_button_1) >> offset_button_1;
+	  button_val_right 	= (input & mask_button_2) >> offset_button_2;
+	  button_val_3 		= (input & mask_button_3) >> offset_button_3;
+	  button_val_4 		= (input & mask_button_4) >> offset_button_4;
 
-	  if (check_cycle((input & mask_encoder_1), rotenc_left))
+	  if (check_cycle(((input & mask_encoder_1)>> offset_encoder_1),
+					  rotenc_left))
 		return;
 
-	  if (check_cycle(((input & mask_encoder_2) >> 3), rotenc_right))
+	  if (check_cycle(((input & mask_encoder_2) >> offset_encoder_2),
+					  rotenc_right))
 		return;
 
 	  if (check_cycle(button_val_left, btn_left))
@@ -80,9 +89,7 @@ void Rotary_Encoder::cycle(void)
 }
 
 
-bool Rotary_Encoder::check_cycle(
-	uint8_t masked_value,
-	last_key_enum key)
+bool Rotary_Encoder::check_cycle(uint8_t masked_value, last_key_enum key)
 {
   SoftwareEvents::Event_Names_enum
   last_event = SoftwareEvents::None;
@@ -103,7 +110,7 @@ bool Rotary_Encoder::check_cycle(
 	last_event = button_3->cycle(masked_value);
 
   if (key == btn_4)
-	last_event = button_3->cycle(masked_value);
+	last_event = button_4->cycle(masked_value);
 
 
   if (last_event > SoftwareEvents::None)

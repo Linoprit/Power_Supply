@@ -6,7 +6,6 @@
  */
 
 #include "Instances/Common.h"
-#include <Devices/keypad/Keypad.h>
 #include <Tests/UART_Socket/UART_socket_test.h>
 #include "System/SoftwareEvents.h"
 #include "stm32f3xx_hal.h"
@@ -47,7 +46,7 @@ UART_socket_test::UART_socket_test ()
 
 void UART_socket_test::loop (void)
 {
-  SoftwareEvents* 	  sw_events 	= Common::get_sw_events();
+/*  SoftwareEvents* 	  sw_events 	= Common::get_sw_events();
   PCD8544_graphics*	  LCD		 	= Common::get_LCD_grfx();
   Keypad* 			  keypad 		= Common::get_keypad();
 
@@ -127,7 +126,7 @@ void UART_socket_test::loop (void)
 
  	  LCD->display();
 
- 	}
+ 	}*/
 }
 
 
@@ -136,7 +135,7 @@ void UART_socket_test::get_uart_state_str(
 {
   HAL_UART_StateTypeDef state = HAL_UART_GetState(uart);
 
-  switch (state)
+ /* switch (state)
   {
 	case HAL_UART_STATE_RESET:
 	  strncpy(&textbuffer[0], (const char*) "RESET", 5);
@@ -169,7 +168,7 @@ void UART_socket_test::get_uart_state_str(
 	case HAL_UART_STATE_ERROR:
 	  strncpy(&textbuffer[0], (const char*) "ERROR", 5);
 	  break;
-  }
+  }*/
 }
 
 void UART_socket_test::clearTextbuffer(char *textbuffer, uint8_t len)

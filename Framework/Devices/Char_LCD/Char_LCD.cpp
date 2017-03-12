@@ -6,12 +6,13 @@
  */
 
 #include "Char_LCD.h"
-
+#include <string.h>
 
 
 Char_LCD::Char_LCD (Char_LCD_socket* lcd_socket_in)
 {
   lcd_socket = lcd_socket_in;
+  init();
 }
 
 Char_LCD::~Char_LCD ()
@@ -19,18 +20,18 @@ Char_LCD::~Char_LCD ()
 
 void Char_LCD::init()
 {
-  uint8_t i, j;
+  uint8_t i;
 
   // LCD init sequence
-  #define INIT_LENGTH 5
+#define INIT_LENGTH 5
   const uint8_t lcd_init_sequence[] =
-  	{
-  		LCD_DATALENGTH,
-  		LCD_2LINES,
-  		LCD_CURSOROFF,
-  		LCD_CLR,
-  		LCD_MVCURSOR
-  	};
+	  {
+		  LCD_DATALENGTH,
+		  LCD_CURSOROFF,
+		  LCD_CLR,
+		  LCD_MVCURSOR,
+		  LCD_2LINES
+	  };
 
   // send data to initialize the lcd
   lcd_socket->select_instruction_register();
@@ -40,15 +41,10 @@ void Char_LCD::init()
   for (i=0; i < INIT_LENGTH; i++)
 	lcd_socket->put_byte_2_lcd_initonly(
 		(uint8_t) lcd_init_sequence[i]);
-
-  // clear display
-  for (i=0; i < LCD_LINES; i++)
-	for (j=0; j < LCD_BUFFER_LEN; j++)
-	  buffer_lines[i][j] = ' ';
 }
 
 
-void Char_LCD::display(void)
+void Char_LCD::display_step(void)
 {
   static uint8_t i=0; // holds which line to be refreshed
   uint8_t j;          // loop-counter
@@ -97,6 +93,25 @@ void Char_LCD::display(void)
 		buffer_ptr ++;
 	  }
   }
+}
+
+
+void Char_LCD::display(void)
+{
+  uint8_t i;
+
+  // bring the buffer to the device
+  // every cycle another line is updated
+  for (i=0; i < LCD_LINES; i++)
+	display_step();
+}
+
+void Char_LCD::clear(void)
+{
+  uint8_t i;
+
+  for (i=0; i < LCD_LINES; i++)
+	memset(&buffer_lines[i][0], ' ', LCD_BUFFER_LEN);
 }
 
 buffer_lines_type * Char_LCD::get_buffer_lines_ptr(void)

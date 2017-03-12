@@ -9,17 +9,18 @@
 #define COMMON_H_
 
 #include "System/SoftwareEvents.h"
-#include "Devices/PCD8544_LCD/PCD8544_socket.h"
-#include "Devices/PCD8544_LCD/PCD8544_basis.h"
-#include "Devices/PCD8544_LCD/PCD8544_graphics.h"
-#include "Devices/keypad/Keypad_socket.h"
-#include "Devices/keypad/Keypad.h"
 #include "Devices/Comm_Layer/Comm_Layer_socket.h"
 #include "Devices/Comm_Layer/Comm_Layer.h"
-#include "sd_spi_stm32.h"
-#include "ff_gen_drv.h"
+#include "Devices/Char_LCD/Char_LCD.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder_socket.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder.h"
+
+
+
+extern "C" UART_HandleTypeDef* get_UART_1(void);
+extern "C" UART_HandleTypeDef* get_UART_2(void);
+extern "C" SPI_HandleTypeDef*  get_SPI_3 (void);
+extern "C" I2C_HandleTypeDef*  get_I2C_1 (void);
 
 
 
@@ -35,34 +36,27 @@ public:
 
   static uint32_t get_tick(void);
 
-  //static PCD8544_basis* 	get_LCD_basis(void);
-  static PCD8544_graphics*  get_LCD_grfx(void);
-  static Keypad*			get_keypad(void);
   static Comm_Layer*		get_comm_layer(void);
   static Rotary_Encoder* 	get_rotary_encoder(void);
+  static Char_LCD* 			get_char_lcd(void);
+  static Comm_Layer_socket* get_debug_comm(void);
 
   static inline void delay(uint32_t delay)
   { HAL_Delay(delay); }
 
 
 private:
-  static void init_PCD8574(void);
-  //static PCD8544_basis		*LCD_dev;
-  static PCD8544_graphics 	*LCD_grfx;
-
-  static void init_keypad(void);
-  static Keypad	*keypad;
-
   static void init_comm_layer(void);
   static Comm_Layer *comm_layer;
-
-  static void init_SD_Card(void);
-  static Diskio_drvTypeDef* sd_card_drv;
-  // TODO get_sd_card handler...
 
   static void init_rotary_encoder(void);
   static Rotary_Encoder* rotary_encoder;
 
+  static void init_char_LCD(void);
+  static Char_LCD* char_lcd;
+
+  static void init_debug_comm(void);
+  static Comm_Layer_socket*	debug_comm;
 
   static SoftwareEvents    *sw_events;
 };

@@ -11,9 +11,9 @@
 #include "Char_LCD_socket.h"
 
 /* This is the size of the display */
-//#define TWO_LINES
-#define FOUR_LINES
-#define LCD_BUFFER_LEN 20 /* this many chars */
+#define TWO_LINES
+//#define FOUR_LINES
+#define LCD_BUFFER_LEN 16 /* this many chars */
 
 // refresh timer (in [ms])
 #define REFRESH_CYCLE_TIME 100
@@ -61,7 +61,10 @@ public:
 
   void init();
   void cycle(void);
+  void display_step(void);
   void display(void);
+  void clear(void);
+
 
   buffer_lines_type* get_buffer_lines_ptr(void);
 

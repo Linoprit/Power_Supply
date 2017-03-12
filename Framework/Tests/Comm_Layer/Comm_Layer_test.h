@@ -9,26 +9,26 @@
 #define TESTS_COMM_LAYER_COMM_LAYER_TEST_H_
 
 #include "Instances/Common.h"
+#include "Devices/Char_LCD/Char_LCD.h"
 
 
 
 
-class Comm_Layer_test
+class Comm_Layer_test: SoftwareEvents_base
 {
 public:
   Comm_Layer_test ();
-  virtual
-  ~Comm_Layer_test ();
+  virtual ~Comm_Layer_test ();
 
   void loop();
-  void clearTextbuffer();
+  void software_event_callback(
+  	SoftwareEvents::Event_Names_enum event_name);
 
 
 private:
-  Comm_Layer*		comm_layer;
-  char *textbuffer;
-  int8_t textbuffer_len;
-  PCD8544_graphics*	LCD;
+  Comm_Layer*		comm_layer	= NULL;
+  Char_LCD* 		LCD 		= NULL;
+
 
 
 };

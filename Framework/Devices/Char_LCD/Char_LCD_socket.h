@@ -11,6 +11,7 @@
 
 #include "stm32f3xx_hal.h"
 #include "stm32f3xx_hal_spi.h"
+//#include "Instances/Common.h"
 
 
 #define LCD_WAIT_DELAY     5      // Wartezeit in ms bis Anweisung gültig
@@ -41,25 +42,25 @@ public:
   inline void select_instruction_register(void)
   {
 	HAL_GPIO_WritePin(pinspack->RS_port, pinspack->RS_pin, GPIO_PIN_RESET);
-	//_delay_ms(pulseTime);
+	//HAL_Delay(LCD_PULSE_DELAY_ms);
   };
 
   inline void select_data_register(void)
   {
 	HAL_GPIO_WritePin(pinspack->RS_port, pinspack->RS_pin, GPIO_PIN_SET);
-	//_delay_ms(pulseTime);
+	//HAL_Delay(LCD_PULSE_DELAY_ms);
   };
 
   inline void set_lcd_en_line(void)
   {
 	HAL_GPIO_WritePin(pinspack->EN_port, pinspack->EN_pin, GPIO_PIN_SET);
-	//_delay_ms(pulseTime);
+	//HAL_Delay(LCD_PULSE_DELAY_ms);
   };
 
   inline void reset_lcd_en_line(void)
   {
 	HAL_GPIO_WritePin(pinspack->EN_port, pinspack->EN_pin, GPIO_PIN_RESET);
-	//_delay_ms(pulseTime);
+	//HAL_Delay(LCD_PULSE_DELAY_ms);
   };
 
   inline void do_data_valid_sequence(void)

@@ -1,8 +1,8 @@
-;/******************** (C) COPYRIGHT 2015 STMicroelectronics ********************
+;/******************** (C) COPYRIGHT 2016 STMicroelectronics ********************
 ;* File Name          : startup_stm32f302x8.s
 ;* Author             : MCD Application Team
-;* Version            : V2.2.0
-;* Date               : 13-November-2015
+;* Version            : V2.3.1
+;* Date               : 16-December-2016
 ;* Description        : STM32F302x6/STM32F302x8 devices vector table for EWARM toolchain.
 ;*                      This module performs:
 ;*                      - Set the initial SP
@@ -14,8 +14,6 @@
 ;*                      After Reset the Cortex-M4 processor is in Thread mode,
 ;*                      priority is Privileged, and the Stack is set to Main.
 ;********************************************************************************
-;*
-;* <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
 ;*
 ;* Redistribution and use in source and binary forms, with or without modification,
 ;* are permitted provided that the following conditions are met:
