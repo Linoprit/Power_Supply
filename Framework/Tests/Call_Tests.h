@@ -8,6 +8,9 @@
 #ifndef CALL_TESTS_H_
 #define CALL_TESTS_H_
 
+#include "Instances/Common.h"
+#ifdef DO_TESTS
+
 class Call_Tests
 {
 public:
@@ -20,5 +23,6 @@ public:
 
 
 };
+#endif /* DO_TESTS */
 
 #endif /* CALL_TESTS_H_ */

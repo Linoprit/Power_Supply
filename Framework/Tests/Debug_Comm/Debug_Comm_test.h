@@ -10,12 +10,7 @@
 
 
 #include "Instances/Common.h"
-#include <string.h>
-#include <errno.h>
-
-
-
-caddr_t _sbrk(int incr);
+#include "System/Error_messaging.h"
 
 
 class Debug_Comm_test

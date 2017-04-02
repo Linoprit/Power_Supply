@@ -7,6 +7,8 @@
 
 #include "SoftwareEvents.h"
 #include "stm32f3xx_hal.h"
+#include "System/Error_messaging.h"
+#include "../gnuarmeclipse/system/include/diag/Trace.h"
 
 
 simpleRingbuffer swe_ringbuffer(EVENTS_BUFFER_LEN);
@@ -96,6 +98,11 @@ uint8_t SoftwareEvents::hookIn (
 		  return i;
 		}
 	}
+
+  // Use macro, if Trace.c doesn't work
+  //WRITE_TRACE ((const char*) "SoftwareEvents::hookIn: Table is full!\n", 39);
+  trace_printf((const char*) "SoftwareEvents::hookIn: Table is full!\n");
+
   return 0xFF; // errorcode
 }
 

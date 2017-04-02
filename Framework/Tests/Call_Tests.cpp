@@ -7,6 +7,8 @@
 
 
 #include "Call_Tests.h"
+#ifdef DO_TESTS
+
 //#include <Tests/UART_Socket/UART_socket_test.h>
 //#include "Sw_Timer/Sw_Timer_Test.h"
 #include "Comm_Layer/Comm_Layer_test.h"
@@ -49,3 +51,4 @@ void Call_Tests::cycle()
 
 
 }
+#endif /* DO_TESTS */

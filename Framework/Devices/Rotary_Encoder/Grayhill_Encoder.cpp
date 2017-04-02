@@ -6,6 +6,7 @@
  */
 
 #include <Devices/Rotary_Encoder/Grayhill_Encoder.h>
+#include "stm32f3xx_hal.h"
 
 
 Grayhill_Encoder::Grayhill_Encoder ()

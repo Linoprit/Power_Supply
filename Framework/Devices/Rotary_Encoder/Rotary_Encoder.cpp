@@ -33,10 +33,13 @@ Rotary_Encoder::Rotary_Encoder (Rotary_Encoder_socket* socket_in)
   button_val_4     = 0;
 
   last_key 		   = none;
+  cycle();
 }
+
 
 Rotary_Encoder::~Rotary_Encoder ()
 { }
+
 
 void Rotary_Encoder::cycle(void)
 {
@@ -46,46 +49,25 @@ void Rotary_Encoder::cycle(void)
 	{
 	  input = socket->rx_ringbuffer()->Read();
 
-	  button_val_left 	= (input & mask_button_1) >> offset_button_1;
-	  button_val_right 	= (input & mask_button_2) >> offset_button_2;
-	  button_val_3 		= (input & mask_button_3) >> offset_button_3;
-	  button_val_4 		= (input & mask_button_4) >> offset_button_4;
+	  button_val_left 	= (uint8_t)((input & mask_button_1) >> offset_button_1);
+	  button_val_right 	= (uint8_t)((input & mask_button_2) >> offset_button_2);
+	  button_val_3 		= (uint8_t)((input & mask_button_3) >> offset_button_3);
+	  button_val_4 		= (uint8_t)((input & mask_button_4) >> offset_button_4);
 
-	  if (check_cycle(((input & mask_encoder_1)>> offset_encoder_1),
-					  rotenc_left))
-		return;
-
-	  if (check_cycle(((input & mask_encoder_2) >> offset_encoder_2),
-					  rotenc_right))
-		return;
-
-	  if (check_cycle(button_val_left, btn_left))
-		return;
-
-	  if (check_cycle(button_val_right, btn_right))
-		return;
-
-	  if (check_cycle(button_val_3, btn_3))
-		return;
-
-	  if (check_cycle(button_val_4, btn_4))
-		return;
-
-	  return;
+	  check_cycle((uint8_t)((input & mask_encoder_1)>> offset_encoder_1),
+					  rotenc_left);
+	  check_cycle((uint8_t)((input & mask_encoder_2) >> offset_encoder_2),
+					  rotenc_right);
+	  check_cycle(button_val_left, btn_left);
+	  check_cycle(button_val_right, btn_right);
+	  check_cycle(button_val_3, btn_3);
+	  check_cycle(button_val_4, btn_4);
 	}
 
-  if (check_cycle(button_val_left, btn_left))
-	return;
-
-  if (check_cycle(button_val_right, btn_right))
-	return;
-
-  if (check_cycle(button_val_3, btn_3))
-	return;
-
-  if (check_cycle(button_val_4, btn_4))
-	return;
-
+  check_cycle(button_val_left, btn_left);
+  check_cycle(button_val_right, btn_right);
+  check_cycle(button_val_3, btn_3);
+  check_cycle(button_val_4, btn_4);
 }
 
 

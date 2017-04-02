@@ -32,7 +32,7 @@
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.missingdeclaration.1817637111" name="Warn on undeclared global function (-Wmissing-declaration)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.missingdeclaration" value="true" valueType="boolean"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.conversion.2127144675" name="Warn on implicit conversions (-Wconversion)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.conversion" value="true" valueType="boolean"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.pointerarith.811579276" name="Warn if pointer arithmetic (-Wpointer-arith)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.pointerarith" value="true" valueType="boolean"/>
-							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.padded.1722819514" name="Warn if padding is included (-Wpadded)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.padded" value="true" valueType="boolean"/>
+							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.padded.1722819514" name="Warn if padding is included (-Wpadded)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.padded" value="false" valueType="boolean"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.shadow.157350811" name="Warn if shadowed variable (-Wshadow)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.shadow" value="true" valueType="boolean"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.logicalop.1686424121" name="Warn if suspicious logical ops (-Wlogical-op)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.logicalop" value="true" valueType="boolean"/>
 							<option id="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.agreggatereturn.2023599318" name="Warn if struct is returned (-Wagreggate-return)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.warnings.agreggatereturn" value="true" valueType="boolean"/>
@@ -170,10 +170,10 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Debug_Comm|Debug/gnuarmeclipse/system/src/diag_old|Framework|Comm_Layer|Tests|Application|Char_LCD|cube" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Framework|Debug_Comm|Comm_Layer|Tests|Debug/gnuarmeclipse/system/src/diag_old|Application|Char_LCD|cube" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Application"/>
-						<entry excluding="Tests/UART_Socket|Tests/Sw_Timer|Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
-						<entry excluding="Drivers/CMSIS/Device/ST/STM32F3xx/Source|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_timebase_tim_template.c|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_timebase_rtc_wakeup_template.c|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_timebase_rtc_alarm_template.c|attic|Middlewares/Third_Party/FatFs/src/option/cc950.c|Drivers/CMSIS/RTOS|Middlewares/Third_Party/FatFs/src/option/cc932.c|Middlewares/Third_Party/FatFs/src/option/cc936.c|Drivers/CMSIS/DSP_Lib|Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_msp_template.c|Middlewares/Third_Party/FatFs/src/option/ccsbcs.c|Middlewares/Third_Party/FatFs/src/option/cc949.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cube"/>
+						<entry excluding="Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Devices/PCD8544_LCD/test|Tests/UART_Socket|Tests/Sw_Timer|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
+						<entry excluding="Drivers/CMSIS/Device/ST/STM32F3xx/Source|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_timebase_rtc_wakeup_template.c|Drivers/CMSIS/RTOS|Middlewares/Third_Party/FatFs/src/option/cc932.c|Middlewares/Third_Party/FatFs/src/option/cc936.c|Drivers/CMSIS/DSP_Lib|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_timebase_rtc_alarm_template.c|Middlewares/Third_Party/FatFs/src/option/cc949.c|Middlewares/Third_Party/FatFs/src/option/cc950.c|attic|Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_timebase_tim_template.c|Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_msp_template.c|Middlewares/Third_Party/FatFs/src/option/ccsbcs.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cube"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -332,7 +332,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Application"/>
-						<entry excluding="Tests/Debug_Comm|Tests/UART_Socket|Tests/Rotary_Encoder|Tests/Sw_Timer|Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Tests/Comm_Layer|Devices/PCD8544_LCD/test|Tests/Char_LCD|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP|Devices/Char_LCD" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
+						<entry excluding="Tests/Debug_Comm|Devices/Comm_Layer/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src|Tests/Comm_Layer|Devices/PCD8544_LCD/test|Tests/UART_Socket|Tests/Sw_Timer|Tests/Rotary_Encoder|Tests/Char_LCD|Devices/keypad/test|Devices/PCD8544_LCD/bmp2glcd_v1-02-src/EasyBMP|Devices/Char_LCD" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Framework/Devices/Char_LCD"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="gnuarmeclipse/system"/>
 					</sourceEntries>

@@ -67,6 +67,11 @@ void Rotary_Encoder_Tests::software_event_callback(
 {
   // for measurement                 0123456789012345
 
+
+  //HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+
+
+
   LCD->clear();
 
   if(event_name == SoftwareEvents::btn_released)

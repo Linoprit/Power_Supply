@@ -19,7 +19,7 @@
 
 
 // This many callbacks can hook in
-const uint8_t EVENTS_TABLE_LEN  = 10; // TODO value = 30
+const uint8_t EVENTS_TABLE_LEN  = 30;
 // This many occoured events can be buffered
 const uint8_t EVENTS_BUFFER_LEN = 10;
 

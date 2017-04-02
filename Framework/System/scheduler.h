@@ -11,6 +11,8 @@
 
 #include <stdint.h>
 
+
+
 // C interface
 #ifdef __cplusplus
 #define EXTERNC extern "C"
@@ -37,7 +39,9 @@ public:
   static void cycle (void);
   static void init (void);
 
+private:
   static uint32_t old_Tick;
+
 };
 
 #endif // C interface

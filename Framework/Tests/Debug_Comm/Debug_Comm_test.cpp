@@ -6,11 +6,16 @@
  */
 
 #include <Tests/Debug_Comm/Debug_Comm_test.h>
+#include "../gnuarmeclipse/system/include/diag/Trace.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 
 
 Debug_Comm_test::Debug_Comm_test ()
 {
-  debug_comm = Common::get_debug_comm();
+  //debug_comm = Error_messaging::get_debug_comm();
   sw_events  = Common::get_sw_events();
 }
 
@@ -23,8 +28,8 @@ void Debug_Comm_test::loop()
   uint32_t 	act_counter         = 0;
 
   int 		k = 34;
-  char 		s[100];
-
+  int 		result;
+  char 		s[30];
 
   while (1)
 	{
@@ -33,10 +38,26 @@ void Debug_Comm_test::loop()
 	  act_counter = Common::get_tick();
 	  if (act_counter - old_counter  > 100)
 		{
-		  int size = sprintf(s, (const char*) "Hi from MCU! %d \n", k);
+		  sprintf(s, (const char*) "Use of sprintf! %d \n", k);
+		  result = trace_write((const char*) &s[0], 21);
 
-		  debug_comm->send_many_bytes((uint8_t*) &s[0], 22);
-		  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+
+		  // use of trace_write
+		  result = trace_write ( (const char*) "trace_write test\n", 17);
+		  result = trace_write((const char*) "Blah second line\n", 17);
+
+		  // use macro
+		  WRITE_TRACE (
+				  (const char*) "Use WRITE_TRACE macro in your function.\n", 40);
+
+		  // use of Trace.c -> trace_printf
+		  result = trace_printf((const char*) "Hi from MCU %d, %d\n\n", k, result);
+		  // scrambles the buffer...
+		  //trace_printf((const char*) "Blah second line %d\n", k);
+
+
+		  k++;
+		  //HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 
 
 		  old_counter = act_counter;
@@ -45,26 +66,4 @@ void Debug_Comm_test::loop()
 }
 
 
-caddr_t _sbrk(int incr)
-{
-  extern char _ebss; // Defined by the linker
-  static char *heap_end;
-  char *prev_heap_end;
 
-  if (heap_end == 0)
-  {
-    heap_end = &_ebss;
-  }
-
-  prev_heap_end = heap_end;
-  char * stack = (char*) __get_MSP();
-
-  if (heap_end + incr > stack)
-  {
-    errno = ENOMEM;
-    return (caddr_t) -1;
-  }
-
-  heap_end += incr;
-  return (caddr_t) prev_heap_end;
-}

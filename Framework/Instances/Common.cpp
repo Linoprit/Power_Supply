@@ -9,14 +9,21 @@
 #include "stm32f3xx_hal.h"
 #include "main.h"
 #include "Instances/callbacks.h"
+#include "System/Error_messaging.h"
 
 
+SoftwareEvents*			Common::sw_events 		= new SoftwareEvents();
+Comm_Layer*				Common::comm_layer		= NULL;
+Char_LCD* 				Common::char_lcd 		= NULL;
+Rotary_Encoder* 		Common::rotary_encoder 	= NULL;
+OMI_coordinator*		Common::omi_coord		= NULL;
+IU_Value* 				Common::u_soll			= NULL;
+IU_Value* 				Common::i_soll			= NULL;
+IU_Value* 				Common::u_start			= NULL;
+IU_Value* 				Common::i_start			= NULL;
+HI_LO_Value* 			Common::hi_lo			= NULL;
 
-SoftwareEvents*		Common::sw_events 		= new SoftwareEvents();
-Comm_Layer*			Common::comm_layer		= NULL;
-Char_LCD* 			Common::char_lcd 		= NULL;
-Rotary_Encoder* 	Common::rotary_encoder 	= NULL;
-Comm_Layer_socket*	Common::debug_comm		= NULL;
+
 
 
 // Workaround undefined reference error
@@ -26,24 +33,53 @@ const uint8_t APBPrescTable[8]  = {0, 0, 0, 0, 1, 2, 3, 4};
 
 void Common::initialize_devices()
 {
+#ifdef TRACE
+  Error_messaging::init_debug_comm();
+#endif /* TRACE */
+
   init_comm_layer();
   init_char_LCD();
   init_rotary_encoder();
-  init_debug_comm();
 
+  init_values();
+  init_omi_coord();
 
 
 }
 
-void Common::init_debug_comm(void)
+void Common::init_values(void)
 {
-  debug_comm = new Comm_Layer_socket( get_UART_2() );
+  const IU_Value::ValueConfig i_config =
+	  {
+		  1,
+		  Rotary_Encoder::last_key_enum::rotenc_right,
+		  Rotary_Encoder::btn_right,
+		  0,
+		  10,
+	  };
+  i_soll  = new IU_Value(i_config);
+  i_start = new IU_Value(i_config);
+
+  const IU_Value::ValueConfig u_config =
+	  {
+		  1,
+		  Rotary_Encoder::last_key_enum::rotenc_left,
+		  Rotary_Encoder::btn_left,
+		  0,
+		  24,
+	  };
+  u_soll  = new IU_Value(u_config);
+  u_start = new IU_Value(u_config);
+
+  hi_lo = new HI_LO_Value();
 }
 
-Comm_Layer_socket* Common::get_debug_comm(void)
-{
-  return debug_comm;
-}
+IU_Value* 		Common::get_u_soll(void) 	{ return u_soll;  }
+IU_Value* 		Common::get_i_soll(void) 	{ return i_soll;  }
+IU_Value* 		Common::get_u_start(void) 	{ return u_start; }
+IU_Value* 		Common::get_i_start(void) 	{ return i_start; }
+HI_LO_Value* 	Common::get_hi_lo(void)		{ return hi_lo;	  }
+
 
 void Common::init_comm_layer(void)
 {
@@ -99,6 +135,20 @@ Rotary_Encoder* Common::get_rotary_encoder(void)
 {
   return rotary_encoder;
 }
+
+void Common::init_omi_coord(void)
+{
+  omi_coord = new OMI_coordinator();
+}
+
+OMI_coordinator* Common::get_omi_coord(void)
+{
+  return omi_coord;
+}
+
+
+
+
 
 uint32_t Common::get_tick(void)
 {

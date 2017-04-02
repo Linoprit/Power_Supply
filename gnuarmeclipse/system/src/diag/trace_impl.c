@@ -10,6 +10,7 @@
 #include "cmsis_device.h"
 #include "diag/Trace.h"
 
+
 // ----------------------------------------------------------------------------
 
 // One of these definitions must be passed via the compiler command line
@@ -64,7 +65,7 @@ trace_initialize(void)
 // This function is called from _write() for fd==1 or fd==2 and from some
 // of the trace_* functions.
 
-ssize_t
+/*ssize_t
 trace_write (const char* buf __attribute__((unused)),
 	     size_t nbyte __attribute__((unused)))
 {
@@ -77,7 +78,7 @@ trace_write (const char* buf __attribute__((unused)),
 #endif
 
   return -1;
-}
+}*/
 
 // ----------------------------------------------------------------------------
 

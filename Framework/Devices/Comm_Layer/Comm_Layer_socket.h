@@ -9,9 +9,9 @@
 #ifndef MACHINE_COMM_LAYER_COMM_LAYER_SOCKET_H_
 #define MACHINE_COMM_LAYER_COMM_LAYER_SOCKET_H_
 
+#include <Basetypes/RX_TX_interface.h>
 #include "System/SoftwareTimer.h"
 #include <stdint.h>
-#include <Sockets/RX_TX_interface.h>
 #include "libraries/simpleRingbuffer.h"
 #include "Instances/callbacks.h"
 #include "stm32f3xx_hal.h"

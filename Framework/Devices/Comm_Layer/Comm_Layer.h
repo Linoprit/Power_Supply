@@ -15,7 +15,7 @@
 #include "system/SoftwareEvents.h"
 #endif
 #include <stdint.h>
-#include <Sockets/RX_TX_interface.h>
+#include <Basetypes/RX_TX_interface.h>
 #include "Instances/callbacks.h"
 #include "Messages_Base.h"
 
