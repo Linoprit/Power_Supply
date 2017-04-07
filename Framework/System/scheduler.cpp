@@ -12,6 +12,7 @@
 #include "../Devices/Comm_Layer/Messages_Base.h"
 #include "../Instances/Common.h"
 #include "../Devices/Rotary_Encoder/Rotary_Encoder.h"
+#include "../Application/Controller/DAC_socket.h"
 
 
 #include "Tests/Call_Tests.h"
@@ -48,6 +49,8 @@ void scheduler::cycle(void)
   Rotary_Encoder*	rot_enc		= Common::get_rotary_encoder();
   OMI_coordinator*  omi			= Common::get_omi_coord();
 
+  // TODO move to common
+  static DAC_socket* dac_socket = new DAC_socket();
 
 
   sw_events->loop(); // work off events
@@ -73,6 +76,10 @@ void scheduler::cycle(void)
 
 	  // call OMI
 	  omi->loop();
+
+
+	  // TODO remove
+	  dac_socket->set(20);
 	}
 
 

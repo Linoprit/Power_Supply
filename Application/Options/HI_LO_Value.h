@@ -9,8 +9,8 @@
 #define OPTIONS_HI_LO_VALUE_H_
 
 
+#include <Interfaces/Value_template.h>
 #include "System/SoftwareEvents.h"
-#include "Basetypes/Value_template.h"
 
 
 #define ENCODER Rotary_Encoder::rotenc_right

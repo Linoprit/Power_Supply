@@ -12,8 +12,6 @@
 #include "Devices/Comm_Layer/Comm_Layer_socket.h"
 
 
-extern "C" UART_HandleTypeDef* get_UART_2(void);
-
 
 #ifdef TRACE
 
@@ -26,7 +24,7 @@ public:
   static void init_debug_comm(void);
   static Comm_Layer_socket* get_debug_comm(void);
   static size_t  write(const char* buf, size_t nbyte);
-
+  static void 	 print_hal_status(HAL_StatusTypeDef status);
 
 private:
   static Comm_Layer_socket*	debug_comm;

@@ -91,10 +91,21 @@ static void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN 0 */
 
-UART_HandleTypeDef* get_UART_1(void) 	{ return &huart1; }
-UART_HandleTypeDef* get_UART_2(void) 	{ return &huart2; }
-SPI_HandleTypeDef* 	get_SPI_3 (void)    { return &hspi3;  }
-I2C_HandleTypeDef* 	get_I2C_1 (void) 	{ return &hi2c1;  }
+UART_HandleTypeDef* get_huart1(void) 	{ return &huart1; }
+UART_HandleTypeDef* get_huart2(void) 	{ return &huart2; }
+SPI_HandleTypeDef* 	get_hspi3 (void)    { return &hspi3;  }
+I2C_HandleTypeDef* 	get_hi2c1 (void) 	{ return &hi2c1;  }
+
+ADC_HandleTypeDef* get_hadc1(void)		{ return &hadc1;  }
+ADC_HandleTypeDef* get_hadc2(void)      { return &hadc2;  }
+ADC_HandleTypeDef* get_hadc3(void)      { return &hadc3;  }
+ADC_HandleTypeDef* get_hadc4(void)      { return &hadc4;  }
+
+DAC_HandleTypeDef* get_hdac1(void)      { return &hdac1;  }
+
+OPAMP_HandleTypeDef* get_hopamp2(void)  { return &hopamp2;}
+OPAMP_HandleTypeDef* get_hopamp4(void)  { return &hopamp4;}
+
 
 
 /* USER CODE END 0 */
@@ -413,7 +424,7 @@ static void MX_DAC1_Init(void)
     /**DAC channel OUT1 config 
     */
   sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
-  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
+  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_DISABLE;
   if (HAL_DAC_ConfigChannel(&hdac1, &sConfig, DAC_CHANNEL_1) != HAL_OK)
   {
     Error_Handler();

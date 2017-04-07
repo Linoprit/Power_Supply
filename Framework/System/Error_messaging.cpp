@@ -7,6 +7,8 @@
 
 #include <System/Error_messaging.h>
 #include <errno.h>
+#include "Instances/Common.h"
+
 
 #ifdef TRACE
 
@@ -19,7 +21,7 @@ Error_messaging::~Error_messaging () { }
 
 void Error_messaging::init_debug_comm(void)
 {
-  debug_comm = new Comm_Layer_socket( get_UART_2() );
+  debug_comm = new Comm_Layer_socket( get_huart2() );
 }
 
 Comm_Layer_socket* Error_messaging::get_debug_comm(void)
@@ -41,6 +43,27 @@ ssize_t trace_write (const char* buf __attribute__((unused)),
   return Error_messaging::write(buf, nbyte);
 }
 
+
+void Error_messaging::print_hal_status(HAL_StatusTypeDef status)
+{
+  switch (status)
+  {
+	case HAL_OK:
+	  write( (const char*) "HAL_OK", 6);
+	  break;
+	case HAL_ERROR:
+	  write( (const char*) "HAL_ERROR", 9);
+	  break;
+	case HAL_BUSY:
+	  write( (const char*) "HAL_BUSY", 8);
+	  break;
+	case HAL_TIMEOUT:
+	  write( (const char*) "HAL_TIMEOUT", 11);
+	  break;
+
+
+  }
+}
 
 // workaround for sprintf TODO remove
 /*caddr_t _sbrk(int incr)

@@ -9,9 +9,9 @@
 #define OPTIONS_IU_VALUE_H_
 
 
+#include <Interfaces/Value_template.h>
 #include "System/SoftwareEvents.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder.h"
-#include "Basetypes/Value_template.h"
 
 
 #define DECIMAL_PLACE 1 // Nachkommastellen

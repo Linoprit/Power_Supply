@@ -14,7 +14,7 @@
 
 Char_LCD_test::Char_LCD_test ()
 {
-  SPI_HandleTypeDef* spi = get_SPI_3();
+  SPI_HandleTypeDef* spi = get_hspi3();
 
   Char_LCD_socket::char_LCD_pinspack_type*
   char_LCD_pinspack = new Char_LCD_socket::char_LCD_pinspack_type

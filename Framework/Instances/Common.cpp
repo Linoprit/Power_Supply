@@ -83,7 +83,7 @@ HI_LO_Value* 	Common::get_hi_lo(void)		{ return hi_lo;	  }
 
 void Common::init_comm_layer(void)
 {
-  Comm_Layer_socket* socket = new Comm_Layer_socket( get_UART_1() );
+  Comm_Layer_socket* socket = new Comm_Layer_socket( get_huart1() );
 
   comm_layer = new Comm_Layer( (Rx_Tx_interface*) socket );
   Messages_Base::init();
@@ -103,7 +103,7 @@ SoftwareEvents* Common::get_sw_events(void)
 
 void Common::init_char_LCD(void)
 {
-  SPI_HandleTypeDef* spi = get_SPI_3();
+  SPI_HandleTypeDef* spi = get_hspi3();
 
   Char_LCD_socket::char_LCD_pinspack_type*
   char_LCD_pinspack = new Char_LCD_socket::char_LCD_pinspack_type
@@ -127,7 +127,7 @@ Char_LCD* Common::get_char_lcd(void)
 
 void Common::init_rotary_encoder()
 {
-  Rotary_Encoder_socket* socket  = new Rotary_Encoder_socket(get_I2C_1());
+  Rotary_Encoder_socket* socket  = new Rotary_Encoder_socket(get_hi2c1());
   rotary_encoder = new Rotary_Encoder(socket);
 }
 

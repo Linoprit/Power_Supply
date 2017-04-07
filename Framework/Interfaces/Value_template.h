@@ -5,8 +5,8 @@
  *      Author: harald
  */
 
-#ifndef BASETYPES_VALUE_TEMPLATE_H_
-#define BASETYPES_VALUE_TEMPLATE_H_
+#ifndef INTERFACES_VALUE_TEMPLATE_H_
+#define INTERFACES_VALUE_TEMPLATE_H_
 
 #include <stdint.h>
 
@@ -27,4 +27,4 @@ public:
 
 };
 
-#endif /* BASETYPES_VALUE_TEMPLATE_H_ */
+#endif /* INTERFACES_VALUE_TEMPLATE_H_ */

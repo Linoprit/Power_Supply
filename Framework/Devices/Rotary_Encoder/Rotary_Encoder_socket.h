@@ -8,7 +8,7 @@
 #ifndef DEVICES_ROTARY_ENCODER_ROTARY_ENCODER_SOCKET_H_
 #define DEVICES_ROTARY_ENCODER_ROTARY_ENCODER_SOCKET_H_
 
-#include <Basetypes/RX_interface.h>
+#include <Interfaces/RX_interface.h>
 #include "Instances/callbacks.h"
 #include "Instances/callbacks.h"
 #include "stm32f3xx_hal.h"

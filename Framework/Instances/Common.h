@@ -22,9 +22,22 @@
 #include "../Application/Display/OMI_coordinator.h"
 
 
-extern "C" UART_HandleTypeDef* get_UART_1(void);
-extern "C" SPI_HandleTypeDef*  get_SPI_3 (void);
-extern "C" I2C_HandleTypeDef*  get_I2C_1 (void);
+
+extern "C" UART_HandleTypeDef* get_huart1(void);
+extern "C" UART_HandleTypeDef* get_huart2(void);
+extern "C" SPI_HandleTypeDef*  get_hspi3 (void);
+extern "C" I2C_HandleTypeDef*  get_hi2c1 (void);
+
+extern "C" ADC_HandleTypeDef* get_hadc1(void);
+extern "C" ADC_HandleTypeDef* get_hadc2(void);
+extern "C" ADC_HandleTypeDef* get_hadc3(void);
+extern "C" ADC_HandleTypeDef* get_hadc4(void);
+
+extern "C" DAC_HandleTypeDef* get_hdac1(void);
+
+extern "C" OPAMP_HandleTypeDef* get_hopamp2(void);
+extern "C" OPAMP_HandleTypeDef* get_hopamp4(void);
+
 
 
 class Common
