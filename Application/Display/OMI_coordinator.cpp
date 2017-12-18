@@ -70,11 +70,19 @@ void OMI_coordinator::software_event_callback(
   old_event = event_name;
 }
 
-void OMI_coordinator::loop(void)
+
+void OMI_coordinator::loop_1ms(void)
+{
+  Common::get_char_lcd()->display_step();
+}
+
+
+
+void OMI_coordinator::loop_100ms(void)
 {
   if (actv_dspl == SCREENS)
-	screen_class->loop();
+	screen_class->loop_100ms();
   else
-	menu_class->loop();
+	menu_class->loop_100ms();
 
 }

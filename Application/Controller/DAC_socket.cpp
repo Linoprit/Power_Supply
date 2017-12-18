@@ -25,6 +25,8 @@ void DAC_socket::set(uint16_t value)
 
   HAL_StatusTypeDef result;
 
+  // TODO implement DAC functionality
+  /*
   value = (uint16_t) Common::get_u_soll()->getValue();
   value = value * 200;
 
@@ -43,6 +45,7 @@ void DAC_socket::set(uint16_t value)
 
   Error_messaging::print_hal_status(result);
   Error_messaging::write((const char*) "\n", 1);
+  */
 
 }
 

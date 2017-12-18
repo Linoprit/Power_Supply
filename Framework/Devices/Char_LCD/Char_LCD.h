@@ -11,9 +11,14 @@
 #include "Char_LCD_socket.h"
 
 /* This is the size of the display */
+// display 16x2
 #define TWO_LINES
+#define LCD_BUFFER_LEN 16
+
+// display 20x4
 //#define FOUR_LINES
-#define LCD_BUFFER_LEN 16 /* this many chars */
+//#define LCD_BUFFER_LEN 20
+
 
 // refresh timer (in [ms])
 #define REFRESH_CYCLE_TIME 100
@@ -61,9 +66,11 @@ public:
 
   void init();
   void cycle(void);
-  void display_step(void);
-  void display(void);
+  void display_step(void); // displays on char per step, nonblocking!
+  void display_line(uint8_t line_nr); // first line is 0, blocking.
+  void display(void); // displays whole buffer, blocking
   void clear(void);
+  char* select_line(uint8_t line_nr); // sends address byte
 
 
   buffer_lines_type* get_buffer_lines_ptr(void);

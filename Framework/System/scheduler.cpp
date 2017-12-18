@@ -61,6 +61,7 @@ void scheduler::cycle(void)
   if (tick != old_Tick)
 	{
 	  rot_enc->cycle();
+	  omi->loop_1ms();
 	}
 
   // 10ms cycle
@@ -75,7 +76,7 @@ void scheduler::cycle(void)
 	 // HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 
 	  // call OMI
-	  omi->loop();
+	  omi->loop_100ms();
 
 
 	  // TODO remove

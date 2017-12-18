@@ -76,15 +76,26 @@ public:
 	do_data_valid_sequence();
   };
 
+  inline void pulse_byte_2_lcd_nblk(uint8_t data)
+  {
+	send_byte(data);
+	set_lcd_en_line();
+
+	// we still need a small delay
+	for(uint32_t i=0; i<(0xff); i++);
+
+	reset_lcd_en_line();
+  }
+
   inline bool send_byte(uint8_t byte)
   {
-    while(HAL_SPI_GetState(spi) != HAL_SPI_STATE_READY)
-      {
-      }
+	while(HAL_SPI_GetState(spi) != HAL_SPI_STATE_READY)
+	  {
+	  }
 
-    HAL_SPI_Transmit_IT(spi, &byte, 1);
+	HAL_SPI_Transmit_IT(spi, &byte, 1);
 
-    return true;
+	return true;
   }
 
   // Interfacing. Use this outside the socket.

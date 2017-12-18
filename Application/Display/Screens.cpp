@@ -31,7 +31,8 @@ void Screens::increment(void)
 	actv_screen++;
 }
 
-void Screens::loop(void)
+
+void Screens::loop_100ms(void)
 {
   static uint16_t i = 0;
   Char_LCD* LCD = Common::get_char_lcd();
@@ -58,9 +59,6 @@ void Screens::loop(void)
 	  Common::get_i_soll()->toString(&LCD->buffer_lines[1][8], 4);
 	  strncpy(&LCD->buffer_lines[1][12], "A", 1);
 
-
-
-
 	  // TODO remove!
 	  //HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 
@@ -79,11 +77,6 @@ void Screens::loop(void)
 	  strncpy(&LCD->buffer_lines[1][0], "Screen 03", 9);
 	  // template for measuring          0123456789012345
 	}
-
-
-
-
-  LCD->display();
 }
 
 

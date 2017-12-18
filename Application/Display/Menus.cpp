@@ -62,7 +62,7 @@ void Menus::hook_off(void)
   Common::get_i_start()->hook_off();
 }
 
-void Menus::loop(void)
+void Menus::loop_100ms(void)
 {
   static uint16_t i = 0;
   Char_LCD* LCD = Common::get_char_lcd();
@@ -112,8 +112,4 @@ void Menus::loop(void)
 	  strncpy(&LCD->buffer_lines[1][0], "Menu   04", 9);
 	  // template for measuring          0123456789012345
 	}
-
-
-
-  LCD->display();
 }
