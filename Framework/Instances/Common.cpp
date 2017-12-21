@@ -23,7 +23,10 @@ IU_Value* 				Common::u_start			= NULL;
 IU_Value* 				Common::i_start			= NULL;
 HI_LO_Value* 			Common::hi_lo			= NULL;
 
-
+ADC_socket*				Common::adc_socket_Iamp	= NULL;
+ADC_socket*				Common::adc_socket_Iraw	= NULL;
+ADC_socket* 			Common::adc_socket_Uall	= NULL;
+ADC_socket* 			Common::adc_socket_Temp	= NULL;
 
 
 // Workaround undefined reference error
@@ -40,6 +43,7 @@ void Common::initialize_devices()
   init_comm_layer();
   init_char_LCD();
   init_rotary_encoder();
+  init_adcs();
 
   init_values();
   init_omi_coord();
@@ -145,6 +149,25 @@ OMI_coordinator* Common::get_omi_coord(void)
 {
   return omi_coord;
 }
+
+void Common::init_adcs()
+{
+  // TODO implement measurement class
+  adc_socket_Iamp = new ADC_socket(get_hadc2(), 2);
+  adc_socket_Iraw = new ADC_socket(get_hadc1(), 1);
+
+  // U_sense, U_raw, Opamp3 = U_sense * PGA
+  adc_socket_Uall = new ADC_socket(get_hadc3(), 3);
+  adc_socket_Temp = new ADC_socket(get_hadc4(), 1);
+}
+
+
+ADC_socket* Common::get_adc_socket_Uall(void)
+{
+  return adc_socket_Uall;
+}
+
+
 
 
 

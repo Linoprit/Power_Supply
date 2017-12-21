@@ -81,8 +81,9 @@ public:
 	send_byte(data);
 	set_lcd_en_line();
 
-	// we still need a small delay
-	for(uint32_t i=0; i<(0xff); i++);
+	// TODO pause sufficient? 0xff was too short!!
+	// we still need a small delay, approx 25µs
+	for(uint32_t i=0; i<(0x10f); i++);
 
 	reset_lcd_en_line();
   }

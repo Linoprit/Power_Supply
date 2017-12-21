@@ -71,18 +71,18 @@ void OMI_coordinator::software_event_callback(
 }
 
 
-void OMI_coordinator::loop_1ms(void)
+void OMI_coordinator::loop_5ms(void)
 {
   Common::get_char_lcd()->display_step();
 }
 
 
 
-void OMI_coordinator::loop_100ms(void)
+void OMI_coordinator::loop_50ms(void)
 {
   if (actv_dspl == SCREENS)
-	screen_class->loop_100ms();
+	screen_class->loop_50ms();
   else
-	menu_class->loop_100ms();
+	menu_class->loop_50ms();
 
 }

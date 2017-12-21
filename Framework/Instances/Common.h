@@ -15,6 +15,7 @@
 #include "Devices/Char_LCD/Char_LCD.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder_socket.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder.h"
+#include "Controller/ADC_socket.h"
 
 #include "Options/IU_Value.h"
 #include "Options/HI_LO_Value.h"
@@ -36,7 +37,9 @@ extern "C" ADC_HandleTypeDef* get_hadc4(void);
 extern "C" DAC_HandleTypeDef* get_hdac1(void);
 
 extern "C" OPAMP_HandleTypeDef* get_hopamp2(void);
+extern "C" OPAMP_HandleTypeDef* get_hopamp3(void);
 extern "C" OPAMP_HandleTypeDef* get_hopamp4(void);
+
 
 
 
@@ -63,6 +66,10 @@ public:
   static IU_Value* 			get_i_start(void);
   static HI_LO_Value* 		get_hi_lo(void);
 
+  // TODO use measurement class
+  static ADC_socket*		get_adc_socket_Uall(void);
+
+
 
   static inline void delay(uint32_t delay)
   { HAL_Delay(delay); }
@@ -81,6 +88,9 @@ private:
   static void init_omi_coord(void);
   static OMI_coordinator* omi_coord;
 
+
+
+
   static void init_values(void);
   static IU_Value* u_soll;
   static IU_Value* i_soll;
@@ -88,6 +98,11 @@ private:
   static IU_Value* i_start;
   static HI_LO_Value* hi_lo;
 
+  static void init_adcs(void);
+  static ADC_socket* 	adc_socket_Iamp;
+  static ADC_socket* 	adc_socket_Iraw;
+  static ADC_socket* 	adc_socket_Uall;
+  static ADC_socket* 	adc_socket_Temp;
 
 
   static SoftwareEvents    *sw_events;

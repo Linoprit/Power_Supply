@@ -40,7 +40,7 @@ public:
   static void init (void);
 
 private:
-  static uint32_t old_Tick;
+  static uint32_t old_tick;
 
 };
 

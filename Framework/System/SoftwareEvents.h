@@ -60,6 +60,8 @@ public:
 	  Event_Names_enum event_name);
 
   static void sendEvent(Event_Names_enum event_name);
+
+  // Must be called only once per new tick, i.E. by a callback
   static void checkTicks(uint32_t sysTick);
 
 

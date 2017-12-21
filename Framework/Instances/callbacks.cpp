@@ -55,3 +55,13 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	  uart1_RxCplt_callback->ISR_callback_fcn();
 	}
 }
+
+
+
+
+
+
+
+
+
+

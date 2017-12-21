@@ -25,7 +25,7 @@ public:
   void increment(void);
   void hook_in(void);
   void hook_off(void);
-  void loop_100ms(void);
+  void loop_50ms(void);
 
 
 private:

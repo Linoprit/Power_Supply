@@ -62,7 +62,7 @@ void Menus::hook_off(void)
   Common::get_i_start()->hook_off();
 }
 
-void Menus::loop_100ms(void)
+void Menus::loop_50ms(void)
 {
   static uint16_t i = 0;
   Char_LCD* LCD = Common::get_char_lcd();

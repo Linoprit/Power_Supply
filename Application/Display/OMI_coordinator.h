@@ -23,8 +23,8 @@ public:
   virtual ~OMI_coordinator ();
 
   void software_event_callback(SoftwareEvents::Event_Names_enum event_name);
-  void loop_100ms(void);
-  void loop_1ms(void);
+  void loop_50ms(void);
+  void loop_5ms(void);
 
 
 private:
