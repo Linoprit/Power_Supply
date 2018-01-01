@@ -15,7 +15,9 @@
 #include "Devices/Char_LCD/Char_LCD.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder_socket.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder.h"
+#include "Interfaces/Measurement.h"
 #include "Controller/ADC_socket.h"
+#include "Controller/Opamp_socket.h"
 
 #include "Options/IU_Value.h"
 #include "Options/HI_LO_Value.h"
@@ -66,8 +68,20 @@ public:
   static IU_Value* 			get_i_start(void);
   static HI_LO_Value* 		get_hi_lo(void);
 
-  // TODO use measurement class
-  static ADC_socket*		get_adc_socket_Uall(void);
+  //static ADC_socket*		get_adc_socket_Uall(void);// TODO delete
+  static Measurement*		get_U_sense(void);
+  static Measurement*		get_U_sense_auto(void);
+  static Measurement*		get_U_input(void);
+  static Measurement*		get_I_raw(void);
+  static Measurement*		get_I_auto(void);
+  static Measurement*		get_Temperature(void);
+
+  // TODO remove
+  static  ADC_socket* adc_socket_Iamp ;
+  static  ADC_socket* adc_socket_Iraw ;
+  // U_sense, U_raw, Opamp3 = U_sense * PGA
+  static  ADC_socket* adc_socket_Uall ;
+  static  ADC_socket* adc_socket_Temp ;
 
 
 
@@ -98,11 +112,13 @@ private:
   static IU_Value* i_start;
   static HI_LO_Value* hi_lo;
 
-  static void init_adcs(void);
-  static ADC_socket* 	adc_socket_Iamp;
-  static ADC_socket* 	adc_socket_Iraw;
-  static ADC_socket* 	adc_socket_Uall;
-  static ADC_socket* 	adc_socket_Temp;
+  static void init_measurement(void);
+  static Measurement*	meas_U_sense		;
+  static Measurement*	meas_U_sense_auto   ;
+  static Measurement*	meas_U_input        ;
+  static Measurement*	meas_I_raw          ;
+  static Measurement*	meas_I_auto         ;
+  static Measurement*	meas_Temperature    ;
 
 
   static SoftwareEvents    *sw_events;

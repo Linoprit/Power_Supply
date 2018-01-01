@@ -5,17 +5,17 @@
  *      Author: harald
  */
 
-#ifndef INTERFACES_VALUE_TEMPLATE_H_
-#define INTERFACES_VALUE_TEMPLATE_H_
+#ifndef INTERFACES_OPTION_OPTION_VALUE_TEMPLATE_H_
+#define INTERFACES_OPTION_OPTION_VALUE_TEMPLATE_H_
 
 #include <stdint.h>
 
 template<typename T>
-class Value_template
+class Option_Value_template
 {
 public:
-  Value_template() { };
-  virtual ~Value_template() { };
+  Option_Value_template() { };
+  virtual ~Option_Value_template() { };
 
   virtual T 	getValue(void) 	= 0;
   virtual void 	toString(char* buff, uint8_t len) = 0;
@@ -27,4 +27,4 @@ public:
 
 };
 
-#endif /* INTERFACES_VALUE_TEMPLATE_H_ */
+#endif /* INTERFACES_OPTION_OPTION_VALUE_TEMPLATE_H_ */

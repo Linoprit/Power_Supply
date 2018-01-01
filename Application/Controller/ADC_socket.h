@@ -22,27 +22,29 @@ public:
 
   virtual ~ADC_socket ();
 
-  uint16_t 	read(void); //TODO remove
+  //uint16_t 	read(void); //TODO remove
 
   // updates measurement and triggers new conversion
-  void 		cycle_1ms(void);
+  void 		cycle_1ms(uint32_t tick);
   uint16_t* get_measurement(void);
   uint8_t 	get_num_of_channels(void);
   uint16_t  get_ADC_max(void) { return ADC_MAX;};
 
+  // TODO remove
+  void print_values(void);
 
 protected:
   ADC_HandleTypeDef* hadc;
   unsigned long int* adc_buffer;
-  unsigned long int* measurement;
+  uint16_t* 		 measurement;
   uint8_t  			 adc_buffer_len;
   uint8_t			 num_of_channels;
-
+  uint32_t 			 old_cycle;
 
   // TODO remove later
-#define TEXT_BUF_LEN 4
+/*#define TEXT_BUF_LEN 4
   uint8_t text_buf[TEXT_BUF_LEN];
-  void clear_text_buf(uint8_t* text_buf, uint8_t len);
+  void clear_text_buf(uint8_t* text_buf, uint8_t len);*/
 
 };
 

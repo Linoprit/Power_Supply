@@ -9,14 +9,14 @@
 #define OPTIONS_HI_LO_VALUE_H_
 
 
-#include <Interfaces/Value_template.h>
+#include <Interfaces/Option_Option_Value_template.h>
 #include "System/SoftwareEvents.h"
 
 
 #define ENCODER Rotary_Encoder::rotenc_right
 
 
-class HI_LO_Value: Value_template<uint8_t>, SoftwareEvents_base
+class HI_LO_Value: Option_Value_template<uint8_t>, SoftwareEvents_base
 {
 public:
   enum Options_enum { high = 0, low = 1, automatic = 2};

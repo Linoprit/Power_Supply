@@ -36,9 +36,9 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 5 5
-Title ""
-Date "26 jan 2013"
-Rev ""
+Title "Power Supply - Output Stage"
+Date "2017-03-06"
+Rev "1.1"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -272,10 +272,10 @@ Connection ~ 6450 3550
 Wire Wire Line
 	4700 2400 7300 2400
 $Comp
-L GND #PWR52
+L GND #PWR57
 U 1 1 589FF12F
 P 8150 4800
-F 0 "#PWR52" H 8150 4550 50  0001 C CNN
+F 0 "#PWR57" H 8150 4550 50  0001 C CNN
 F 1 "GND" H 8150 4650 50  0000 C CNN
 F 2 "" H 8150 4800 50  0000 C CNN
 F 3 "" H 8150 4800 50  0000 C CNN

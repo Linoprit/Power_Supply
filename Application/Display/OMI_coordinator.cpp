@@ -70,6 +70,10 @@ void OMI_coordinator::software_event_callback(
   old_event = event_name;
 }
 
+void OMI_coordinator::update_values(void)
+{
+
+}
 
 void OMI_coordinator::loop_5ms(void)
 {

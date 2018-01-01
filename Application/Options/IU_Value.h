@@ -9,7 +9,7 @@
 #define OPTIONS_IU_VALUE_H_
 
 
-#include <Interfaces/Value_template.h>
+#include <Interfaces/Option_Option_Value_template.h>
 #include "System/SoftwareEvents.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder.h"
 
@@ -17,7 +17,7 @@
 #define DECIMAL_PLACE 1 // Nachkommastellen
 
 
-class IU_Value: Value_template<float>, SoftwareEvents_base
+class IU_Value: Option_Value_template<float>, SoftwareEvents_base
 {
 public:
   typedef struct
