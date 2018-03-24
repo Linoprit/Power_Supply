@@ -5,7 +5,7 @@
  *      Author: harald
  */
 
-#include <Display/Menus.h>
+#include <OMI/Menus.h>
 #include <string.h>
 #include "Devices/Char_LCD/Char_LCD.h"
 #include "Instances/Common.h"

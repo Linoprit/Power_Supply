@@ -5,9 +5,9 @@
  *      Author: harald
  */
 
-#include <Interfaces/Measurement.h>
 #include "libraries/HelpersLib.h"
 #include <Instances/Common.h>
+#include <Interfaces/Value_Measurement.h>
 #include <math.h>
 
 
@@ -80,7 +80,7 @@ bool Measurement::is_overrange(void)
 int32_t Measurement::getValue_int(uint8_t decimal_places)
 {
   float factor = pow(10.0f, (float) decimal_places);
-  return (int32_t) (get_Value_float() * factor);
+  return (int32_t) ( (get_Value_float() * factor) +0.5 );
 }
 
 uint16_t Measurement::getADC(void)

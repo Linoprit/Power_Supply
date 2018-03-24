@@ -55,16 +55,7 @@ void scheduler::cycle(void)
 {
   uint32_t tick = HAL_GetTick();
 
-  SoftwareEvents* 	sw_events 	= Common::get_sw_events();
-  //Comm_Layer*		comm		= Common::get_comm_layer();
-  Rotary_Encoder*	rot_enc		= Common::get_rotary_encoder();
-  OMI_coordinator*  omi			= Common::get_omi_coord();
-
-  // TODO move to common and use some controller class
-  static DAC_socket* dac_socket = new DAC_socket();
-
-
-  sw_events->loop(); // work off events
+  Common::get_sw_events()->loop(); // work off events
 
 
   // 1ms cycle
@@ -75,11 +66,12 @@ void scheduler::cycle(void)
 	  Common::get_U_input()->cycle_1ms();
 
 	  Common::get_I_raw()->cycle_1ms();
-	  Common::get_I_auto()->cycle_1ms();
-	  Common::get_Temperature()->cycle_1ms();
+	//  Common::get_I_auto()->cycle_1ms();
+	//  Common::get_Temperature()->cycle_1ms();
 
 	  update_pt1_values();
 
+	  Common::get_controller()->cycle_1ms();
 
 	  // TODO remove
 	  //HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
@@ -89,8 +81,8 @@ void scheduler::cycle(void)
   // 5ms cycle
   if ( ((tick % 5) == 0) && (tick != old_tick) )
 	{
-	  rot_enc->cycle();
-	  omi->loop_5ms();
+	  Common::get_rotary_encoder()->cycle();
+	  Common::get_omi_coord()->loop_5ms();
 
 
 	}
@@ -99,13 +91,13 @@ void scheduler::cycle(void)
   if ( ((tick % 50) == 0) && (tick != old_tick) )
 	{
 	  // call display and button-action update
-	  omi->loop_50ms();
+	  Common::get_omi_coord()->loop_50ms();
 
 
 
 
 	  // TODO remove
-	  dac_socket->set(20);
+	  //dac_socket->set(20);
 
 	}
 
@@ -164,6 +156,9 @@ void scheduler::dbg_push_values(void)
   Error_messaging::write((char*) "Uaut: ", 6);
   send_value( meas_U_sense_auto->getValue_int(2) );
 
+  Error_messaging::write((char*) "UautRaw: ", 9);
+  send_value( meas_U_sense_auto->getADC() );
+
   Error_messaging::write((char*) "G: ", 3);
   send_value( meas_U_sense_auto->get_gain() * 100 );
 
@@ -173,7 +168,7 @@ void scheduler::dbg_push_values(void)
   Error_messaging::write((char*) "Uinp: ", 6);
   send_value( meas_U_input->getValue_int(2) );
 
-  Error_messaging::write((char*) "Iraw: ", 6);
+ /* Error_messaging::write((char*) "Iraw: ", 6);
   send_value( meas_I_raw->getValue_int(2) );
 
   Error_messaging::write((char*) "Iaut: ", 6);
@@ -183,7 +178,7 @@ void scheduler::dbg_push_values(void)
   send_value( meas_I_auto->get_gain() * 100);
 
   Error_messaging::write((char*) "Temp: ", 6);
-  send_value( meas_Temperature->getValue_int(2) );
+  send_value( meas_Temperature->getValue_int(2) );*/
 
 
 

@@ -10,30 +10,37 @@
 Opamp_socket::Opamp_socket (OPAMP_HandleTypeDef* opamp_in)
 {
   opamp = opamp_in;
+  opamp->Init.PgaGain = OPAMP_PGA_GAIN_16;
+  old_gain = gain_16;
+  HAL_OPAMP_Init(opamp);
   HAL_OPAMP_Start(opamp);
 }
 
 void Opamp_socket::set_gain(gain_enum gain_in)
 {
-  switch (gain_in)
-  {
-	case gain_none:
-	  break;
-	case gain_2:
-	  opamp->Init.PgaGain = OPAMP_PGA_GAIN_2;
-	  break;
-	case gain_4:
-	  opamp->Init.PgaGain = OPAMP_PGA_GAIN_4;
-	  break;
-	case gain_8:
-	  opamp->Init.PgaGain = OPAMP_PGA_GAIN_8;
-	  break;
-	case gain_16:
-	  opamp->Init.PgaGain = OPAMP_PGA_GAIN_16;
-	  break;
-  }
+  if (gain_in != old_gain)
+	{
+	  switch (gain_in)
+	  {
+		case gain_none:
+		  break;
+		case gain_2:
+		  opamp->Init.PgaGain = OPAMP_PGA_GAIN_2;
+		  break;
+		case gain_4:
+		  opamp->Init.PgaGain = OPAMP_PGA_GAIN_4;
+		  break;
+		case gain_8:
+		  opamp->Init.PgaGain = OPAMP_PGA_GAIN_8;
+		  break;
+		case gain_16:
+		  opamp->Init.PgaGain = OPAMP_PGA_GAIN_16;
+		  break;
+	  }
 
-  HAL_OPAMP_Init(opamp);
+	  HAL_OPAMP_Init(opamp);
+	}
+  old_gain = gain_in;
 }
 
 Opamp_socket::gain_enum Opamp_socket::get_gain(void)

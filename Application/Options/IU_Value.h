@@ -9,7 +9,7 @@
 #define OPTIONS_IU_VALUE_H_
 
 
-#include <Interfaces/Option_Option_Value_template.h>
+#include <Interfaces/Value_Option_template.h>
 #include "System/SoftwareEvents.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder.h"
 

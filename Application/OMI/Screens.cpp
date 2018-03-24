@@ -5,7 +5,7 @@
  *      Author: harald
  */
 
-#include <Display/Screens.h>
+#include <OMI/Screens.h>
 #include <string.h>
 #include "Devices/Char_LCD/Char_LCD.h"
 #include "Instances/Common.h"
@@ -79,7 +79,7 @@ void Screens::loop_50ms(void)
 	{
 	  strncpy(&LCD->buffer_lines[0][0], "Temp: ", 6);
 	  scheduler::getTempPt1()->toString(&LCD->buffer_lines[0][6], 4 ,1);
-	  LCD->buffer_lines[0][10] = 223; // '°'-char
+	  LCD->buffer_lines[0][10] = (char) 223; // '°'-char
 	  LCD->buffer_lines[0][11] = 'C';
 
 	  strncpy(&LCD->buffer_lines[1][0], "Uin: ", 5);

@@ -5,7 +5,7 @@
  *      Author: harald
  */
 
-#include <Display/OMI_coordinator.h>
+#include <OMI/OMI_coordinator.h>
 #include "Instances/Common.h"
 
 

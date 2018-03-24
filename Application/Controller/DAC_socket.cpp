@@ -10,10 +10,17 @@
 #include "libraries/HelpersLib.h"
 
 
-DAC_socket::DAC_socket ()
+DAC_socket::DAC_socket (DAC_HandleTypeDef* dac_handle_in, uint8_t channel_in)
 {
+  this->dac_handle  = dac_handle_in;
 
+  if(channel_in == 1)
+	this->channel = DAC_CHANNEL_1;
+  else
+	this->channel = DAC_CHANNEL_2;
 
+  HAL_DAC_Init(dac_handle);
+  HAL_DAC_Start(dac_handle, channel);
 }
 
 DAC_socket::~DAC_socket () { }
@@ -21,11 +28,26 @@ DAC_socket::~DAC_socket () { }
 
 void DAC_socket::set(uint16_t value)
 {
-  char buffer[6];
+  HAL_DAC_SetValue(dac_handle, channel, DAC_ALIGN_12B_R, (uint32_t) value);
 
-  HAL_StatusTypeDef result;
 
-  // TODO implement DAC functionality
+
+}
+
+uint16_t DAC_socket::get(void)
+{
+  uint32_t result = HAL_DAC_GetValue(dac_handle, channel);
+  return (uint16_t) result;
+}
+
+// TODO Delete
+  //char buffer[6];
+
+  //HAL_StatusTypeDef result;
+
+ // HAL_DAC_GetValue(get_hdac1(), 1);
+
+
   /*
   value = (uint16_t) Common::get_u_soll()->getValue();
   value = value * 200;
@@ -47,5 +69,5 @@ void DAC_socket::set(uint16_t value)
   Error_messaging::write((const char*) "\n", 1);
   */
 
-}
+
 

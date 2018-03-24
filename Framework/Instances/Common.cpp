@@ -22,6 +22,8 @@ IU_Value* 				Common::i_soll			= NULL;
 IU_Value* 				Common::u_start			= NULL;
 IU_Value* 				Common::i_start			= NULL;
 HI_LO_Value* 			Common::hi_lo			= NULL;
+Value_Output*			Common::dac_output		= NULL;
+Controller*				Common::controller		= NULL;
 
 Measurement*			Common::meas_U_sense		= NULL;
 Measurement*			Common::meas_U_sense_auto   = NULL;
@@ -29,15 +31,6 @@ Measurement*			Common::meas_U_input        = NULL;
 Measurement*			Common::meas_I_raw          = NULL;
 Measurement*			Common::meas_I_auto         = NULL;
 Measurement*			Common::meas_Temperature    = NULL;
-
-// TODO remove from here and put them into init
-ADC_socket* Common::adc_socket_Iamp = NULL;
-ADC_socket* Common::adc_socket_Iraw = NULL;
-
-// U_sense, U_raw, Opamp3 = U_sense * PGA
-ADC_socket* Common::adc_socket_Uall = NULL;
-ADC_socket* Common::adc_socket_Temp = NULL;
-
 
 
 // Workaround undefined reference error
@@ -58,9 +51,21 @@ void Common::initialize_devices()
 
   init_values();
   init_omi_coord();
+  init_dac();
 
 
 }
+
+void Common::init_dac(void)
+{
+  DAC_socket* dac_socket = new DAC_socket(get_hdac1(), 1);
+  dac_output = new Value_Output(dac_socket);
+  // TODO get from EEPROM
+  dac_output->set_calibration(0.0f, 32.0f, 0, 4095);
+
+  controller = new Controller();
+}
+
 
 void Common::init_values(void)
 {
@@ -81,7 +86,7 @@ void Common::init_values(void)
 		  Rotary_Encoder::last_key_enum::rotenc_left,
 		  Rotary_Encoder::btn_left,
 		  0,
-		  24,
+		  32,
 	  };
   u_soll  = new IU_Value(u_config);
   u_start = new IU_Value(u_config);
@@ -163,19 +168,10 @@ OMI_coordinator* Common::get_omi_coord(void)
 
 void Common::init_measurement()
 {
-  /*ADC_socket* adc_socket_Iamp = new ADC_socket(get_hadc2(), 1);
+  ADC_socket* adc_socket_Iamp = new ADC_socket(get_hadc2(), 1);
   ADC_socket* adc_socket_Iraw = new ADC_socket(get_hadc1(), 1);
-
-  // U_sense, U_raw, Opamp3 = U_sense * PGA
   ADC_socket* adc_socket_Uall = new ADC_socket(get_hadc3(), 3);
-  ADC_socket* adc_socket_Temp = new ADC_socket(get_hadc4(), 1);*/
-
-
-  adc_socket_Iamp = new ADC_socket(get_hadc2(), 1);
-  adc_socket_Iraw = new ADC_socket(get_hadc1(), 1);
-  adc_socket_Uall = new ADC_socket(get_hadc3(), 3);
-  adc_socket_Temp = new ADC_socket(get_hadc4(), 1);
-
+  ADC_socket* adc_socket_Temp = new ADC_socket(get_hadc4(), 1);
 
   meas_U_sense		= new Measurement(adc_socket_Uall, 1);
   meas_U_input		= new Measurement(adc_socket_Uall, 2);
@@ -190,7 +186,7 @@ void Common::init_measurement()
 
   meas_U_sense->set_calibration(10u, 3055u, 0.897f, 30.48f);
   meas_U_input->set_calibration(12u, 3069u, 0.836f, 30.48f);
-  meas_U_sense_auto->set_calibration(30u, 3840u, 0.56f, 19.18f, 2);
+  meas_U_sense_auto->set_calibration(120u, 4019u, 0.8f, 21.0f, 2);
 
   meas_I_raw->set_calibration(12u, 3069u, 0.836f, 30.48f);
   meas_I_auto->set_calibration(30u, 3840u, 0.56f, 19.18f, 2);
@@ -202,6 +198,12 @@ void Common::init_measurement()
 
 
 }
+
+/*ADC_socket* Common::get_adc_socket_Uall(void) // TODO delete
+{
+  return adc_socket_Uall;
+}*/
+
 Measurement*	Common::get_U_sense(void)
 {
   return meas_U_sense;
@@ -232,18 +234,15 @@ Measurement*	Common::get_Temperature(void)
   return meas_Temperature;
 }
 
-
-
-/*ADC_socket* Common::get_adc_socket_Uall(void) // TODO delete
+Value_Output*	Common::get_dac_output(void)
 {
-  return adc_socket_Uall;
-}*/
+  return dac_output;
+}
 
-
-
-
-
-
+Controller* 	Common::get_controller(void)
+{
+  return controller;
+}
 
 uint32_t Common::get_tick(void)
 {

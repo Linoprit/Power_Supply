@@ -5,12 +5,12 @@
  *      Author: harald
  */
 
-#ifndef DISPLAY_OMI_COORDINATOR_H_
-#define DISPLAY_OMI_COORDINATOR_H_
+#ifndef OMI_OMI_COORDINATOR_H_
+#define OMI_OMI_COORDINATOR_H_
 
+#include <OMI/Menus.h>
+#include <OMI/Screens.h>
 #include "System/SoftwareEvents.h"
-#include "Screens.h"
-#include "Menus.h"
 
 #define SCREENS 0
 #define MENUS  	1
@@ -37,4 +37,4 @@ private:
 
 };
 
-#endif /* DISPLAY_OMI_COORDINATOR_H_ */
+#endif /* OMI_OMI_COORDINATOR_H_ */

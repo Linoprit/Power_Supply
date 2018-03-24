@@ -28,7 +28,7 @@ public:
 
 private:
   OPAMP_HandleTypeDef* 	opamp;
-
+  gain_enum				old_gain;
 };
 
 #endif /* CONTROLLER_OPAMP_SOCKET_H_ */

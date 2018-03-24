@@ -5,8 +5,8 @@
  *      Author: harald
  */
 
-#ifndef DISPLAY_SCREENS_H_
-#define DISPLAY_SCREENS_H_
+#ifndef OMI_SCREENS_H_
+#define OMI_SCREENS_H_
 
 #include <stdint.h>
 
@@ -36,4 +36,4 @@ private:
 
 };
 
-#endif /* DISPLAY_SCREENS_H_ */
+#endif /* OMI_SCREENS_H_ */

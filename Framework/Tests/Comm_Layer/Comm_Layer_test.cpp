@@ -158,5 +158,5 @@ void Comm_Layer_test::loop(void)
 void Comm_Layer_test::software_event_callback(
 	SoftwareEvents::Event_Names_enum event_name)
 {
-
+  UNUSED(event_name);
 }

@@ -1,4 +1,4 @@
-update=Sa 23 Dez 2017 11:28:51 CET
+update=Fr 19 Jan 2018 22:38:02 CET
 version=1
 last_client=kicad
 [cvpcb]
@@ -79,16 +79,6 @@ LibName9=led
 LibName10=dip_sockets
 [general]
 version=1
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceForceRefPrefix=0
-SpiceUseNetNumbers=0
-LabSize=60
 [eeschema]
 version=1
 LibDir=
@@ -124,3 +114,13 @@ LibName28=atmel
 LibName29=contrib
 LibName30=valves
 LibName31=Netzteil_Parts
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60

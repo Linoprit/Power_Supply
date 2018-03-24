@@ -5,8 +5,8 @@
  *      Author: harald
  */
 
-#ifndef DISPLAY_MENUS_H_
-#define DISPLAY_MENUS_H_
+#ifndef OMI_MENUS_H_
+#define OMI_MENUS_H_
 
 #include <stdint.h>
 
@@ -36,4 +36,4 @@ private:
 
 };
 
-#endif /* DISPLAY_MENUS_H_ */
+#endif /* OMI_MENUS_H_ */

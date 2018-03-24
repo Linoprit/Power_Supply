@@ -9,20 +9,24 @@
 #define COMMON_H_
 
 
+
+#include <Interfaces/Value_Measurement.h>
+#include <Interfaces/Value_Output.h>
+#include <OMI/OMI_coordinator.h>
+#include <Controller/Controller.h>
+
 #include "System/SoftwareEvents.h"
 #include "Devices/Comm_Layer/Comm_Layer_socket.h"
 #include "Devices/Comm_Layer/Comm_Layer.h"
 #include "Devices/Char_LCD/Char_LCD.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder_socket.h"
 #include "Devices/Rotary_Encoder/Rotary_Encoder.h"
-#include "Interfaces/Measurement.h"
-#include "Controller/ADC_socket.h"
-#include "Controller/Opamp_socket.h"
+//#include "Controller/ADC_socket.h"
+//#include "Controller/Opamp_socket.h"
 
 #include "Options/IU_Value.h"
 #include "Options/HI_LO_Value.h"
 
-#include "../Application/Display/OMI_coordinator.h"
 
 
 
@@ -68,20 +72,21 @@ public:
   static IU_Value* 			get_i_start(void);
   static HI_LO_Value* 		get_hi_lo(void);
 
-  //static ADC_socket*		get_adc_socket_Uall(void);// TODO delete
   static Measurement*		get_U_sense(void);
   static Measurement*		get_U_sense_auto(void);
   static Measurement*		get_U_input(void);
   static Measurement*		get_I_raw(void);
   static Measurement*		get_I_auto(void);
   static Measurement*		get_Temperature(void);
+  static Value_Output*		get_dac_output(void);
+  static Controller*		get_controller(void);
 
   // TODO remove
-  static  ADC_socket* adc_socket_Iamp ;
+  /*static  ADC_socket* adc_socket_Iamp ;
   static  ADC_socket* adc_socket_Iraw ;
   // U_sense, U_raw, Opamp3 = U_sense * PGA
   static  ADC_socket* adc_socket_Uall ;
-  static  ADC_socket* adc_socket_Temp ;
+  static  ADC_socket* adc_socket_Temp ;*/
 
 
 
@@ -102,7 +107,9 @@ private:
   static void init_omi_coord(void);
   static OMI_coordinator* omi_coord;
 
-
+  static void init_dac(void);
+  static Value_Output*	dac_output;
+  static Controller*	controller;
 
 
   static void init_values(void);

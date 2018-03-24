@@ -5,8 +5,8 @@
  *      Author: harald
  */
 
-#ifndef INTERFACES_MEASUREMENT_H_
-#define INTERFACES_MEASUREMENT_H_
+#ifndef INTERFACES_VALUE_MEASUREMENT_H_
+#define INTERFACES_VALUE_MEASUREMENT_H_
 
 #include <stdint.h>
 #include <Controller/ADC_socket.h>
@@ -62,4 +62,4 @@ protected:
 
 };
 
-#endif /* INTERFACES_MEASUREMENT_H_ */
+#endif /* INTERFACES_VALUE_MEASUREMENT_H_ */
