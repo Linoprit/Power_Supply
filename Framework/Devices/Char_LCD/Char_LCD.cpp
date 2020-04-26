@@ -36,7 +36,7 @@ void Char_LCD::init()
   // send data to initialize the lcd
   lcd_socket->select_instruction_register();
   lcd_socket->reset_lcd_en_line();
-  lcd_socket->delay_ms(LCD_WAIT_DELAY);
+  Common::delay(LCD_WAIT_DELAY);
 
   for (i=0; i < INIT_LENGTH; i++)
 	lcd_socket->put_byte_2_lcd_initonly(

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name Netzteil_Progammable-rescue)(type Legacy)(uri ${KIPRJMOD}/Netzteil_Progammable-rescue.lib)(options "")(descr ""))
+  (lib (name Netzteil_Parts)(type Legacy)(uri ${KIPRJMOD}/Netzteil_Parts.lib)(options "")(descr ""))
+)

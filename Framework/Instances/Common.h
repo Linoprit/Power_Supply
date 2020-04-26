@@ -8,46 +8,50 @@
 #ifndef COMMON_H_
 #define COMMON_H_
 
+#ifdef STM32F303xE
+#include "stm32f3xx_hal.h"
+#include "stm32f3xx_hal_uart.h"
+#endif
+#ifdef STM32F103xB
+#include "stm32f1xx_hal.h"
+#include "stm32f1xx_hal_uart.h"
+#endif
+#if USE_RTOS
+#include "cmsis_os.h"
+#endif
 
-
-#include <Interfaces/Value_Measurement.h>
-#include <Interfaces/Value_Output.h>
-#include <OMI/OMI_coordinator.h>
-#include <Controller/Controller.h>
-
-#include "System/SoftwareEvents.h"
-#include "Devices/Comm_Layer/Comm_Layer_socket.h"
-#include "Devices/Comm_Layer/Comm_Layer.h"
-#include "Devices/Char_LCD/Char_LCD.h"
-#include "Devices/Rotary_Encoder/Rotary_Encoder_socket.h"
-#include "Devices/Rotary_Encoder/Rotary_Encoder.h"
-//#include "Controller/ADC_socket.h"
-//#include "Controller/Opamp_socket.h"
-
-#include "Options/IU_Value.h"
-#include "Options/HI_LO_Value.h"
+// C includes only
+#include <stdbool.h>
 
 
 
+// C interface
+#ifdef __cplusplus
+#define EXTERNC extern "C"
+#else
+#define EXTERNC
+#endif
 
-extern "C" UART_HandleTypeDef* get_huart1(void);
-extern "C" UART_HandleTypeDef* get_huart2(void);
-extern "C" SPI_HandleTypeDef*  get_hspi3 (void);
-extern "C" I2C_HandleTypeDef*  get_hi2c1 (void);
+EXTERNC void common_init(void);
+EXTERNC bool common_initIsDone(void);
+EXTERNC void mainCycle(void);
 
-extern "C" ADC_HandleTypeDef* get_hadc1(void);
-extern "C" ADC_HandleTypeDef* get_hadc2(void);
-extern "C" ADC_HandleTypeDef* get_hadc3(void);
-extern "C" ADC_HandleTypeDef* get_hadc4(void);
+// bodies are in main.c
+EXTERNC UART_HandleTypeDef* get_huart1(void);
+EXTERNC UART_HandleTypeDef* get_huart2(void);
+EXTERNC UART_HandleTypeDef* get_huart3(void);
+EXTERNC SPI_HandleTypeDef* 	get_hspi3 (void);
+EXTERNC SPI_HandleTypeDef* 	get_hspi3 (void);
+EXTERNC I2C_HandleTypeDef* 	get_hi2c1 (void);
+EXTERNC I2C_HandleTypeDef* 	get_hi2c3 (void);
+EXTERNC ADC_HandleTypeDef*  get_hadc1 (void);
+EXTERNC DAC_HandleTypeDef*  get_hdac1 (void);
+#undef EXTERNC
 
-extern "C" DAC_HandleTypeDef* get_hdac1(void);
+#ifdef __cplusplus
 
-extern "C" OPAMP_HandleTypeDef* get_hopamp2(void);
-extern "C" OPAMP_HandleTypeDef* get_hopamp3(void);
-extern "C" OPAMP_HandleTypeDef* get_hopamp4(void);
-
-
-
+// put cpp includes here!!
+#include <Sockets/uart_socket.h>
 
 class Common
 {
@@ -55,80 +59,20 @@ public:
 
   Common() {};
   virtual ~Common() {};
+  static void init(void);
+  static inline bool isInitDone(void) 	{ return _initIsDone;		};
+  static inline uint32_t get_tick(void) { return HAL_GetTick(); };
 
-  static void initialize_devices(void);
-  static SoftwareEvents*    get_sw_events(void);
-
-  static uint32_t get_tick(void);
-
-  static Comm_Layer*		get_comm_layer(void);
-  static Rotary_Encoder* 	get_rotary_encoder(void);
-  static Char_LCD* 			get_char_lcd(void);
-  static OMI_coordinator* 	get_omi_coord(void);
-
-  static IU_Value*			get_u_soll(void);
-  static IU_Value* 			get_i_soll(void);
-  static IU_Value*			get_u_start(void);
-  static IU_Value* 			get_i_start(void);
-  static HI_LO_Value* 		get_hi_lo(void);
-
-  static Measurement*		get_U_sense(void);
-  static Measurement*		get_U_sense_auto(void);
-  static Measurement*		get_U_input(void);
-  static Measurement*		get_I_raw(void);
-  static Measurement*		get_I_auto(void);
-  static Measurement*		get_Temperature(void);
-  static Value_Output*		get_dac_output(void);
-  static Controller*		get_controller(void);
-
-  // TODO remove
-  /*static  ADC_socket* adc_socket_Iamp ;
-  static  ADC_socket* adc_socket_Iraw ;
-  // U_sense, U_raw, Opamp3 = U_sense * PGA
-  static  ADC_socket* adc_socket_Uall ;
-  static  ADC_socket* adc_socket_Temp ;*/
-
-
-
-  static inline void delay(uint32_t delay)
-  { HAL_Delay(delay); }
-
+#if USE_RTOS
+  static inline void delay(uint32_t delay) { osDelay(delay); }
+#else
+  static inline void delay(uint32_t delay) { HAL_Delay(delay); }
+#endif
 
 private:
-  static void init_comm_layer(void);
-  static Comm_Layer *comm_layer;
+  static bool _initIsDone;
 
-  static void init_rotary_encoder(void);
-  static Rotary_Encoder* rotary_encoder;
-
-  static void init_char_LCD(void);
-  static Char_LCD* char_lcd;
-
-  static void init_omi_coord(void);
-  static OMI_coordinator* omi_coord;
-
-  static void init_dac(void);
-  static Value_Output*	dac_output;
-  static Controller*	controller;
-
-
-  static void init_values(void);
-  static IU_Value* u_soll;
-  static IU_Value* i_soll;
-  static IU_Value* u_start;
-  static IU_Value* i_start;
-  static HI_LO_Value* hi_lo;
-
-  static void init_measurement(void);
-  static Measurement*	meas_U_sense		;
-  static Measurement*	meas_U_sense_auto   ;
-  static Measurement*	meas_U_input        ;
-  static Measurement*	meas_I_raw          ;
-  static Measurement*	meas_I_auto         ;
-  static Measurement*	meas_Temperature    ;
-
-
-  static SoftwareEvents    *sw_events;
 };
 
+#endif // C interface
 #endif /* COMMON_H_ */

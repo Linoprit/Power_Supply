@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name Netzteil_Progammable-rescue)(type Legacy)(uri ${KIPRJMOD}/Netzteil_Progammable-rescue.lib)(options "")(descr ""))
+  (lib (name own_parts)(type Legacy)(uri /home/harald/eclipse_workspaces/swb/Kicad-Libs/own_parts.lib)(options "")(descr ""))
+  (lib (name Gajda_ttlieee)(type Legacy)(uri /home/harald/eclipse_workspaces/swb/Kicad-Libs/Gajda_ttlieee.lib)(options "")(descr ""))
+)
