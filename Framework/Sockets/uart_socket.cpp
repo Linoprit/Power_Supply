@@ -8,7 +8,7 @@
 
 #include <Sockets/uart_socket.h>
 #include <Instances/callbacks.h>
-#include <Instances/Common.h>
+#include <Instances/OsHelpers.h>
 #include <string.h>
 
 
@@ -39,7 +39,7 @@ uart_socket::uart_socket (UART_HandleTypeDef *huart)
 	__HAL_UART_ENABLE_IT(huart, UART_IT_IDLE); // @suppress("Field cannot be resolved")
 
 	// same as HAL_UART_RxCpltCallback
-	uart_callback_add(huart, (ISR_callback*) this);
+	add_uart_callback(huart, (ISR_callback*) this);
 	HAL_UART_Receive_DMA(this->huart, uart_rx_buffer, UART_RX_BUFF_LEN);
 }
 #endif
@@ -65,7 +65,7 @@ bool uart_socket::send_many_bytes(
 			return ERROR;
 		}
 
-		Common::delay(1);
+		OsHelpers::delay(1);
 		count++;
 	}
 

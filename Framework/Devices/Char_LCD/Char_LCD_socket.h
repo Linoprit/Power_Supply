@@ -11,7 +11,7 @@
 
 #include "stm32f3xx_hal.h"
 #include "stm32f3xx_hal_spi.h"
-#include <Instances/Common.h>
+#include <Instances/OsHelpers.h>
 
 
 #define LCD_WAIT_DELAY     5      // Wartezeit in ms bis Anweisung gültig
@@ -23,7 +23,13 @@
 class Char_LCD_socket
 {
 public:
-	//Char_LCD_socket () {};
+	Char_LCD_socket () {
+		_spi = NULL;
+		_RS_port = NULL;
+		_EN_port = NULL;
+		_RS_pin  = 0;
+		_EN_pin  = 0;
+	};
 	Char_LCD_socket (
 					SPI_HandleTypeDef				*lcd_spi,
 					GPIO_TypeDef						*RS_port,
@@ -63,7 +69,7 @@ public:
 	inline void do_data_valid_sequence(void)
 	{
 		set_lcd_en_line();
-		Common::delay(LCD_PULSE_DELAY_ms);
+		OsHelpers::delay(LCD_PULSE_DELAY_ms);
 		reset_lcd_en_line();
 	};
 

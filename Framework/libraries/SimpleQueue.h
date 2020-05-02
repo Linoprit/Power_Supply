@@ -15,9 +15,15 @@
 #include <System/Error_Handler.h>
 
 
-template <class T> class SimpleQueue {
+template <class T, std::size_t _Nm = 1> class SimpleQueue {
 public:
-	SimpleQueue(uint16_t maxSize) {
+	SimpleQueue(void) {
+		_data 	= new T[_Nm];
+		_maxSize = _Nm;
+		reset();
+	};
+
+	SimpleQueue(std::size_t maxSize) {
 		_data 	= new T[maxSize];
 		_maxSize = maxSize;
 		reset();
@@ -28,7 +34,7 @@ public:
 	};
 
 	void enqueue(T element) { // put element to back of queue
-		if (size() == _maxSize) {
+		if (size() == static_cast<int16_t>(_maxSize) ) {
 			error_handler(__FILE__, __LINE__ );
 		}
 
@@ -82,10 +88,10 @@ private:
 	int16_t _front;
 	int16_t _rear;
 	int16_t _size;
-	uint8_t _maxSize;
+	std::size_t _maxSize;
 
 	void increment(int16_t &x) {
-		if (x == _maxSize - 1)
+		if (x == static_cast<int16_t>(_maxSize) - 1)
 			x = 0;
 		else
 			x++;

@@ -9,6 +9,7 @@
 #define APPLICATION_DISPLAYNDATA_DISPLAYNDATA_H_
 
 #include <Devices/Char_LCD/Char_LCD_socket.h>
+#include <Devices/Char_LCD/Char_LCD.h>
 
 namespace displayndata {
 
@@ -23,8 +24,9 @@ public:
 
 private:
 	Char_LCD_socket		_socket;
+	Char_LCD					_charLCD;
 
-	void init_char_LCD(void);
+
 };
 
 } /* namespace displayndata */

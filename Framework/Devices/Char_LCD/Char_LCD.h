@@ -41,7 +41,7 @@
 #endif
 // 0 - 64 - 94 - 84
 
-/* Commads */
+/* Commands */
 #define LCD_CLR         1             /*! Clear display                      */
 #define LCD_HOME        2             /*! Cursor home                        */
 #define LCD_DATALENGTH (32+16)        /*! Data length 8 bit                  */
@@ -59,24 +59,21 @@ typedef char buffer_lines_type[LCD_LINES][LCD_BUFFER_LEN];
 class Char_LCD
 {
 public:
-
+	Char_LCD () {lcd_socket = NULL;};
   Char_LCD (Char_LCD_socket* lcd_socket_in);
   virtual
   ~Char_LCD ();
 
   void init();
-  void cycle(void);
   void display_step(void); // displays on char per step, nonblocking!
   void display_line(uint8_t line_nr); // first line is 0, blocking.
   void display(void); // displays whole buffer, blocking
   void clear(void);
   char* select_line(uint8_t line_nr); // sends address byte
 
-
-  buffer_lines_type* get_buffer_lines_ptr(void);
-
   // put data to be displayed in here
   buffer_lines_type buffer_lines;
+  // Example: strncpy(&_charLCD.buffer_lines[0][0], "Text", 4);
 
 private:
   Char_LCD_socket* lcd_socket;

@@ -11,7 +11,8 @@
 #include "main.h"
 #include "Instances/callbacks.h"
 #include "System/uart_printf.h"
-//#include "cmsis_os.h"
+
+
 
 
 
@@ -34,8 +35,13 @@ void Common::init()
 	if (Common::_initIsDone == true)
 		return;
 
+
+
+
 	_initIsDone 		= true;
 }
+
+
 
 /*
 // Just a workaround, if we don't use an OS

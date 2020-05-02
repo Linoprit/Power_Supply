@@ -16,7 +16,7 @@
 ISR_callback *uart1_RxCplt_callback   = NULL;
 ISR_callback *uart2_RxCplt_callback   = NULL;
 ISR_callback *uart3_RxCplt_callback   = NULL;
-
+ISR_callback *rotary_encoder_callback = NULL;
 
 /*void HAL_SYSTICK_Callback(void)
 {
@@ -27,12 +27,19 @@ ISR_callback *uart3_RxCplt_callback   = NULL;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
+	//UNUSED(GPIO_Pin);
 
-	UNUSED(GPIO_Pin);
+  // Rotary Encoder ISR
+  if (GPIO_Pin == Rotary_Encoder_INT_Pin)
+	{
+	  if (rotary_encoder_callback != NULL)
+	  	rotary_encoder_callback->ISR_callback_fcn();
+	}
 
+  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 }
 
-void uart_callback_add(UART_HandleTypeDef *huart, ISR_callback* callback)
+void add_uart_callback(UART_HandleTypeDef *huart, ISR_callback* callback)
 {
 	if (huart->Instance == USART1)
 	{
@@ -110,6 +117,10 @@ void USART2_IRQHandler(void)
 
 
 
+void add_rotary_encoder_callback(ISR_callback* callback)
+{
+  rotary_encoder_callback = callback;
+}
 
 
 

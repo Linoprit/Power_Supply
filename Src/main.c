@@ -144,7 +144,6 @@ int main(void)
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
-  
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -178,6 +177,7 @@ int main(void)
   common_init();
 
   /* USER CODE END 2 */
+
   /* Init scheduler */
   osKernelInitialize();
 
@@ -215,7 +215,6 @@ int main(void)
   osKernelStart();
  
   /* We should never get here as control is now taken by the scheduler */
-
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -667,11 +666,11 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(Voltage_HI_LO_GPIO_Port, Voltage_HI_LO_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : B1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  /*Configure GPIO pins : B1_Pin EEPROM_DO_Pin */
+  GPIO_InitStruct.Pin = B1_Pin|EEPROM_DO_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : Char_LCD_EN_Pin Char_LCD_RS_Pin EEPROM_CS_Pin */
   GPIO_InitStruct.Pin = Char_LCD_EN_Pin|Char_LCD_RS_Pin|EEPROM_CS_Pin;
@@ -680,12 +679,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : EEPROM_DO_Pin */
-  GPIO_InitStruct.Pin = EEPROM_DO_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(EEPROM_DO_GPIO_Port, &GPIO_InitStruct);
-
   /*Configure GPIO pin : LD2_Pin */
   GPIO_InitStruct.Pin = LD2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
@@ -693,11 +686,11 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : Ina_ALERT_Pin */
-  GPIO_InitStruct.Pin = Ina_ALERT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(Ina_ALERT_GPIO_Port, &GPIO_InitStruct);
+  /*Configure GPIO pins : Ina_ALERT_Pin Rotary_Encoder_INT_Pin */
+  GPIO_InitStruct.Pin = Ina_ALERT_Pin|Rotary_Encoder_INT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pins : FAN_out_Pin EEPROM_DI_Pin EEPROM_SCLK_Pin */
   GPIO_InitStruct.Pin = FAN_out_Pin|EEPROM_DI_Pin|EEPROM_SCLK_Pin;
@@ -706,8 +699,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Button_5_Pin Button_4_Pin */
-  GPIO_InitStruct.Pin = Button_5_Pin|Button_4_Pin;
+  /*Configure GPIO pins : Button_6_Pin Button_5_Pin */
+  GPIO_InitStruct.Pin = Button_6_Pin|Button_5_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -719,15 +712,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(Voltage_HI_LO_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : Rotary_Encoder_INT_Pin */
-  GPIO_InitStruct.Pin = Rotary_Encoder_INT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(Rotary_Encoder_INT_GPIO_Port, &GPIO_InitStruct);
-
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI9_5_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 5, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 }
 
@@ -753,7 +743,7 @@ __weak void StrtDisplayNData(void *argument)
   /* USER CODE END 5 */ 
 }
 
-/**
+ /**
   * @brief  Period elapsed callback in non blocking mode
   * @note   This function is called  when TIM1 interrupt took place, inside
   * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
@@ -794,7 +784,7 @@ void Error_Handler(void)
   * @param  line: assert_param error line source number
   * @retval None
   */
-void assert_failed(char *file, uint32_t line)
+void assert_failed(uint8_t *file, uint32_t line)
 { 
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,

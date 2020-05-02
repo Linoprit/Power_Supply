@@ -74,6 +74,7 @@ void Error_Handler(void);
 #define LD2_GPIO_Port GPIOA
 #define Ina_ALERT_Pin GPIO_PIN_15
 #define Ina_ALERT_GPIO_Port GPIOB
+#define Ina_ALERT_EXTI_IRQn EXTI15_10_IRQn
 #define FAN_out_Pin GPIO_PIN_6
 #define FAN_out_GPIO_Port GPIOC
 #define EEPROM_DI_Pin GPIO_PIN_7
@@ -82,10 +83,10 @@ void Error_Handler(void);
 #define EEPROM_CS_GPIO_Port GPIOC
 #define EEPROM_SCLK_Pin GPIO_PIN_9
 #define EEPROM_SCLK_GPIO_Port GPIOC
-#define Button_5_Pin GPIO_PIN_11
+#define Button_6_Pin GPIO_PIN_11
+#define Button_6_GPIO_Port GPIOA
+#define Button_5_Pin GPIO_PIN_12
 #define Button_5_GPIO_Port GPIOA
-#define Button_4_Pin GPIO_PIN_12
-#define Button_4_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
@@ -97,6 +98,10 @@ void Error_Handler(void);
 #define Rotary_Encoder_INT_Pin GPIO_PIN_6
 #define Rotary_Encoder_INT_GPIO_Port GPIOB
 #define Rotary_Encoder_INT_EXTI_IRQn EXTI9_5_IRQn
+#define Uart3_Rx_Pin GPIO_PIN_8
+#define Uart3_Rx_GPIO_Port GPIOB
+#define Uart3_Tx_Pin GPIO_PIN_9
+#define Uart3_Tx_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

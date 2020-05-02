@@ -31,9 +31,9 @@ void Char_LCD_socket::put_byte_2_lcd_initonly (uint8_t data)
 	send_byte(data);
 
 	set_lcd_en_line();
-	Common::delay(LCD_WAIT_DELAY);
+	OsHelpers::delay(LCD_WAIT_DELAY);
 
 	reset_lcd_en_line();
-	Common::delay(LCD_WAIT_DELAY);
+	OsHelpers::delay(LCD_WAIT_DELAY);
 }
 

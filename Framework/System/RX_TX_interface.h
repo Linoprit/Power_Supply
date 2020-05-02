@@ -14,15 +14,15 @@
 class Rx_Tx_interface
 {
 public:
-  Rx_Tx_interface() {};
+	Rx_Tx_interface() {};
 
-  virtual ~Rx_Tx_interface() {};
+	virtual ~Rx_Tx_interface() {};
 
-  virtual bool send_byte(uint8_t byte) 						= 0;
-  virtual bool send_many_bytes(
-	  uint8_t *ptr_to_data, uint8_t len, uint16_t timeout) 	= 0;
-  virtual bool is_TX_pending(void) 							= 0;
-  virtual SimpleQueue<uint8_t>* get_rx_queue() 		= 0;
+	virtual bool send_byte(uint8_t byte) 						= 0;
+	virtual bool send_many_bytes(
+			uint8_t *ptr_to_data, uint8_t len, uint16_t timeout) 	= 0;
+	virtual bool is_TX_pending(void) 								= 0;
+	virtual SimpleQueue<uint8_t>* get_rx_queue() 		= 0;
 
 
 

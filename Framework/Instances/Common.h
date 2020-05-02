@@ -53,6 +53,8 @@ EXTERNC DAC_HandleTypeDef*  get_hdac1 (void);
 // put cpp includes here!!
 #include <Sockets/uart_socket.h>
 
+
+
 class Common
 {
 public:
@@ -63,14 +65,14 @@ public:
   static inline bool isInitDone(void) 	{ return _initIsDone;		};
   static inline uint32_t get_tick(void) { return HAL_GetTick(); };
 
-#if USE_RTOS
-  static inline void delay(uint32_t delay) { osDelay(delay); }
-#else
-  static inline void delay(uint32_t delay) { HAL_Delay(delay); }
-#endif
+
+
+
 
 private:
   static bool _initIsDone;
+
+
 
 };
 
