@@ -28,36 +28,36 @@ KeyEvent_enum Button_Machine::cycle(
 	  state = on;
 	  old_ticks = Common::get_tick();
 
-	  return evnt_none;
+	  return evntNone;
 	}
 
   if((state == on) && (Button_val == 1) &&
 	  (Common::get_tick() - old_ticks > debounce_ticks))
 	{
 	  state = pressed;
-	  return btn_pressed;
+	  return evntPressed;
 	}
 
   if((state == pressed) && (Button_val == 1) &&
 	  (Common::get_tick() - old_ticks > btn_held_ticks))
 	{
 	  state = held;
-	  return btn_held;
+	  return evntHeld;
 	}
 
   if (((state == pressed) || (state == held)) && (Button_val == 0))
 	{
 	  state = off;
-	  return btn_released;
+	  return evntReleased;
 	}
 
   if ((state == on) && (Button_val == 0))
 	{
 	  state = off;
-	  return evnt_none;
+	  return evntNone;
 	}
 
-  return evnt_none;
+  return evntNone;
 }
 
 }

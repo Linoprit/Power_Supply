@@ -5,7 +5,7 @@
  *      Author: harald
  */
 
-#include <Application/DisplayNData/DisplayNData.h>
+#include <Application/DisplayNMenus/DisplayNMenus.h>
 #include <new>
 #include <string.h>
 #include <main.h>
@@ -14,18 +14,18 @@
 
 
 
-namespace displayndata {
+namespace displaynmenus {
 
-void DisplayNData::init(void) {
-	new (&instance()) DisplayNData();
+void DisplayNMenus::init(void) {
+	new (&instance()) DisplayNMenus();
 }
 
-DisplayNData& DisplayNData::instance(void) {
-	static DisplayNData displayNData;
+DisplayNMenus& DisplayNMenus::instance(void) {
+	static DisplayNMenus displayNData;
 	return displayNData;
 }
 
-DisplayNData::DisplayNData() {
+DisplayNMenus::DisplayNMenus() {
 	_socket =
 			Char_LCD_socket(
 					get_hspi3(),
@@ -38,7 +38,7 @@ DisplayNData::DisplayNData() {
 	_charLCD.clear();
 }
 
-void DisplayNData::cycle(void) {
+void DisplayNMenus::cycle(void) {
 
 	//buffer_lines_type* lcdBuffer = _charLCD.get_buffer_lines_ptr();
 

@@ -1,5 +1,5 @@
 /*
- * Rotary_Encoder_Interface.h
+ * Rotary_Encoder_Types.h
  *
  *  Created on: 02.05.2020
  *      Author: harald
@@ -16,25 +16,25 @@ namespace rotaryEncoder {
 constexpr uint8_t eventQueueLen = 8;
 
 enum KeyEvent_enum {
-	evnt_none,
-	btn_released, btn_pressed, btn_held,
-	rotenc_increment, rotenc_decrement
+	evntNone,
+	evntReleased, evntPressed, evntHeld,
+	evntIncrement, evntDecrement
 };
 
 enum Key_enum {
-	btn_none,
-	rotenc_left, rotenc_right,
-	btn_left, btn_right, btn_setup, btn_onoff,
+	keyNone,
+	keyRotLeft, keyRotRight,
+	keyBtnLeft, keyBtnRight, keyBtnSetup, keyBtnOnOff,
 	// additional buttons
-	btn_M1, btn_M2, btn_User
+	keyBtnM1, keyBtnM2, keyBtnUser
 };
 
 class KeyEventTuple
 {
 public:
 	KeyEventTuple(void) {
-		event = evnt_none;
-		key   = btn_none;
+		event = evntNone;
+		key   = keyNone;
 	}
 	KeyEventTuple(Key_enum __key, KeyEvent_enum __event) {
 		event = __event;

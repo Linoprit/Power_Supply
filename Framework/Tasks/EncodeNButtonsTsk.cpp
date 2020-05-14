@@ -37,6 +37,7 @@ void StrtEncoderNButtons(void *argument)
 
 		encodeNButtons::EncodeNButtons::instance().cycle(eventQueue, additionalButtons);
 
+		// TODO remove
 		while(!eventQueue.isEmpty()) {
 			rotaryEncoder::KeyEventTuple keyEventTuple = eventQueue.dequeue();
 
@@ -44,7 +45,10 @@ void StrtEncoderNButtons(void *argument)
 			osDelay(10);
 		}
 
+
 		// ToDo HMI_coordinator(eventQueue);
+
+
 		osDelay(10);
 	}
 

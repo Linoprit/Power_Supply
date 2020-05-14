@@ -5,8 +5,8 @@
  *      Author: harald
  */
 
-#ifndef TASKS_DISPLAYNDATATSK_H_
-#define TASKS_DISPLAYNDATATSK_H_
+#ifndef TASKS_DISPLAYNMENUSTSK_H_
+#define TASKS_DISPLAYNMENUSTSK_H_
 
 // C interface
 #ifdef __cplusplus
@@ -30,4 +30,4 @@ EXTERNC void StrtDisplayNData(void *argument);
 
 
 
-#endif /* TASKS_DISPLAYNDATATSK_H_ */
+#endif /* TASKS_DISPLAYNMENUSTSK_H_ */

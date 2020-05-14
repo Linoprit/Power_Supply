@@ -17,9 +17,9 @@ MemoryButtons::MemoryButtons()
 void MemoryButtons::cycle(
 		EventQueue_type& eventQueue, AdditionalButtons additionalButtons) {
 
-	check_cycle(static_cast<uint8_t>(additionalButtons.memory1), btn_M1, eventQueue);
-	check_cycle(static_cast<uint8_t>(additionalButtons.memory2), btn_M2, eventQueue);
-	check_cycle(static_cast<uint8_t>(additionalButtons.user), btn_User, eventQueue);
+	check_cycle(static_cast<uint8_t>(additionalButtons.memory1), keyBtnM1, eventQueue);
+	check_cycle(static_cast<uint8_t>(additionalButtons.memory2), keyBtnM2, eventQueue);
+	check_cycle(static_cast<uint8_t>(additionalButtons.user), keyBtnUser, eventQueue);
 }
 
 void MemoryButtons::check_cycle(
@@ -27,18 +27,18 @@ void MemoryButtons::check_cycle(
 		Key_enum	 				key,
 		EventQueue_type& 	eventQueue)
 {
-	KeyEvent_enum event = evnt_none;
+	KeyEvent_enum event = evntNone;
 
-	if (key == btn_M1)
+	if (key == keyBtnM1)
 		event =	button_M1.cycle(buttonValue);
 
-	if (key == btn_M2)
+	if (key == keyBtnM2)
 		event =	button_M2.cycle(buttonValue);
 
-	if (key == btn_User)
+	if (key == keyBtnUser)
 		event =	button_User.cycle(buttonValue);
 
-	if(event > evnt_none) {
+	if(event > evntNone) {
 		eventQueue.enqueue(KeyEventTuple(key, event));
 	}
 

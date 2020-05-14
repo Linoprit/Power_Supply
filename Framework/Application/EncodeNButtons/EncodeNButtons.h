@@ -11,6 +11,9 @@
 #include <Devices/Rotary_Encoder/MemoryButtons.h>
 #include <Devices/Rotary_Encoder/Rotary_Encoder_socket.h>
 #include <Devices/Rotary_Encoder/Rotary_Encoder.h>
+#include "ScreenStates.h"
+#include "NonVolatileData.h"
+#include "VolatileData.h"
 
 
 namespace encodeNButtons {
@@ -31,6 +34,10 @@ private:
 	Rotary_Encoder_socket  _socket;
 	Rotary_Encoder 			   _rotEnc;
 	MemoryButtons					 _memoryButtons;
+	ScreenStates					 _screenStates;
+	NonVolatileData				 _nonVoaltileData;
+	VolatileData					 _volatileData;
+
 };
 
 } /* namespace encodeNButtons */

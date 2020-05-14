@@ -35,6 +35,26 @@ void EncodeNButtons::cycle(
 	_rotEnc.cycle(eventQueue);
 	_memoryButtons.cycle(eventQueue, additionalButtons);
 
+	while(!eventQueue.isEmpty()) {
+		KeyEventTuple actTuple = eventQueue.dequeue();
+
+		if(actTuple.key == keyBtnSetup) {
+			_screenStates.update(actTuple.event);
+			continue;
+		}
+
+		if ( _screenStates.isActScreenSetup() ) {
+			// update NonVolatileData
+
+		}
+		else {
+			// update VolatileData
+
+		}
+
+
+	}
+
 
 }
 

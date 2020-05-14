@@ -5,21 +5,21 @@
  *      Author: harald
  */
 
-#ifndef APPLICATION_DISPLAYNDATA_DISPLAYNDATA_H_
-#define APPLICATION_DISPLAYNDATA_DISPLAYNDATA_H_
+#ifndef APPLICATION_DISPLAYNMENUS_DISPLAYNMENUS_H_
+#define APPLICATION_DISPLAYNMENUS_DISPLAYNMENUS_H_
 
 #include <Devices/Char_LCD/Char_LCD_socket.h>
 #include <Devices/Char_LCD/Char_LCD.h>
 
-namespace displayndata {
+namespace displaynmenus {
 
-class DisplayNData {
+class DisplayNMenus {
 public:
-	DisplayNData();
-	virtual ~DisplayNData() {};
+	DisplayNMenus();
+	virtual ~DisplayNMenus() {};
 
 	void init(void);
-	static DisplayNData& instance(void);
+	static DisplayNMenus& instance(void);
 	void cycle(void);
 
 private:
@@ -31,4 +31,4 @@ private:
 
 } /* namespace displayndata */
 
-#endif /* APPLICATION_DISPLAYNDATA_DISPLAYNDATA_H_ */
+#endif /* APPLICATION_DISPLAYNMENUS_DISPLAYNMENUS_H_ */

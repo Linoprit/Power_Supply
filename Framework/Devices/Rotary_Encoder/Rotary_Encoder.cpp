@@ -52,22 +52,22 @@ void Rotary_Encoder::cycle(EventQueue_type& eventQueue)
 
 		check_cycle(
 				(uint8_t)((input & mask_encoder_1)>> offset_encoder_1),
-				rotenc_left,
+				keyRotLeft,
 				eventQueue);
 		check_cycle(
 				(uint8_t)((input & mask_encoder_2) >> offset_encoder_2),
-				rotenc_right,
+				keyRotRight,
 				eventQueue);
-		check_cycle(button_val_left, 	btn_left,		eventQueue);
-		check_cycle(button_val_right, btn_right, 	eventQueue);
-		check_cycle(button_val_3, 		btn_setup, 			eventQueue);
-		check_cycle(button_val_4, 		btn_onoff, 			eventQueue);
+		check_cycle(button_val_left, 	keyBtnLeft,		eventQueue);
+		check_cycle(button_val_right, keyBtnRight, 	eventQueue);
+		check_cycle(button_val_3, 		keyBtnSetup, 			eventQueue);
+		check_cycle(button_val_4, 		keyBtnOnOff, 			eventQueue);
 	}
 
-	check_cycle(button_val_left, 		btn_left, 	eventQueue);
-	check_cycle(button_val_right, 	btn_right, 	eventQueue);
-	check_cycle(button_val_3, 			btn_setup, 			eventQueue);
-	check_cycle(button_val_4, 			btn_onoff, 			eventQueue);
+	check_cycle(button_val_left, 		keyBtnLeft, 	eventQueue);
+	check_cycle(button_val_right, 	keyBtnRight, 	eventQueue);
+	check_cycle(button_val_3, 			keyBtnSetup, 			eventQueue);
+	check_cycle(button_val_4, 			keyBtnOnOff, 			eventQueue);
 }
 
 
@@ -76,27 +76,27 @@ void Rotary_Encoder::check_cycle(
 		Key_enum	 				key,
 		EventQueue_type& 	eventQueue)
 {
-	KeyEvent_enum last_event = evnt_none;
+	KeyEvent_enum last_event = evntNone;
 
-	if(key == rotenc_left)
+	if(key == keyRotLeft)
 		last_event = enc_left.cycle(masked_value);
 
-	if(key == rotenc_right)
+	if(key == keyRotRight)
 		last_event = enc_right.cycle(masked_value);
 
-	if (key == btn_left)
+	if (key == keyBtnLeft)
 		last_event = button_left.cycle(masked_value);
 
-	if (key == btn_right)
+	if (key == keyBtnRight)
 		last_event = button_right.cycle(masked_value);
 
-	if (key == btn_setup)
+	if (key == keyBtnSetup)
 		last_event = button_3.cycle(masked_value);
 
-	if (key == btn_onoff)
+	if (key == keyBtnOnOff)
 		last_event = button_4.cycle(masked_value);
 
-	if (last_event > evnt_none) {
+	if (last_event > evntNone) {
 		eventQueue.enqueue(KeyEventTuple(key, last_event));
 	}
 

@@ -31,6 +31,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 typedef StaticTask_t osStaticThreadDef_t;
+typedef StaticSemaphore_t osStaticSemaphoreDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -61,16 +62,16 @@ DMA_HandleTypeDef hdma_usart1_rx;
 DMA_HandleTypeDef hdma_usart1_tx;
 DMA_HandleTypeDef hdma_usart2_tx;
 
-/* Definitions for displayNData */
-osThreadId_t displayNDataHandle;
-uint32_t displayNDataBuffer[ 128 ];
-osStaticThreadDef_t displayNDataBlock;
-const osThreadAttr_t displayNData_attributes = {
-  .name = "displayNData",
-  .stack_mem = &displayNDataBuffer[0],
-  .stack_size = sizeof(displayNDataBuffer),
-  .cb_mem = &displayNDataBlock,
-  .cb_size = sizeof(displayNDataBlock),
+/* Definitions for displayNMenus */
+osThreadId_t displayNMenusHandle;
+uint32_t displayNMenuBuffer[ 128 ];
+osStaticThreadDef_t displayNMenuBlock;
+const osThreadAttr_t displayNMenus_attributes = {
+  .name = "displayNMenus",
+  .stack_mem = &displayNMenuBuffer[0],
+  .stack_size = sizeof(displayNMenuBuffer),
+  .cb_mem = &displayNMenuBlock,
+  .cb_size = sizeof(displayNMenuBlock),
   .priority = (osPriority_t) osPriorityBelowNormal,
 };
 /* Definitions for measureNControl */
@@ -83,7 +84,7 @@ const osThreadAttr_t measureNControl_attributes = {
   .stack_size = sizeof(measureAndContrBuffer),
   .cb_mem = &measureAndContrControlBlock,
   .cb_size = sizeof(measureAndContrControlBlock),
-  .priority = (osPriority_t) osPriorityHigh,
+  .priority = (osPriority_t) osPriorityRealtime,
 };
 /* Definitions for encoderNButtons */
 osThreadId_t encoderNButtonsHandle;
@@ -96,6 +97,30 @@ const osThreadAttr_t encoderNButtons_attributes = {
   .cb_mem = &encoderNButtonsControlBlock,
   .cb_size = sizeof(encoderNButtonsControlBlock),
   .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for EncdTskDataSem */
+osSemaphoreId_t EncdTskDataSemHandle;
+osStaticSemaphoreDef_t EncdTskDataSemControlBlock;
+const osSemaphoreAttr_t EncdTskDataSem_attributes = {
+  .name = "EncdTskDataSem",
+  .cb_mem = &EncdTskDataSemControlBlock,
+  .cb_size = sizeof(EncdTskDataSemControlBlock),
+};
+/* Definitions for CtrTskDataSem */
+osSemaphoreId_t CtrTskDataSemHandle;
+osStaticSemaphoreDef_t CtrTskDataSemControlBlock;
+const osSemaphoreAttr_t CtrTskDataSem_attributes = {
+  .name = "CtrTskDataSem",
+  .cb_mem = &CtrTskDataSemControlBlock,
+  .cb_size = sizeof(CtrTskDataSemControlBlock),
+};
+/* Definitions for ThetaTskDataSem */
+osSemaphoreId_t ThetaTskDataSemHandle;
+osStaticSemaphoreDef_t ThetaTskDataSemControlBlock;
+const osSemaphoreAttr_t ThetaTskDataSem_attributes = {
+  .name = "ThetaTskDataSem",
+  .cb_mem = &ThetaTskDataSemControlBlock,
+  .cb_size = sizeof(ThetaTskDataSemControlBlock),
 };
 /* USER CODE BEGIN PV */
 
@@ -113,7 +138,7 @@ static void MX_USART1_UART_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_USART3_UART_Init(void);
-void StrtDisplayNData(void *argument);
+void StrtDisplayNMenus(void *argument);
 extern void StrtMeasureNControl(void *argument);
 extern void StrtEncoderNButtons(void *argument);
 
@@ -185,6 +210,16 @@ int main(void)
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
 
+  /* Create the semaphores(s) */
+  /* creation of EncdTskDataSem */
+  EncdTskDataSemHandle = osSemaphoreNew(3, 3, &EncdTskDataSem_attributes);
+
+  /* creation of CtrTskDataSem */
+  CtrTskDataSemHandle = osSemaphoreNew(3, 3, &CtrTskDataSem_attributes);
+
+  /* creation of ThetaTskDataSem */
+  ThetaTskDataSemHandle = osSemaphoreNew(3, 3, &ThetaTskDataSem_attributes);
+
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
@@ -198,8 +233,8 @@ int main(void)
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
-  /* creation of displayNData */
-  displayNDataHandle = osThreadNew(StrtDisplayNData, NULL, &displayNData_attributes);
+  /* creation of displayNMenus */
+  displayNMenusHandle = osThreadNew(StrtDisplayNMenus, NULL, &displayNMenus_attributes);
 
   /* creation of measureNControl */
   measureNControlHandle = osThreadNew(StrtMeasureNControl, NULL, &measureNControl_attributes);
@@ -725,14 +760,14 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE END 4 */
 
-/* USER CODE BEGIN Header_StrtDisplayNData */
+/* USER CODE BEGIN Header_StrtDisplayNMenus */
 /**
-  * @brief  Function implementing the displayNData thread.
+  * @brief  Function implementing the displayNMenus thread.
   * @param  argument: Not used 
   * @retval None
   */
-/* USER CODE END Header_StrtDisplayNData */
-__weak void StrtDisplayNData(void *argument)
+/* USER CODE END Header_StrtDisplayNMenus */
+__weak void StrtDisplayNMenus(void *argument)
 {
   /* USER CODE BEGIN 5 */
   /* Infinite loop */

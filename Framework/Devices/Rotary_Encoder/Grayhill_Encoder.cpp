@@ -21,13 +21,13 @@ Grayhill_Encoder::~Grayhill_Encoder ()
 
 KeyEvent_enum Grayhill_Encoder::cycle(uint8_t rotary_val)
 {
-  KeyEvent_enum event = evnt_none;
+  KeyEvent_enum event = evntNone;
 
   if (rotary_val == get_next(old_rotary_val))
-	event = rotenc_increment;
+	event = evntIncrement;
 
   if (rotary_val == get_previous(old_rotary_val))
-	event = rotenc_decrement;
+	event = evntDecrement;
 
   old_rotary_val = rotary_val;
   return event;
