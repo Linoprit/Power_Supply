@@ -7,11 +7,12 @@
 
 #include <Tasks/MeasureNControlTsk.h>
 #include "cmsis_os.h"
+#include "main.h"
 
 
 void StrtMeasureNControl(void *argument)
 {
-	//UNUSED(argument);
+	UNUSED(argument);
 
 	for(;;)
 	{

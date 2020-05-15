@@ -17,8 +17,8 @@ class ExtFloat
 {
 
 public:
-	ExtFloat(float value = 0.0){
-		_value = 0.0f;
+	ExtFloat(float value = 0.0f){
+		_value = value;
 	};
 
   virtual ~ExtFloat () { };

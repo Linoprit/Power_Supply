@@ -16,6 +16,8 @@
 
 void StrtEncoderNButtons(void *argument)
 {
+	UNUSED(argument);
+
 	rotaryEncoder::EventQueue_type 		eventQueue;
 	rotaryEncoder::AdditionalButtons  additionalButtons;
 

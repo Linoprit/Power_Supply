@@ -72,7 +72,7 @@ private:
 	Rotary_Encoder_socket* 		_socket;
 #ifdef ALPS // why not using base-class construct?
 	ALPS_Encoder	  enc_left;
-	ALPS_Encoder   enc_right;
+	ALPS_Encoder    enc_right;
 #endif
 #ifdef GRAYHILL
 	Grayhill_Encoder  enc_left;

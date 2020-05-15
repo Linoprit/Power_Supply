@@ -67,13 +67,13 @@ public:
 		else
 			_minVal = INT32_MIN;
 	};
-	const int32_t getMax(void) const { return _maxVal; };
-	const int32_t getMin(void) const { return _minVal; };
+	int32_t getMax(void) const { return _maxVal; };
+	int32_t getMin(void) const { return _minVal; };
 
-	const float getMaxFlt(void) {
+	float getMaxFlt(void) {
 		float factor = static_cast<float>( getFactor() );
 		return (static_cast<float>(_maxVal) / factor ); };
-	const float getMinFlt(void) {
+	float getMinFlt(void) {
 		float factor = static_cast<float>( getFactor() );
 		return (static_cast<float>(_minVal) / factor );};
 

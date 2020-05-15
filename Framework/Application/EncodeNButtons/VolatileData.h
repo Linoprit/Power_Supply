@@ -8,8 +8,12 @@
 #ifndef APPLICATION_ENCODENBUTTONS_VOLATILEDATA_H_
 #define APPLICATION_ENCODENBUTTONS_VOLATILEDATA_H_
 
+#include "ScreenStates.h"
+#include <Devices/Rotary_Encoder/Rotary_Encoder_Types.h>
 #include <Types/Typedefs.h>
 #include <Types/ExtFloat.h>
+#include <Types/Adjustment_0p0.h>
+
 
 namespace encodeNButtons {
 
@@ -17,14 +21,16 @@ enum InSourceEnum {
 	inHigh, inLow, inAuto
 };
 
-//constexpr float U_SOLL_MAX = 30.0f; // max output Voltage [V]
-//constexpr float I_SOLL_MAX = 6.0f;  // max output Current [A]
-
 
 class VolatileData {
 public:
 	VolatileData();
-	virtual ~VolatileData();
+	virtual ~VolatileData() { };
+
+	void update(
+			KeyEventTuple 	actTuple,
+			ScreenStateEnum actScreen);
+
 
 	InSourceEnum getInSource() const {
 		return _InSource;
@@ -37,10 +43,6 @@ public:
 	Adjustment_0p0& getIsoll() {
 		return _Isoll;
 	}
-
-/*	void setIsoll(const Adjustment_0p0& isoll) {
-		_Isoll = isoll;
-	}*/
 
 	bool isIsollFineFlag() const {
 		return _IsollFineFlag;
@@ -66,9 +68,9 @@ public:
 		return _UsollFineFlag;
 	}
 
-	/*void setUsollFineFlag(bool usollFineFlag) {
-		_UsollFineFlag = usollFineFlag;
-	}*/
+	bool isKeysLocked() const {
+		return _KeysLocked;
+	}
 
 private:
 	Adjustment_0p0	_Usoll;
@@ -77,6 +79,13 @@ private:
 	bool						_PowActive;
 	bool						_UsollFineFlag;
 	bool						_IsollFineFlag;
+	bool						_KeysLocked;
+	KeyEvent_enum		_LastOnOffButtonEvent;
+
+	void keyButtonOnOff(void);
+	void updateValues  (KeyEventTuple actTuple);
+	void updateUsource (KeyEventTuple actTuple);
+
 };
 
 } /* namespace encodeNButtons */

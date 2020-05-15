@@ -35,7 +35,7 @@ private:
 	Rotary_Encoder 			   _rotEnc;
 	MemoryButtons					 _memoryButtons;
 	ScreenStates					 _screenStates;
-	NonVolatileData				 _nonVoaltileData;
+	NonVolatileData				 _nonVolatileData;
 	VolatileData					 _volatileData;
 
 };

@@ -44,12 +44,12 @@ public:
 	const ExtFloat& getIsollMem2() const;
 	bool isPowActiveStart() const;
 	void setPowActiveStart(bool powActiveStart);
-	ExtFloat& getRshunt();
+	Adjustment_0pxx& getRshunt();
 	bool isRshuntFineFlag() const;
 	void setRshuntFineFlag(bool rshuntFineFlag);
 	StrtMemoryEnum getStrtMemory() const;
-	const ExtFloat& getTendstufeMax() const;
-	const ExtFloat& getTtrafoMax() const;
+	const Adjustment_0p0& getTendstufeMax() const;
+	const Adjustment_0p0& getTtrafoMax() const;
 	const ExtFloat& getUsollMem1() const;
 	const ExtFloat& getUsollMem2() const;
 

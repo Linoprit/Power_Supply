@@ -24,8 +24,9 @@
 void * operator new( size_t size );
 void * operator new[]( size_t size );
 void operator delete( void * ptr );
+void operator delete(void * ptr, unsigned int i);
 void operator delete[]( void * ptr );
-
+void operator delete [](void * , unsigned int i);
 
 class OsHelpers {
 public:

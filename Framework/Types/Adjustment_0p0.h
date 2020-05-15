@@ -59,7 +59,7 @@ public:
 		}
 	};
 
-	const bool isFineFlag(void) const { return _fineFlag; };
+	bool isFineFlag(void) const { return _fineFlag; };
 	void toggleFineFlag(void) {
 		if (_fineFlag == true)
 			_fineFlag = false;

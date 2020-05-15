@@ -11,7 +11,6 @@ namespace encodeNButtons {
 
 NonVolatileData::NonVolatileData(void):
 _strtMemory 		{	strtNone },
-_PowActiveStart {	false },
 _Rshunt 			  { RSHUNT_ADJ_SETUP },
 _TtrafoMax 		  { TEMP_ADJ_SETUP },
 _TendstufeMax   { TEMP_ADJ_SETUP },
@@ -21,7 +20,8 @@ _InSourceMem1   { inAuto },
 _UsollMem2 		  { USET_FIX_SETUP },
 _IsollMem2 		  { ISET_FIX_SETUP },
 _InSourceMem2   { inAuto },
-_RshuntFineFlag { false }
+_RshuntFineFlag { false },
+_PowActiveStart {	false }
 {
 
 }
@@ -163,7 +163,7 @@ void NonVolatileData::setPowActiveStart(bool powActiveStart) {
 	_PowActiveStart = powActiveStart;
 }
 
-ExtFloat& NonVolatileData::getRshunt() {
+Adjustment_0pxx& NonVolatileData::getRshunt() {
 	return _Rshunt;
 }
 
@@ -179,11 +179,11 @@ StrtMemoryEnum NonVolatileData::getStrtMemory() const {
 	return _strtMemory;
 }
 
-const ExtFloat& NonVolatileData::getTendstufeMax() const {
+const Adjustment_0p0& NonVolatileData::getTendstufeMax() const {
 	return _TendstufeMax;
 }
 
-const ExtFloat& NonVolatileData::getTtrafoMax() const {
+const Adjustment_0p0& NonVolatileData::getTtrafoMax() const {
 	return _TtrafoMax;
 }
 

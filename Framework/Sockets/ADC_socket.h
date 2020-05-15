@@ -25,7 +25,7 @@ public:
   void 		cycle(void);
   uint16_t* get_measurement(void);
   uint8_t 	get_num_of_channels(void);
-  const uint16_t  get_ADC_max(void) { return ADC_MAX;};
+  uint16_t  get_ADC_max(void) { return ADC_MAX;};
   uint16_t* get_adc_buffer(void);
 
 protected:

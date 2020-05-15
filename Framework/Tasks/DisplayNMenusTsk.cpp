@@ -12,6 +12,7 @@
 
 void StrtDisplayNMenus(void *argument)
 {
+	UNUSED(argument);
 	displaynmenus::DisplayNMenus::instance().init();
 
 

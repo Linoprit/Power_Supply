@@ -26,7 +26,6 @@ EncodeNButtons::EncodeNButtons():
 		_socket {get_hi2c1()},
 		_rotEnc {&_socket}
 {
-
 }
 
 void EncodeNButtons::cycle(
@@ -38,24 +37,24 @@ void EncodeNButtons::cycle(
 	while(!eventQueue.isEmpty()) {
 		KeyEventTuple actTuple = eventQueue.dequeue();
 
+		// allow to release the locking
+		if(_volatileData.isKeysLocked()) {
+			_volatileData.update(actTuple, _screenStates.getActSreen());
+			continue;
+		}
+
 		if(actTuple.key == keyBtnSetup) {
 			_screenStates.update(actTuple.event);
 			continue;
 		}
 
 		if ( _screenStates.isActScreenSetup() ) {
-			// update NonVolatileData
-
+			_nonVolatileData.update(actTuple, _screenStates.getActSreen(), _volatileData);
 		}
 		else {
-			// update VolatileData
-
+			_volatileData.update(actTuple, _screenStates.getActSreen());
 		}
-
-
 	}
-
-
 }
 
 
