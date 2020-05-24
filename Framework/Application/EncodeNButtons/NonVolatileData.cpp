@@ -7,6 +7,7 @@
 
 #include <Application/EncodeNButtons/NonVolatileData.h>
 
+
 namespace encodeNButtons {
 
 NonVolatileData::NonVolatileData(void):
@@ -31,14 +32,6 @@ void NonVolatileData::update(
 		ScreenStateEnum actScreen,
 		VolatileData		volatileData) {
 
-	if(actTuple.key == keyBtnM1) {
-		keyMemory1(	volatileData, actTuple.event );
-	}
-
-	if (actTuple.key == keyBtnM2) {
-		keyMemory2(	volatileData, actTuple.event );
-	}
-
 	if(actScreen == scrStrtValues) {
 		updateStrtValues(actTuple);
 	}
@@ -51,38 +44,6 @@ void NonVolatileData::update(
 		updateTgrenz(actTuple);
 	}
 
-}
-
-void NonVolatileData::keyMemory1(VolatileData	volatileData, KeyEvent_enum	event) {
-	// set mem1
-	if(event == evntHeld) {
-		_UsollMem1.set( volatileData.getUsoll().get() );
-		_IsollMem1.set( volatileData.getIsoll().get() );
-		_InSourceMem1	= volatileData.getInSource();
-	}
-
-	// recall mem1
-	if(event == evntReleased) {
-		volatileData.getUsoll().set(_UsollMem1.get());
-		volatileData.getIsoll().set(_IsollMem1.get());
-		volatileData.setInSource(_InSourceMem1);
-	}
-}
-
-void NonVolatileData::keyMemory2(VolatileData	volatileData, KeyEvent_enum	event) {
-	// set mem2
-	if(event == evntHeld) {
-		_UsollMem2.set(volatileData.getUsoll().get());
-		_IsollMem2.set(volatileData.getIsoll().get());
-		_InSourceMem2	= volatileData.getInSource();
-	}
-
-	// recall mem2
-	if(event == evntReleased) {
-		volatileData.getUsoll().set(_UsollMem2.get());
-		volatileData.getIsoll().set(_IsollMem2.get());
-		volatileData.setInSource(_InSourceMem2);
-	}
 }
 
 void NonVolatileData::updateStrtValues(KeyEventTuple actTuple) {
@@ -145,46 +106,6 @@ void NonVolatileData::updateTgrenz(KeyEventTuple actTuple) {
 		_TendstufeMax.decrement();
 	}
 
-}
-
-InSourceEnum NonVolatileData::getInSourceMem1() const {
-	return _InSourceMem1;
-}
-
-InSourceEnum NonVolatileData::getInSourceMem2() const {
-	return _InSourceMem2;
-}
-
-bool NonVolatileData::isPowActiveStart() const {
-	return _PowActiveStart;
-}
-
-void NonVolatileData::setPowActiveStart(bool powActiveStart) {
-	_PowActiveStart = powActiveStart;
-}
-
-Adjustment_0pxx& NonVolatileData::getRshunt() {
-	return _Rshunt;
-}
-
-bool NonVolatileData::isRshuntFineFlag() const {
-	return _RshuntFineFlag;
-}
-
-void NonVolatileData::setRshuntFineFlag(bool rshuntFineFlag) {
-	_RshuntFineFlag = rshuntFineFlag;
-}
-
-StrtMemoryEnum NonVolatileData::getStrtMemory() const {
-	return _strtMemory;
-}
-
-const Adjustment_0p0& NonVolatileData::getTendstufeMax() const {
-	return _TendstufeMax;
-}
-
-const Adjustment_0p0& NonVolatileData::getTtrafoMax() const {
-	return _TtrafoMax;
 }
 
 void NonVolatileData::incrementStrtMemoryEnum(StrtMemoryEnum& in) {

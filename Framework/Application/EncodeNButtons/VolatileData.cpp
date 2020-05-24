@@ -6,6 +6,9 @@
  */
 
 #include <Application/EncodeNButtons/VolatileData.h>
+#include "NonVolatileData.h"
+#include "main.h"
+
 
 namespace encodeNButtons {
 
@@ -16,19 +19,21 @@ VolatileData::VolatileData():
 	_PowActive			{ false },
 	_UsollFineFlag	{ false },
 	_IsollFineFlag	{ false },
-	_KeysLocked   { false },
+	_KeysLocked   	{ false },
 	_LastOnOffButtonEvent { evntNone }
 {
 }
 
 void VolatileData::update(
 		KeyEventTuple 	actTuple,
-		ScreenStateEnum actScreen) {
+		ScreenStateEnum actScreen,
+		NonVolatileData& nonVolatileData) {
 
 	if((actTuple.key == keyBtnOnOff) && (actTuple.event == evntPressed)) {
 		_LastOnOffButtonEvent = evntPressed;
 	}
 
+	// allow to unlock in case of key-lock
 	if((actTuple.key == keyBtnOnOff) && (actTuple.event == evntHeld))
 	{
 		_LastOnOffButtonEvent = evntHeld;
@@ -41,6 +46,14 @@ void VolatileData::update(
 	// guard, no update, if key-lock is true
 	if (_KeysLocked == true) {
 		return;
+	}
+
+	if(actTuple.key == keyBtnM1) {
+		keyMemory1(	nonVolatileData, actTuple.event );
+	}
+
+	if (actTuple.key == keyBtnM2) {
+		keyMemory2(	nonVolatileData, actTuple.event );
 	}
 
 	if( (actTuple.key == keyBtnOnOff)
@@ -65,6 +78,38 @@ void VolatileData::update(
 	}
 }
 
+void VolatileData::keyMemory1(NonVolatileData& nonVolatileData, KeyEvent_enum	event) {
+	// set mem1
+	if(event == evntHeld) {
+		nonVolatileData.getUsollMem1().set(_Usoll.get());
+		nonVolatileData.getIsollMem1().set(_Isoll.get());
+		nonVolatileData.setInSourceMem1(getInSource());
+	}
+
+	// recall mem1
+	if(event == evntReleased) {
+		_Usoll.set(nonVolatileData.getUsollMem1().get());
+		_Isoll.set(nonVolatileData.getIsollMem1().get());
+		_InSource = nonVolatileData.getInSourceMem1();
+	}
+}
+
+void VolatileData::keyMemory2(NonVolatileData& nonVolatileData, KeyEvent_enum	event) {
+	// set mem2
+	if(event == evntHeld) {
+		nonVolatileData.getUsollMem2().set(_Usoll.get());
+		nonVolatileData.getIsollMem2().set(_Isoll.get());
+		nonVolatileData.setInSourceMem2(getInSource());
+	}
+
+	// recall mem2
+	if(event == evntReleased) {
+		_Usoll.set(nonVolatileData.getUsollMem2().get());
+		_Isoll.set(nonVolatileData.getIsollMem2().get());
+		_InSource = nonVolatileData.getInSourceMem2();
+	}
+}
+
 void VolatileData::keyButtonOnOff(void) {
 	if(_PowActive == true)
 		_PowActive = false;
@@ -81,8 +126,8 @@ void VolatileData::updateValues(KeyEventTuple actTuple) {
 		_Usoll.decrement();
 	}
 
-	if ( (actTuple.key == keyRotLeft) && (actTuple.event == evntReleased) ) {
-	_Usoll.toggleFineFlag();
+	if ( (actTuple.key == keyBtnLeft) && (actTuple.event == evntReleased) ) {
+		_Usoll.toggleFineFlag();
 	}
 
 	if ( (actTuple.key == keyRotRight) && (actTuple.event == evntIncrement) ) {
@@ -93,8 +138,8 @@ void VolatileData::updateValues(KeyEventTuple actTuple) {
 		_Isoll.decrement();
 	}
 
-	if ( (actTuple.key == keyRotRight) && (actTuple.event == evntReleased) ) {
-	_Isoll.toggleFineFlag();
+	if ( (actTuple.key == keyBtnRight) && (actTuple.event == evntReleased) ) {
+		_Isoll.toggleFineFlag();
 	}
 }
 

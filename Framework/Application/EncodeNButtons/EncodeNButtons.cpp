@@ -34,27 +34,35 @@ void EncodeNButtons::cycle(
 	_rotEnc.cycle(eventQueue);
 	_memoryButtons.cycle(eventQueue, additionalButtons);
 
+	//osStatus_t osSemaphoreAcquire (osSemaphoreId_t semaphore_id, uint32_t timeout);
+	osSemaphoreAcquire(EncdTskDataSemHandle, 20);
+
 	while(!eventQueue.isEmpty()) {
 		KeyEventTuple actTuple = eventQueue.dequeue();
 
 		// allow to release the locking
 		if(_volatileData.isKeysLocked()) {
-			_volatileData.update(actTuple, _screenStates.getActSreen());
+			_volatileData.update(actTuple, _screenState.getActSreen(), _nonVolatileData);
 			continue;
 		}
 
 		if(actTuple.key == keyBtnSetup) {
-			_screenStates.update(actTuple.event);
+			_screenState.update(actTuple.event);
 			continue;
 		}
 
-		if ( _screenStates.isActScreenSetup() ) {
-			_nonVolatileData.update(actTuple, _screenStates.getActSreen(), _volatileData);
+		if ( _screenState.isActScreenSetup() ) {
+			_nonVolatileData.update(actTuple, _screenState.getActSreen(), _volatileData);
 		}
 		else {
-			_volatileData.update(actTuple, _screenStates.getActSreen());
+			_volatileData.update(actTuple, _screenState.getActSreen(), _nonVolatileData);
 		}
 	}
+
+	//osStatus_t osSemaphoreRelease (osSemaphoreId_t semaphore_id);
+	osSemaphoreRelease(EncdTskDataSemHandle);
+	// TODO some errorhandling, if osStatus_t in not osOK
+
 }
 
 

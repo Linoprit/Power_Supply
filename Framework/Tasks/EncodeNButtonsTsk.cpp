@@ -23,6 +23,13 @@ void StrtEncoderNButtons(void *argument)
 
 	encodeNButtons::EncodeNButtons::instance().init();
 
+	// Then encoders could cause unintended increment at startup
+	encodeNButtons::EncodeNButtons::instance().cycle(eventQueue, additionalButtons);
+	encodeNButtons::EncodeNButtons::instance().getVolData().getIsoll().set(0L);
+	encodeNButtons::EncodeNButtons::instance().getVolData().getUsoll().set(0L);
+	// TODO restore startupVals
+
+
 	for(;;)
 	{
 		//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
@@ -39,14 +46,15 @@ void StrtEncoderNButtons(void *argument)
 
 		encodeNButtons::EncodeNButtons::instance().cycle(eventQueue, additionalButtons);
 
+
 		// TODO remove
-		while(!eventQueue.isEmpty()) {
+	/*	while(!eventQueue.isEmpty()) {
 			rotaryEncoder::KeyEventTuple keyEventTuple = eventQueue.dequeue();
 
 			tx_printf("Key: %i, Event: %i\n", keyEventTuple.key, keyEventTuple.event);
 			osDelay(10);
 		}
-
+*/
 
 		// ToDo HMI_coordinator(eventQueue);
 

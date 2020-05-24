@@ -5,12 +5,12 @@
  *      Author: harald
  */
 
-#include <Application/EncodeNButtons/ScreenStates.h>
+#include <Application/EncodeNButtons/ScreenState.h>
 
 namespace encodeNButtons {
 
 
-ScreenStates::ScreenStates():
+ScreenState::ScreenState():
 _actScreen {scrValues},
 _lastEvent {evntNone}
 {
@@ -18,7 +18,7 @@ _lastEvent {evntNone}
 }
 
 
-void ScreenStates::update(KeyEvent_enum 	scrEvent) {
+void ScreenState::update(KeyEvent_enum 	scrEvent) {
 
 	if(scrEvent == evntHeld) {
 		if ( isActScreenSetup() ) {

@@ -43,25 +43,3 @@ void Common::init()
 
 
 
-/*
-// Just a workaround, if we don't use an OS
-void Common::mainCycle(void)
-{
-	delay(400);
-
-	HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-
-	static uint16_t count = 0;
-	  int error =
-			tx_printf("%i This is a very, very long line with text, to see if it works.\n",
-					count++);
-
-	if (error == ERROR) {
-		//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
-		HAL_Delay(100);
-	}
-}
-*/
-
-
-

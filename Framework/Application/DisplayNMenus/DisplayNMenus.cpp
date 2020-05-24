@@ -11,8 +11,12 @@
 #include <main.h>
 #include <Instances/Common.h>
 #include <libraries/HelpersLib.h>
-
-
+#include "UpdateScrValues.h"
+#include "UpdateScrStrtValues.h"
+#include "UpdateScrTgrenz.h"
+#include "UpdateScrThetas.h"
+#include "UpdateScrUsource.h"
+#include "UpdateScrCalib.h"
 
 namespace displaynmenus {
 
@@ -39,10 +43,43 @@ DisplayNMenus::DisplayNMenus() {
 }
 
 void DisplayNMenus::cycle(void) {
+	osSemaphoreAcquire(EncdTskDataSemHandle, 20);
+	const encodeNButtons::ScreenStateEnum			actScreen =
+			encodeNButtons::EncodeNButtons::instance().getScreenStateConst().getActSreen();
+	osSemaphoreRelease(EncdTskDataSemHandle);
+
+
+
+	if(actScreen == encodeNButtons::scrValues) {
+		UpdateScrValues updateScrValues;
+		updateScrValues.cycle(_charLCD);
+  }
+	else if(actScreen == encodeNButtons::scrThetas) {
+		UpdateScrThetas updateScrThetas;
+		updateScrThetas.cycle(_charLCD);
+  }
+	else if(actScreen == encodeNButtons::scrUsource) {
+		UpdateScrUsource updateUsource;
+		updateUsource.cycle(_charLCD);
+  }
+	else if(actScreen == encodeNButtons::scrStrtValues) {
+		UpdateScrStrtValues updateScrStrtValues;
+		updateScrStrtValues.cycle(_charLCD);
+  }
+	else if(actScreen == encodeNButtons::scrTgrenz) {
+		UpdateScrTgrenz updateScrTgrenz;
+		updateScrTgrenz.cycle(_charLCD);
+  }
+	else if(actScreen == encodeNButtons::scrCalib) {
+		UpdateScrCalib updateScrCalib;
+		updateScrCalib.cycle(_charLCD);
+  }
+
+	_charLCD.display();
 
 	//buffer_lines_type* lcdBuffer = _charLCD.get_buffer_lines_ptr();
 
-	static uint8_t counter = 0;
+/*	static uint8_t counter = 0;
 	char buffer[] {'\0', '\0', '\0', '\0'};
 
 	 HelpersLib::value2char(buffer, 3, 0, counter);
@@ -51,7 +88,7 @@ void DisplayNMenus::cycle(void) {
 
 	_charLCD.display();
 
-	counter++;
+	counter++;*/
 }
 
 

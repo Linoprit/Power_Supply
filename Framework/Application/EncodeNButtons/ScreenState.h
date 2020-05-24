@@ -5,8 +5,8 @@
  *      Author: harald
  */
 
-#ifndef APPLICATION_ENCODENBUTTONS_SCREENSTATES_H_
-#define APPLICATION_ENCODENBUTTONS_SCREENSTATES_H_
+#ifndef APPLICATION_ENCODENBUTTONS_SCREENSTATE_H_
+#define APPLICATION_ENCODENBUTTONS_SCREENSTATE_H_
 
 #include <Devices/Rotary_Encoder/Rotary_Encoder_Types.h>
 
@@ -20,18 +20,18 @@ enum ScreenStateEnum {
 };
 
 
-class ScreenStates {
+class ScreenState {
 public:
-	ScreenStates();
-	virtual ~ScreenStates() {};
+	ScreenState();
+	virtual ~ScreenState() {};
 
 	// only btn_released, btn_pressed, btn_held is taken into account
 	void update(KeyEvent_enum 	scrEvent);
 
-	ScreenStateEnum getActSreen(void) { return _actScreen; };
+	ScreenStateEnum getActSreen(void) const { return _actScreen; };
 
 	// returns true, if _actScreen contains NonVolatileData
-	bool isActScreenSetup(void) { return _actScreen > scrUsource; };
+	bool isActScreenSetup(void) const { return _actScreen > scrUsource; };
 
 private:
 	ScreenStateEnum 	_actScreen;
@@ -41,4 +41,4 @@ private:
 
 } /* namespace encodeNButtons */
 
-#endif /* APPLICATION_ENCODENBUTTONS_SCREENSTATES_H_ */
+#endif /* APPLICATION_ENCODENBUTTONS_SCREENSTATE_H_ */

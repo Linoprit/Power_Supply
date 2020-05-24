@@ -15,7 +15,7 @@
 #define EXTERNC
 #endif
 
-EXTERNC void StrtDisplayNData(void *argument);
+EXTERNC void StrtDisplayNMenus(void *argument);
 
 #undef EXTERNC
 

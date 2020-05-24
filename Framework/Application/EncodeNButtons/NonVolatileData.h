@@ -9,7 +9,7 @@
 #define APPLICATION_ENCODENBUTTONS_NONVOLATILEDATA_H_
 
 //#include <Types/Adjustment_0p0.h>
-#include "ScreenStates.h"
+#include <Application/EncodeNButtons/ScreenState.h>
 #include <Devices/Rotary_Encoder/Rotary_Encoder_Types.h>
 #include "VolatileData.h"
 #include <Types/Fixed.h>
@@ -38,21 +38,22 @@ public:
 
 	void incrementStrtMemoryEnum(StrtMemoryEnum& in);
 	void decrementStrtMemoryEnum(StrtMemoryEnum& in);
-	InSourceEnum getInSourceMem1() const;
-	InSourceEnum getInSourceMem2() const;
-	const ExtFloat& getIsollMem1() const;
-	const ExtFloat& getIsollMem2() const;
-	bool isPowActiveStart() const;
-	void setPowActiveStart(bool powActiveStart);
-	Adjustment_0pxx& getRshunt();
-	bool isRshuntFineFlag() const;
-	void setRshuntFineFlag(bool rshuntFineFlag);
-	StrtMemoryEnum getStrtMemory() const;
-	const Adjustment_0p0& getTendstufeMax() const;
-	const Adjustment_0p0& getTtrafoMax() const;
-	const ExtFloat& getUsollMem1() const;
-	const ExtFloat& getUsollMem2() const;
 
+
+	Adjustment_0pxx& getRshunt()  				{ return _Rshunt; 				};
+	bool isRshuntFineFlag() 					const	{ return _RshuntFineFlag;	};
+	StrtMemoryEnum getStrtMemory() 		const	{	return _strtMemory;			};
+	Adjustment_0p0& getTendstufeMax() 		{ return _TendstufeMax;	};
+	Adjustment_0p0& getTtrafoMax() 				{ return _TtrafoMax;		};
+	bool isPowActiveStart() const					{	return _PowActiveStart;	};
+	InSourceEnum getInSourceMem1() const	{ return _InSourceMem1; 	};
+	InSourceEnum getInSourceMem2() const 	{ return _InSourceMem2; 	};
+	Fixed& getUsollMem1()  								{ return _UsollMem1;			};
+	Fixed& getUsollMem2()  								{ return _UsollMem2;			};
+	Fixed& getIsollMem1()  								{ return _IsollMem1;			};
+	Fixed& getIsollMem2() 		 						{ return _IsollMem2;			};
+	void setInSourceMem1(InSourceEnum in) { _InSourceMem1 = in; 	};
+	void setInSourceMem2(InSourceEnum in) { _InSourceMem2 = in; 	};
 
 private:
 	StrtMemoryEnum  _strtMemory;
@@ -75,13 +76,9 @@ private:
 	//ExtFloat			_PowOnDynamic;
 	//ExtFloat			_DisplDynamic;
 
-	void keyMemory1(VolatileData	volatileData, KeyEvent_enum	event);
-	void keyMemory2(VolatileData	volatileData, KeyEvent_enum	event);
 	void updateStrtValues(KeyEventTuple actTuple);
 	void updateCalib(VolatileData	volatileData, KeyEventTuple actTuple);
 	void updateTgrenz(KeyEventTuple actTuple);
-
-
 };
 
 } /* namespace encodeNButtons */

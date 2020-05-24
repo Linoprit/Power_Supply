@@ -10,6 +10,12 @@
 
 #include <Devices/Char_LCD/Char_LCD_socket.h>
 #include <Devices/Char_LCD/Char_LCD.h>
+#include <Application/EncodeNButtons/EncodeNButtons.h>
+#include <Application/EncodeNButtons/ScreenState.h>
+#include "cmsis_os2.h"
+
+extern osSemaphoreId_t EncdTskDataSemHandle;
+
 
 namespace displaynmenus {
 

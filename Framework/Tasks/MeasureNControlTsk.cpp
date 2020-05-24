@@ -16,7 +16,7 @@ void StrtMeasureNControl(void *argument)
 
 	for(;;)
 	{
-
+		//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 		osDelay(1000);
 	}
 

@@ -42,9 +42,8 @@ public:
 			set(get() + 1);
 		}
 		else {
-			set(get() / 10);
-			set(get() * 10);
-			set(get() + 10);
+			int32_t lastPlace = getLastPlace();
+			set(get() - lastPlace + 10);
 		}
 	};
 
@@ -53,10 +52,19 @@ public:
 				set(get() - 1);
 		}
 		else {
-				set(get() /  10);
-				set(get() *  10);
-				set(get() -  10);
+			int32_t lastPlace = getLastPlace();
+			if(lastPlace > 0) {
+				set(get() - lastPlace);
+			} else {
+				set(get() - 10);
+			}
 		}
+	};
+
+	int32_t getLastPlace(void) {
+		int32_t tmpVal = get() / 10;
+		tmpVal = tmpVal * 10;
+		return get() - tmpVal;
 	};
 
 	bool isFineFlag(void) const { return _fineFlag; };

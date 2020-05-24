@@ -36,7 +36,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	  	rotary_encoder_callback->ISR_callback_fcn();
 	}
 
-  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+  //HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 }
 
 void add_uart_callback(UART_HandleTypeDef *huart, ISR_callback* callback)

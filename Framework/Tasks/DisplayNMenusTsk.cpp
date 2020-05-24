@@ -8,7 +8,7 @@
 #include <Application/DisplayNMenus/DisplayNMenus.h>
 #include "cmsis_os.h"
 #include <Tasks/DisplayNMenusTsk.h>
-
+#include "main.h"
 
 void StrtDisplayNMenus(void *argument)
 {
@@ -18,8 +18,9 @@ void StrtDisplayNMenus(void *argument)
 
 	for(;;)
 	{
+		//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 		displaynmenus::DisplayNMenus::instance().cycle();
-		osDelay(500);
+		osDelay(100);
 	}
 
 }

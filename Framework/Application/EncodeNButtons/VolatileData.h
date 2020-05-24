@@ -8,7 +8,7 @@
 #ifndef APPLICATION_ENCODENBUTTONS_VOLATILEDATA_H_
 #define APPLICATION_ENCODENBUTTONS_VOLATILEDATA_H_
 
-#include "ScreenStates.h"
+#include <Application/EncodeNButtons/ScreenState.h>
 #include <Devices/Rotary_Encoder/Rotary_Encoder_Types.h>
 #include <Types/Typedefs.h>
 #include <Types/ExtFloat.h>
@@ -16,6 +16,8 @@
 
 
 namespace encodeNButtons {
+
+class NonVolatileData;
 
 enum InSourceEnum {
 	inHigh, inLow, inAuto
@@ -29,7 +31,8 @@ public:
 
 	void update(
 			KeyEventTuple 	actTuple,
-			ScreenStateEnum actScreen);
+			ScreenStateEnum actScreen,
+			NonVolatileData& nonVolatileData);
 
 
 	InSourceEnum getInSource() const {
@@ -60,7 +63,7 @@ public:
 		_PowActive = powActive;
 	}
 
-	Adjustment_0p0& getUsoll() {
+	Adjustment_0p0& getUsoll(void) {
 		return _Usoll;
 	}
 
@@ -82,6 +85,8 @@ private:
 	bool						_KeysLocked;
 	KeyEvent_enum		_LastOnOffButtonEvent;
 
+	void keyMemory1(NonVolatileData&	nonVolatileData, KeyEvent_enum	event);
+	void keyMemory2(NonVolatileData&	nonVolatileData, KeyEvent_enum	event);
 	void keyButtonOnOff(void);
 	void updateValues  (KeyEventTuple actTuple);
 	void updateUsource (KeyEventTuple actTuple);
