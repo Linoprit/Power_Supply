@@ -21,17 +21,23 @@ void UpdateScrValues::cycle(Char_LCD& charLCD) {
 	// Line 1
 	if(volatileData.isKeysLocked()) {
 		charLCD.buffer_lines[0][15] = 'L';
-	} else {
-		charLCD.buffer_lines[0][15] = ' ';
 	}
 
-	//HelpersLib::value2char(
-	//		&charLCD.buffer_lines[0][1], 4, 1,  /* measurement */);
-	charLCD.buffer_lines[0][5] = 'V';
+	if(volatileData.isMemStoreEvntActive()) {
+		charLCD.buffer_lines[0][14] = 'M';
+	}
 
-	//HelpersLib::value2char(
-	//		&charLCD.buffer_lines[1][8], 4, 1, /* measurement */);
-	charLCD.buffer_lines[0][12] = 'A';
+	if(volatileData.isPowActive()) {
+		//HelpersLib::value2char(
+		//		&charLCD.buffer_lines[0][1], 4, 1,  /* measurement */);
+		charLCD.buffer_lines[0][5] = 'V';
+
+		//HelpersLib::value2char(
+		//		&charLCD.buffer_lines[1][8], 4, 1, /* measurement */);
+		charLCD.buffer_lines[0][12] = 'A';
+	} else {
+		memcpy(&charLCD.buffer_lines[0][0], "  -- Zero -- ", 13);
+	}
 
 	// Line 2
 	if( volatileData.getInSource() == encodeNButtons::inAuto) {
@@ -52,14 +58,10 @@ void UpdateScrValues::cycle(Char_LCD& charLCD) {
 
 	if (volatileData.getUsoll().isFineFlag()) {
 		charLCD.buffer_lines[1][0] = 'F';
-	} else {
-		charLCD.buffer_lines[1][0] = ' ';
 	}
 
 	if (volatileData.getIsoll().isFineFlag()) {
 		charLCD.buffer_lines[1][7] = 'F';
-	} else {
-		charLCD.buffer_lines[1][7] = ' ';
 	}
 }
 

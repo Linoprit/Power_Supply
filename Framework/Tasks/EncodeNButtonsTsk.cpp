@@ -9,7 +9,7 @@
 #include <Tasks/EncodeNButtonsTsk.h>
 #include <Application/EncodeNButtons/EncodeNButtons.h>
 #include <Instances/OsHelpers.h>
-
+#include <Instances/Common.h>
 
 #include "main.h"
 
@@ -43,11 +43,25 @@ void StrtEncoderNButtons(void *argument)
 		additionalButtons.user =
 				(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == GPIO_PIN_RESET);
 
-
 		encodeNButtons::EncodeNButtons::instance().cycle(eventQueue, additionalButtons);
 
 
+
+
 		// TODO remove
+		/*encodeNButtons::NonVolatileData
+		nvData = encodeNButtons::EncodeNButtons::instance().getNvData();
+		//encodeNButtons::VolatileData
+		//volData = encodeNButtons::EncodeNButtons::instance().getVolData();
+		static uint32_t oldTick = 0;
+		if( (Common::get_tick() - oldTick) > 1000 ) {
+			tx_printf("encNBut:  rs %i %i %i %i\n",
+					nvData.getRshunt().get(),
+					nvData.getRshunt().getActualPlace(),
+					nvData.getRshunt().getExp() );
+			oldTick = Common::get_tick();
+		}*/
+
 	/*	while(!eventQueue.isEmpty()) {
 			rotaryEncoder::KeyEventTuple keyEventTuple = eventQueue.dequeue();
 
@@ -56,7 +70,7 @@ void StrtEncoderNButtons(void *argument)
 		}
 */
 
-		// ToDo HMI_coordinator(eventQueue);
+
 
 
 		osDelay(10);

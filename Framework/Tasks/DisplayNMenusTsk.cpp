@@ -21,6 +21,8 @@ void StrtDisplayNMenus(void *argument)
 		//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 		displaynmenus::DisplayNMenus::instance().cycle();
 		osDelay(100);
+
+
 	}
 
 }

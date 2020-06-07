@@ -37,6 +37,8 @@ void EncodeNButtons::cycle(
 	//osStatus_t osSemaphoreAcquire (osSemaphoreId_t semaphore_id, uint32_t timeout);
 	osSemaphoreAcquire(EncdTskDataSemHandle, 20);
 
+	_volatileData.updateMemEvent();
+
 	while(!eventQueue.isEmpty()) {
 		KeyEventTuple actTuple = eventQueue.dequeue();
 

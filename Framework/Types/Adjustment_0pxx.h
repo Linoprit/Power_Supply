@@ -22,7 +22,7 @@ public:
 			float   minVal = static_cast<float>(INT32_MIN),
 			float   maxVal = static_cast<float>(INT32_MAX)
 	): Fixed(value, exp),
-	_actualPlace { 0 }
+	_actualPlace { 1 }
 	{
 		// to avoid overflow in increment / decrement functions,
 		// set the limits smaller
@@ -40,21 +40,35 @@ public:
 	virtual ~Adjustment_0pxx() {};
 
 	virtual void increment(void) {
-		int32_t valToAdd = pow(10, getExp() - _actualPlace);
-		set(get() + valToAdd);
+		// for some reason the pow function hangs
+		//int32_t valToAdd = pow(10, getExp() - _actualPlace );
+		int32_t valToAdd = 1;
+		for (uint8_t i=0; i < (getExp() - _actualPlace); i++) {
+			valToAdd = valToAdd * 10;
+		}
+
+		int32_t actVal = get() + valToAdd;
+		set(actVal);
 	}
 
 	virtual void decrement(void) {
-		int32_t valToSub = pow(10, getExp() - _actualPlace);
-		set(get() - valToSub);
+		// for some reason the pow function hangs
+		//int32_t valToSub = pow(10, getExp() - _actualPlace);
+		int32_t valToSub = 1;
+		for (uint8_t i=0; i < (getExp() - _actualPlace); i++) {
+			valToSub = valToSub * 10;
+		}
+
+		int32_t actVal = get() - valToSub;
+		set(actVal);
 	}
 
 	uint8_t getActualPlace(void) { return _actualPlace; };
 	void	incrementActualPlace(void) {
-		if (_actualPlace < getExp())
+		if (_actualPlace < (getExp()))
 			_actualPlace++;
 		else
-			_actualPlace = 0;
+			_actualPlace = 1;
 	}
 
 protected:

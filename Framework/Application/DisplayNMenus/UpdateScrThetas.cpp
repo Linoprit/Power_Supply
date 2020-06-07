@@ -20,7 +20,7 @@ void UpdateScrThetas::cycle(Char_LCD& charLCD) {
 
 	memcpy(&charLCD.buffer_lines[1][0], "Pv=", 3);
 	memcpy(&charLCD.buffer_lines[1][8], "W T", 3);
-	charLCD.buffer_lines[0][15] = 223;
+	charLCD.buffer_lines[1][15] = 223;
 
 
 

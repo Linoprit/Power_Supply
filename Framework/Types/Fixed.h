@@ -28,8 +28,8 @@ public:
 };
 	virtual ~Fixed() {};
 
-	int32_t get(void) 				{ return _value; };
-	void	set(const int32_t in) 	{
+	int32_t get(void) 					{ return _value; };
+	void	set(const int32_t in) {
 		if(in > _maxVal)
 			_value = _maxVal;
 		else if(in < _minVal)

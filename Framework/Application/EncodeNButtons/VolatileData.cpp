@@ -6,6 +6,7 @@
  */
 
 #include <Application/EncodeNButtons/VolatileData.h>
+#include <Instances/Common.h>
 #include "NonVolatileData.h"
 #include "main.h"
 
@@ -20,7 +21,9 @@ VolatileData::VolatileData():
 	_UsollFineFlag	{ false },
 	_IsollFineFlag	{ false },
 	_KeysLocked   	{ false },
-	_LastOnOffButtonEvent { evntNone }
+	_LastOnOffButtonEvent { evntNone },
+	_MemStoreEvntActive		{ false		 },
+	_MemEvntCounter				{ 0 			 }
 {
 }
 
@@ -78,12 +81,24 @@ void VolatileData::update(
 	}
 }
 
+void VolatileData::setMemEvent(void) {
+	_MemStoreEvntActive = true;
+	_MemEvntCounter 		= Common::get_tick() + MemEventCount;
+}
+
+void VolatileData::updateMemEvent(void) {
+	if (Common::get_tick() > _MemEvntCounter) {
+		_MemStoreEvntActive = false;
+	}
+}
+
 void VolatileData::keyMemory1(NonVolatileData& nonVolatileData, KeyEvent_enum	event) {
 	// set mem1
 	if(event == evntHeld) {
 		nonVolatileData.getUsollMem1().set(_Usoll.get());
 		nonVolatileData.getIsollMem1().set(_Isoll.get());
 		nonVolatileData.setInSourceMem1(getInSource());
+		setMemEvent();
 	}
 
 	// recall mem1
@@ -100,6 +115,7 @@ void VolatileData::keyMemory2(NonVolatileData& nonVolatileData, KeyEvent_enum	ev
 		nonVolatileData.getUsollMem2().set(_Usoll.get());
 		nonVolatileData.getIsollMem2().set(_Isoll.get());
 		nonVolatileData.setInSourceMem2(getInSource());
+		setMemEvent();
 	}
 
 	// recall mem2

@@ -21,14 +21,14 @@ void UpdateScrCalib::cycle(Char_LCD& charLCD){
 	// Line 1
 	//HelpersLib::value2char(
 	//		&charLCD.buffer_lines[0][1], 4, 1,  /* measurement */);
-	charLCD.buffer_lines[0][5] = 'V';
+	charLCD.buffer_lines[0][4] = 'V';
 
 	//HelpersLib::value2char(
 	//		&charLCD.buffer_lines[1][8], 4, 1, /* measurement */);
-	charLCD.buffer_lines[0][12] = 'I';
+	charLCD.buffer_lines[0][10] = 'A';
 
 	uint8_t actPlace = nonVolatileData.getRshunt().getActualPlace();
-	charLCD.buffer_lines[0][12 + actPlace] = 62;
+	charLCD.buffer_lines[0][11 + actPlace] = 170;
 
 	// Line 2
 	//HelpersLib::value2char(
