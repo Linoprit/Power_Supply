@@ -12,9 +12,6 @@
 #include <Devices/Char_LCD/Char_LCD.h>
 #include <Application/EncodeNButtons/EncodeNButtons.h>
 #include <Application/EncodeNButtons/ScreenState.h>
-#include "cmsis_os2.h"
-
-extern osSemaphoreId_t EncdTskDataSemHandle;
 
 
 namespace displaynmenus {
@@ -31,7 +28,6 @@ public:
 private:
 	Char_LCD_socket		_socket;
 	Char_LCD					_charLCD;
-
 
 };
 

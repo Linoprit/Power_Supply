@@ -42,22 +42,14 @@ int tx_printf(const char *format, ...)
 	tx_act_pos = vsprintf ((char*) &txBuff[0], format, arg);
 	va_end (arg);
 
-	HAL_StatusTypeDef result = HAL_OK;
-#if (USE_DMA)
-	if(common_initIsDone()) {
-		result = HAL_UART_Transmit_DMA(UART_PORT, &txBuff[0], tx_act_pos);
-
-	} else {
-		result = HAL_UART_Transmit(UART_PORT, &txBuff[0], tx_act_pos, 200);
+	uint8_t* ptr = &txBuff[0];
+	for(uint8_t i=0 ; i < TX_BUFF_LEN ; i++) {
+		ITM_SendChar((*ptr++)); // use SWO
+		if(*ptr == '\0')
+			break;
 	}
-#else
-	result = HAL_UART_Transmit_IT(UART_PORT, &txBuff[0], tx_act_pos);
-#endif
 
-	if (result == HAL_OK)
-		return SUCCESS;
-	else
-		return ERROR;
+	return SUCCESS;
 }
 
 void tx_buff_clear(void)

@@ -835,10 +835,10 @@ F 3 "~" H 9900 3750 50  0001 C CNN
 	-1   0    0    -1  
 $EndComp
 $Comp
-L Netzteil_Progammable-rescue:+3V3 #PWR?
+L Netzteil_Progammable-rescue:+3V3 #PWR054
 U 1 1 5EAE5F02
 P 10450 3550
-F 0 "#PWR?" H 10450 3400 50  0001 C CNN
+F 0 "#PWR054" H 10450 3400 50  0001 C CNN
 F 1 "+3V3" H 10465 3723 50  0000 C CNN
 F 2 "" H 10450 3550 50  0001 C CNN
 F 3 "" H 10450 3550 50  0001 C CNN

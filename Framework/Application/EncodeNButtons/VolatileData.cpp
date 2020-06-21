@@ -67,14 +67,10 @@ void VolatileData::update(
 		keyButtonOnOff();
 	}
 
-	if(actScreen == scrValues) {
+
+	if( (actScreen == scrValues) || (actScreen == scrThetas) ){
 		updateValues(	actTuple );
 	}
-
-	// no keys active in active Thetadisplay
-	/*if(actScreen == scrThetas) {
-		updateThetas(	volatileData, actTuple);
-	}*/
 
 	if(actScreen == scrUsource) {
 		updateUsource(actTuple);
@@ -98,6 +94,7 @@ void VolatileData::keyMemory1(NonVolatileData& nonVolatileData, KeyEvent_enum	ev
 		nonVolatileData.getUsollMem1().set(_Usoll.get());
 		nonVolatileData.getIsollMem1().set(_Isoll.get());
 		nonVolatileData.setInSourceMem1(getInSource());
+		// TODO store MEM1 to EEPROM
 		setMemEvent();
 	}
 
@@ -115,6 +112,7 @@ void VolatileData::keyMemory2(NonVolatileData& nonVolatileData, KeyEvent_enum	ev
 		nonVolatileData.getUsollMem2().set(_Usoll.get());
 		nonVolatileData.getIsollMem2().set(_Isoll.get());
 		nonVolatileData.setInSourceMem2(getInSource());
+		// TODO store MEM2 to EEPROM
 		setMemEvent();
 	}
 
@@ -160,6 +158,19 @@ void VolatileData::updateValues(KeyEventTuple actTuple) {
 }
 
 void VolatileData::updateUsource(KeyEventTuple actTuple) {
+	// RotEnc for Usoll is active
+	if ( (actTuple.key == keyRotLeft) && (actTuple.event == evntIncrement) ) {
+		_Usoll.increment();
+	}
+
+	if ( (actTuple.key == keyRotLeft) && (actTuple.event == evntDecrement) ) {
+		_Usoll.decrement();
+	}
+
+	if ( (actTuple.key == keyBtnLeft) && (actTuple.event == evntReleased) ) {
+		_Usoll.toggleFineFlag();
+	}
+
 	if ( (actTuple.key == keyRotRight) && (actTuple.event == evntIncrement) ) {
 		if (_InSource == inHigh )
 			_InSource = inLow;

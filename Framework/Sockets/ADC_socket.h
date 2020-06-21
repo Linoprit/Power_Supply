@@ -9,32 +9,38 @@
 #define CONTROLLER_ADC_SOCKET_H_
 
 #include <stdint.h>
-#include "Instances/callbacks.h"
+#include "stm32f3xx_hal.h"
+#include <array>
 
-#define ADC_MAX 4096
 
+
+constexpr uint16_t ADC_MAX = 4096;
 
 class ADC_socket
 {
 public:
-  ADC_socket (ADC_HandleTypeDef* hadc, uint8_t num_of_channels, uint8_t nr_of_conversions);
+	ADC_socket (
+			ADC_HandleTypeDef* hadc, uint8_t numOfChannels, uint8_t adcBufferLen = 2);
 
-  virtual ~ADC_socket ();
+	virtual ~ADC_socket() {};
 
-  // updates measurement and triggers new conversion
-  void 		cycle(void);
-  uint16_t* get_measurement(void);
-  uint8_t 	get_num_of_channels(void);
-  uint16_t  get_ADC_max(void) { return ADC_MAX;};
-  uint16_t* get_adc_buffer(void);
+	// updates measurement and triggers new conversion
+	void 		cycle_1ms(void);
+
+	// access to all channels measured mean values
+	uint16_t* get_measurement(void);
+	uint8_t 	get_num_of_channels(void);
+	uint16_t  get_ADC_max(void) { return ADC_MAX; };
+
 
 protected:
-  ADC_HandleTypeDef* _hadc;
-  uint16_t* 				 _adc_buffer;
-  uint16_t* 		 		 _measurement;
-  uint8_t			 	 		 _num_of_channels;
-  uint8_t 					 _nr_of_conversions;
-
+	ADC_HandleTypeDef* 	_hadc;
+	uint8_t  						_adcBufferLen;
+	unsigned long int* 	_adcBuffer;
+	uint16_t* 					_measurement;
+	//std::array<uint16_t>  				_measurement;
+	uint32_t 						_old_cycle;
+	uint8_t			 				_numOfChannels;
 };
 
 #endif /* CONTROLLER_ADC_SOCKET_H_ */

@@ -41,11 +41,13 @@ public:
 	InSourceEnum getInSource() const 					{ return _InSource; 							}
 	void setInSource(InSourceEnum inSource) 	{ _InSource = inSource; 					}
 	Adjustment_0p0& getIsoll() 								{ return _Isoll; 									}
+	Adjustment_0p0  getIsoll() 					const	{ return _Isoll; 									}
 	bool isIsollFineFlag() 							const { return _IsollFineFlag; 					}
 	void setIsollFineFlag(bool isollFineFlag) { _IsollFineFlag = isollFineFlag; }
 	bool isPowActive() 									const { return _PowActive; 							}
 	void setPowActive(bool powActive) 				{ _PowActive = powActive; 				}
 	Adjustment_0p0& getUsoll(void) 						{ return _Usoll; 									}
+	Adjustment_0p0 getUsoll(void) 			const { return _Usoll; 									}
 	bool isUsollFineFlag() 							const { return _UsollFineFlag;					}
 	bool isKeysLocked() 								const { return _KeysLocked; 						}
 	bool isMemStoreEvntActive(void) 		const { return _MemStoreEvntActive; 		}

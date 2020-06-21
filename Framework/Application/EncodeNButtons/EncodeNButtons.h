@@ -14,9 +14,6 @@
 #include <Devices/Rotary_Encoder/Rotary_Encoder.h>
 #include "NonVolatileData.h"
 #include "VolatileData.h"
-#include "cmsis_os2.h"
-
-extern osSemaphoreId_t EncdTskDataSemHandle;
 
 
 namespace encodeNButtons {
@@ -29,14 +26,14 @@ public:
 
 	void init(void);
 	static EncodeNButtons& instance(void);
-	void cycle(
-			EventQueue_type& eventQueue, AdditionalButtons  additionalButtons);
-	NonVolatileData 	getNvDataConst(void) 		  const	{ return _nonVolatileData; 	};
-	VolatileData	  	getVolDataConst(void)		  const	{ return _volatileData; 		};
-	ScreenState				getScreenStateConst(void) const	{ return _screenState;			};
-	NonVolatileData& 	getNvData(void) 		  					{ return _nonVolatileData; 	};
-	VolatileData&	   	getVolData(void)		  					{ return _volatileData; 		};
-	ScreenState&		 	getScreenState(void) 						{ return _screenState;			};
+	void cycle(EventQueue_type& eventQueue, AdditionalButtons  additionalButtons);
+
+	const NonVolatileData 	getNvData(void) 		  		const	{ return _nonVolatileData; 	};
+	const VolatileData	  	getVolData(void)		  		const	{ return _volatileData; 		};
+	const ScreenState				getScreenState(void) 			const	{ return _screenState;			};
+	NonVolatileData& 				getNvData(void) 		  					{ return _nonVolatileData; 	};
+	VolatileData&	   				getVolData(void)		  					{ return _volatileData; 		};
+	ScreenState&		 				getScreenState(void) 						{ return _screenState;			};
 
 private:
 	Rotary_Encoder_socket  _socket;

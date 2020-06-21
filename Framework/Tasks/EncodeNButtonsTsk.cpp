@@ -27,7 +27,7 @@ void StrtEncoderNButtons(void *argument)
 	encodeNButtons::EncodeNButtons::instance().cycle(eventQueue, additionalButtons);
 	encodeNButtons::EncodeNButtons::instance().getVolData().getIsoll().set(0L);
 	encodeNButtons::EncodeNButtons::instance().getVolData().getUsoll().set(0L);
-	// TODO restore startupVals
+	// TODO restore startupVals from EEPROM
 
 
 	for(;;)

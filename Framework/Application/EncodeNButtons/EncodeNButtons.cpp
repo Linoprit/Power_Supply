@@ -6,6 +6,7 @@
  */
 
 #include <Application/EncodeNButtons/EncodeNButtons.h>
+#include <Instances/Common.h>
 #include <new>
 #include <main.h>
 #include <Instances/Common.h>
@@ -34,8 +35,9 @@ void EncodeNButtons::cycle(
 	_rotEnc.cycle(eventQueue);
 	_memoryButtons.cycle(eventQueue, additionalButtons);
 
-	//osStatus_t osSemaphoreAcquire (osSemaphoreId_t semaphore_id, uint32_t timeout);
-	osSemaphoreAcquire(EncdTskDataSemHandle, 20);
+	osStatus_t status = osSemaphoreAcquire(EncdTskDataSemHandle, 20);
+	if (status != osOK)
+		return;
 
 	_volatileData.updateMemEvent();
 
@@ -61,9 +63,8 @@ void EncodeNButtons::cycle(
 		}
 	}
 
-	//osStatus_t osSemaphoreRelease (osSemaphoreId_t semaphore_id);
 	osSemaphoreRelease(EncdTskDataSemHandle);
-	// TODO some errorhandling, if osStatus_t in not osOK
+
 
 }
 

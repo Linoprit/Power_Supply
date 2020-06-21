@@ -6,6 +6,7 @@
  */
 
 #include <Application/DisplayNMenus/DisplayNMenus.h>
+#include <Instances/Common.h>
 #include <new>
 #include <string.h>
 #include <main.h>
@@ -29,7 +30,8 @@ DisplayNMenus& DisplayNMenus::instance(void) {
 	return displayNData;
 }
 
-DisplayNMenus::DisplayNMenus() {
+DisplayNMenus::DisplayNMenus()
+{
 	_socket =
 			Char_LCD_socket(
 					get_hspi3(),
@@ -45,10 +47,8 @@ DisplayNMenus::DisplayNMenus() {
 void DisplayNMenus::cycle(void) {
 	osSemaphoreAcquire(EncdTskDataSemHandle, 20);
 	const encodeNButtons::ScreenStateEnum			actScreen =
-			encodeNButtons::EncodeNButtons::instance().getScreenStateConst().getActSreen();
+			encodeNButtons::EncodeNButtons::instance().getScreenState().getActSreen();
 	osSemaphoreRelease(EncdTskDataSemHandle);
-
-
 
 	if(actScreen == encodeNButtons::scrValues) {
 		UpdateScrValues updateScrValues;
@@ -76,6 +76,7 @@ void DisplayNMenus::cycle(void) {
   }
 
 	_charLCD.display();
+
 
 	//buffer_lines_type* lcdBuffer = _charLCD.get_buffer_lines_ptr();
 

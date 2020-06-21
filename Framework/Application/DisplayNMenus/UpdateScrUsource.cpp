@@ -6,25 +6,41 @@
  */
 
 #include <Application/DisplayNMenus/UpdateScrUsource.h>
+#include <Instances/Common.h>
+#include <Application/MeasureNControl/MeasureNControl.h>
 
 namespace displaynmenus {
 
 void UpdateScrUsource::cycle(Char_LCD& charLCD){
 	clearBuffLines(charLCD);
 
-	osSemaphoreAcquire(EncdTskDataSemHandle, 20);
-	encodeNButtons::VolatileData	volatileData =
-			encodeNButtons::EncodeNButtons::instance().getVolDataConst();
+	osStatus_t encdStatus = osSemaphoreAcquire(EncdTskDataSemHandle, 20);
+	const encodeNButtons::VolatileData	volatileData =
+			encodeNButtons::EncodeNButtons::instance().getVolData();
 	osSemaphoreRelease(EncdTskDataSemHandle);
 
-	// Line 1
-	// TODO
-	charLCD.buffer_lines[0][5] = 'V';
-	charLCD.buffer_lines[0][12] = 'A';
+	osStatus_t measStatus = osSemaphoreAcquire(CtrTskDataSemHandle, 20);
+	 const measureNControl::MeasuredData measuredData =
+			 measureNControl::MeasureNControl::instance().getMeasuredData();
+	osSemaphoreRelease(CtrTskDataSemHandle);
 
+	if ( (encdStatus != osOK) || (measStatus != osOK) )
+		return;
+
+	// Line 1
+	if(volatileData.isPowActive()) {
+		measuredData.get_Uist().toString(&charLCD.buffer_lines[0][1], 4, 1);
+		charLCD.buffer_lines[0][5] = 'V';
+
+		measuredData.get_Iist().toString(&charLCD.buffer_lines[0][8], 4, 1);
+		charLCD.buffer_lines[0][12] = 'A';
+	} else {
+		memcpy(&charLCD.buffer_lines[0][0], "  -- Zero -- ", 13);
+	}
 
 	// Line 2
 	memcpy(&charLCD.buffer_lines[1][0], "Us", 2);
+	measuredData.get_Uinput().toString(&charLCD.buffer_lines[1][3], 4, 1);
 	charLCD.buffer_lines[1][7] = 'V';
 
 	if( volatileData.getInSource() == encodeNButtons::inAuto) {

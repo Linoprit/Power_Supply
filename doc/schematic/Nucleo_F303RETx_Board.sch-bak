@@ -1822,21 +1822,21 @@ max \n39.37V
 Wire Wire Line
 	5250 3900 5250 4050
 $Comp
-L Connector_Generic:Conn_01x05 J?
+L Connector_Generic:Conn_01x05 J4
 U 1 1 5EA72AD3
 P 5450 4250
-F 0 "J?" H 5530 4292 50  0000 L CNN
-F 1 "Ina_Sensor" H 5530 4201 50  0000 L CNN
+F 0 "J4" H 5400 4550 50  0000 L CNN
+F 1 "Ina_Sensor" V 5550 4050 50  0000 L CNN
 F 2 "" H 5450 4250 50  0001 C CNN
 F 3 "~" H 5450 4250 50  0001 C CNN
 	1    5450 4250
 	1    0    0    -1  
 $EndComp
 $Comp
-L Netzteil_Progammable-rescue:+3V3 #PWR?
+L Netzteil_Progammable-rescue:+3V3 #PWR052
 U 1 1 5EAB7D02
 P 4950 4000
-F 0 "#PWR?" H 4950 3850 50  0001 C CNN
+F 0 "#PWR052" H 4950 3850 50  0001 C CNN
 F 1 "+3V3" H 4950 4140 50  0000 C CNN
 F 2 "" H 4950 4000 50  0000 C CNN
 F 3 "" H 4950 4000 50  0000 C CNN

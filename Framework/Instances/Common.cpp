@@ -25,7 +25,7 @@ bool common_initIsDone(void)  	{ return Common::isInitDone(); 	}
 // C++ instances
 bool 							Common::_initIsDone 				= false;
 
-
+// TODO remove common::init()?
 /**
  * Some of the constructors use a osDelay call. So we need a running os.
  * That's why we call this function from the Start* tasks.
@@ -34,8 +34,6 @@ void Common::init()
 {
 	if (Common::_initIsDone == true)
 		return;
-
-
 
 
 	_initIsDone 		= true;

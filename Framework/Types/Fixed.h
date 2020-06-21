@@ -28,7 +28,7 @@ public:
 };
 	virtual ~Fixed() {};
 
-	int32_t get(void) 					{ return _value; };
+	int32_t get(void) 			const	{ return _value; };
 	void	set(const int32_t in) {
 		if(in > _maxVal)
 			_value = _maxVal;
@@ -38,20 +38,26 @@ public:
 			_value = in;
 	}
 	uint8_t getExp(void) 			{ return _exp; };
-	int32_t getFactor(void)			{ return std::pow(10, _exp); };
+	int32_t getFactor(void)		{
+		// for some reason the pow function hangs
+		// return std::pow(10, _exp);
+		int32_t valToAdd = 1;
+		for (uint8_t i=0; i < _exp; i++) {
+			valToAdd = valToAdd * 10;
+		}
+		return valToAdd;
+	};
 	float   getFlt(void) {
 		float factor = static_cast<float>( getFactor() );
 		return (static_cast<float>(_value) / factor );
-	}
+	};
 	void  set(const float in)	{
 		float factor = static_cast<float>( getFactor() );
 		set(static_cast<int32_t>( round(in * factor) ));
 	};
-
 	void toString(char* buffer, const uint8_t buffLen){
 		HelpersLib::value2char(buffer, buffLen, _value, _exp);
 	};
-
 	void setMax(float in) {
 		float factor = static_cast<float>(getFactor());
 		float tmpMax = (in * factor);

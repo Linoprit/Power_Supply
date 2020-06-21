@@ -1057,29 +1057,27 @@ PC8
 $Comp
 L Netzteil_Progammable-rescue:C C10
 U 1 1 589BF67E
-P 4700 1700
-F 0 "C10" H 4725 1800 50  0000 L CNN
-F 1 "100n" H 4725 1600 50  0000 L CNN
-F 2 "" H 4738 1550 50  0001 C CNN
-F 3 "" H 4700 1700 50  0000 C CNN
-	1    4700 1700
+P 4650 1850
+F 0 "C10" H 4675 1950 50  0000 L CNN
+F 1 "100n" H 4675 1750 50  0000 L CNN
+F 2 "" H 4688 1700 50  0001 C CNN
+F 3 "" H 4650 1850 50  0000 C CNN
+	1    4650 1850
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Netzteil_Progammable-rescue:GND-RESCUE-Netzteil_Progammable #PWR041
 U 1 1 589BF775
-P 4700 2000
-F 0 "#PWR041" H 4700 2000 30  0001 C CNN
-F 1 "GND" H 4700 1930 30  0001 C CNN
-F 2 "" H 4700 2000 60  0001 C CNN
-F 3 "" H 4700 2000 60  0001 C CNN
-	1    4700 2000
+P 4650 2400
+F 0 "#PWR041" H 4650 2400 30  0001 C CNN
+F 1 "GND" H 4650 2330 30  0001 C CNN
+F 2 "" H 4650 2400 60  0001 C CNN
+F 3 "" H 4650 2400 60  0001 C CNN
+	1    4650 2400
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4700 1550 4700 1400
-Wire Wire Line
-	4700 1850 4700 2000
+	4650 2000 4650 2250
 $Comp
 L Netzteil_Progammable-rescue:C C11
 U 1 1 589C0F06
@@ -1361,8 +1359,7 @@ $EndComp
 Wire Wire Line
 	5300 1400 5550 1400
 Wire Wire Line
-	4700 1400 4350 1400
-Connection ~ 4700 1400
+	4700 1400 4650 1400
 $Comp
 L Netzteil_Progammable-rescue:R-RESCUE-Netzteil_Progammable R25
 U 1 1 58FE65D7
@@ -1847,6 +1844,36 @@ Wire Wire Line
 	4950 4000 4950 4150
 Wire Wire Line
 	4950 4150 5250 4150
+$Comp
+L Netzteil_Progammable-rescue:R-RESCUE-Netzteil_Progammable R30
+U 1 1 5EEAE75B
+P 4900 1950
+F 0 "R30" V 4980 1950 50  0000 C CNN
+F 1 "100k" V 4900 1950 50  0000 C CNN
+F 2 "" H 4900 1950 60  0001 C CNN
+F 3 "" H 4900 1950 60  0001 C CNN
+	1    4900 1950
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 1700 4650 1650
+Wire Wire Line
+	4650 1650 4900 1650
+Wire Wire Line
+	4900 1650 4900 1700
+Wire Wire Line
+	4650 1650 4650 1400
+Connection ~ 4650 1650
+Connection ~ 4650 1400
+Wire Wire Line
+	4650 1400 4350 1400
+Wire Wire Line
+	4900 2200 4900 2250
+Wire Wire Line
+	4900 2250 4650 2250
+Connection ~ 4650 2250
+Wire Wire Line
+	4650 2250 4650 2400
 Wire Bus Line
 	4550 3500 10650 3500
 Wire Bus Line

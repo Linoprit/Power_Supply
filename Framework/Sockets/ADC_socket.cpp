@@ -6,65 +6,59 @@
  */
 
 #include <Sockets/ADC_socket.h>
-#include "Instances/callbacks.h"
+#include <Instances/Common.h>
 #include <string.h>
+
 
 /**
  * hadc: ADC to use i.e. hadc1
- * num_of_channels: how many measurements are used. I.e. if IN1 and IN2 are used,
- * 		num_of_channels = 2
- * nr_of_conversions: same as in cube configured. I.e if IN1 and IN2 are mesured
- * 		two times, nr_of_conversions = 4. This value must be dividable by 2!!
+ * numOfChannels: how many measurements are used. I.e. if IN1 and IN2 are used,
+ * 		numOfChannels = 2
+ * nrOfMeasurementsPerCycle: same as in cube configured. I.e if IN1 and IN2 are measured
+ * 		two times, nrOfMeasurementsPerCycle = 4. This value must be divideable by 2!!
  * 	In Cube the ranks must be alternating, i.e. IN1 - IN2 - IN1 - IN2.
  */
 ADC_socket::ADC_socket (
-		ADC_HandleTypeDef* hadc, uint8_t num_of_channels, uint8_t nr_of_conversions)
+		ADC_HandleTypeDef* hadc, uint8_t numOfChannels, uint8_t nrOfMeasurementsPerCycle):
+		_hadc 					{ hadc },
+		_adcBufferLen 	{ (uint8_t) (nrOfMeasurementsPerCycle *  numOfChannels) },
+		_adcBuffer 			{ new unsigned long int[_adcBufferLen] },
+		_measurement 		{ new uint16_t[numOfChannels] },
+		_old_cycle 			{ 0 },
+		_numOfChannels 	{ numOfChannels }
 {
-  _hadc 			  			= hadc;
-  _num_of_channels 		= num_of_channels;
-  _nr_of_conversions 	= nr_of_conversions;
-
-  _adc_buffer 	 = new uint16_t [_nr_of_conversions];
-  memset(_adc_buffer, 0, _nr_of_conversions * sizeof(uint16_t));
-
-  _measurement	= new uint16_t[num_of_channels];
-  memset(_measurement, 0, num_of_channels * sizeof(uint16_t));
+  memset(_adcBuffer, 		0, _adcBufferLen);
+  memset(_measurement, 	0, numOfChannels);
 }
 
-ADC_socket::~ADC_socket () { }
-
-void ADC_socket::cycle(void)
+void ADC_socket::cycle_1ms()
 {
- /* uint8_t i=0, j=0;
-  uint32_t tmp_akku = 0;
-
-
-  volatile uint32_t tmp_meas = 0;
-  for(i=0; i < _nr_of_conversions; i++) {
-  	tmp_meas = _adc_buffer[i];
+	// prevent starting the adc several times in one cycle
+uint32_t tick = Common::get_tick();
+  if (_old_cycle == tick) {
+  	return;
   }
-  _measurement[0] = _adc_buffer[0];
-  _measurement[1]	= _adc_buffer[1];*/
+  _old_cycle = tick;
 
-  /*for(i=0; i < _num_of_channels; i++)
+  uint8_t i = 0;
+  uint8_t	j = 0;
+  uint8_t count = 0;
+  unsigned long int tmp_akku = 0;
+
+  for(i=0; i < _numOfChannels; i++)
 	{
-	  for (j=0+i; j < _nr_of_conversions; j= (uint8_t) (j + _num_of_channels) )
+	  for (j=0+i; j < _adcBufferLen; j= (uint8_t) (j+_numOfChannels) )
 		{
-		  tmp_akku += _adc_buffer[j];
-		  tmp_meas = _adc_buffer[j];
+		  tmp_akku += _adcBuffer[j];
+		  count++;
 		}
-	  _measurement[i] = (uint16_t) tmp_akku / _num_of_channels;
+	  _measurement[i] = (uint16_t) tmp_akku / count;
 	  tmp_akku = 0;
-	}*/
+	  count = 0;
+	}
 
-  HAL_ADC_Start_DMA(_hadc, (uint32_t*) _adc_buffer, _nr_of_conversions);
+  HAL_ADC_Start_DMA(_hadc, _adcBuffer, _adcBufferLen);
 }
-
-uint16_t* ADC_socket::get_adc_buffer(void)
-{
-  return (uint16_t*) _adc_buffer;
-}
-
 
 uint16_t* ADC_socket::get_measurement(void)
 {
@@ -73,7 +67,7 @@ uint16_t* ADC_socket::get_measurement(void)
 
 uint8_t ADC_socket::get_num_of_channels(void)
 {
-  return _num_of_channels;
+  return _numOfChannels;
 }
 
 

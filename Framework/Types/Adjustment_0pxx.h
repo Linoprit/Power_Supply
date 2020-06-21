@@ -63,7 +63,7 @@ public:
 		set(actVal);
 	}
 
-	uint8_t getActualPlace(void) { return _actualPlace; };
+	uint8_t getActualPlace(void) const { return _actualPlace; };
 	void	incrementActualPlace(void) {
 		if (_actualPlace < (getExp()))
 			_actualPlace++;
