@@ -22,13 +22,13 @@ This library is for Arduino.
 In developing this library, besides reading the INA226 spec, I consulted
 the following code:
 
-* Linux drivers for the INA family (written in C)
-* https://github.com/SV-Zanshin/INA226 (most useful)
+ * Linux drivers for the INA family (written in C)
+ * https://github.com/SV-Zanshin/INA226 (most useful)
 
 PLATFORM DEPENDENCE
 Embodied in 3 functions related to I2C reading/writing
 
-*/
+ */
 
 #include "Autofox_INA226.h"
 #include <math.h>
@@ -276,9 +276,9 @@ status AutoFox_INA226::Wakeup()
 	//ShuntAndBusVoltageContinuous.
 	uint16_t theLastOperatingMode = mConfigRegister & cOperatingModeMask;
 	if(theLastOperatingMode == eOperatingMode::Shutdown ||
-		theLastOperatingMode == 0){
-			mConfigRegister &= ~cOperatingModeMask;
-			mConfigRegister |= eOperatingMode::ShuntAndBusVoltageContinuous;
+			theLastOperatingMode == 0){
+		mConfigRegister &= ~cOperatingModeMask;
+		mConfigRegister |= eOperatingMode::ShuntAndBusVoltageContinuous;
 	}
 
 	return WriteRegister(INA226_Registers::INA226_CONFIG, mConfigRegister);
@@ -392,8 +392,8 @@ status AutoFox_INA226::ConfigureVoltageConversionTime(int aIndexToConversionTime
 	mConfigRegister &= ~(cBusVoltageConvTimeMask | cShuntVoltageConvTimeMask);
 	//Set the new values
 	uint16_t theMergedBusAndShuntConvTimeIndicies = 
-		((uint16_t)aIndexToConversionTimeTable << cBusVoltConvTimeIdxShift) |
-		((uint16_t)aIndexToConversionTimeTable << cShuntVoltConvTimeIdxShift);
+			((uint16_t)aIndexToConversionTimeTable << cBusVoltConvTimeIdxShift) |
+			((uint16_t)aIndexToConversionTimeTable << cShuntVoltConvTimeIdxShift);
 
 	mConfigRegister |= theMergedBusAndShuntConvTimeIndicies;
 

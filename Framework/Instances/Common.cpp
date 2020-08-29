@@ -6,11 +6,11 @@
  */
 
 #include <inttypes.h>
+#include <System/swo_printf.h>
 #include "Common.h"
 #include "stm32f3xx_hal.h"
 #include "main.h"
 #include "Instances/callbacks.h"
-#include "System/uart_printf.h"
 
 
 

@@ -17,8 +17,8 @@ DacOutput::DacOutput (DAC_socket* dac_socket_in)
 
 	_output_min 	= 0.0f; // some save setup
 	_output_max 	= 32.0f;
-	_dac_min 	 		= 0;
-	_dac_max 	 		= 4095;
+	_dac_min 	 	= 0;
+	_dac_max 	 	= 4095;
 }
 
 void DacOutput::set_calibration(
@@ -26,8 +26,8 @@ void DacOutput::set_calibration(
 {
 	_output_min  	= output_min_;
 	_output_max  	= output_max_;
-	_dac_min 			= dac_min_;
-	_dac_max 			= dac_max_;
+	_dac_min 		= dac_min_;
+	_dac_max 		= dac_max_;
 }
 
 void DacOutput::setValue_float(float value) {

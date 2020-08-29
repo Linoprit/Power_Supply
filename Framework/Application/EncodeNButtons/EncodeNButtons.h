@@ -30,18 +30,18 @@ public:
 
 	const NonVolatileData 	getNvData(void) 		  		const	{ return _nonVolatileData; 	};
 	const VolatileData	  	getVolData(void)		  		const	{ return _volatileData; 		};
-	const ScreenState				getScreenState(void) 			const	{ return _screenState;			};
-	NonVolatileData& 				getNvData(void) 		  					{ return _nonVolatileData; 	};
-	VolatileData&	   				getVolData(void)		  					{ return _volatileData; 		};
-	ScreenState&		 				getScreenState(void) 						{ return _screenState;			};
+	const ScreenState		getScreenState(void) 			const	{ return _screenState;			};
+	NonVolatileData& 		getNvData(void) 		  				{ return _nonVolatileData; 	};
+	VolatileData&	   		getVolData(void)		  				{ return _volatileData; 		};
+	ScreenState&		 	getScreenState(void) 					{ return _screenState;			};
 
 private:
-	Rotary_Encoder_socket  _socket;
-	Rotary_Encoder 			   _rotEnc;
-	MemoryButtons					 _memoryButtons;
-	ScreenState					 	 _screenState;
-	NonVolatileData				 _nonVolatileData;
-	VolatileData					 _volatileData;
+	Rotary_Encoder_socket  	_socket;
+	Rotary_Encoder 			_rotEnc;
+	MemoryButtons			_memoryButtons;
+	ScreenState				_screenState;
+	NonVolatileData			_nonVolatileData;
+	VolatileData			_volatileData;
 
 };
 

@@ -11,18 +11,18 @@
 namespace encodeNButtons {
 
 NonVolatileData::NonVolatileData(void):
-_strtMemory 		{	strtNone },
-_Rshunt 			  { RSHUNT_ADJ_SETUP },
-_TtrafoMax 		  { TEMP_ADJ_SETUP },
+_strtMemory 	{	strtNone },
+_Rshunt 		{ RSHUNT_ADJ_SETUP },
+_TtrafoMax 		{ TEMP_ADJ_SETUP },
 _TendstufeMax   { TEMP_ADJ_SETUP },
 _UsollMem1      { USET_FIX_SETUP },
 _IsollMem1      { ISET_FIX_SETUP },
 _InSourceMem1   { inAuto },
-_UsollMem2 		  { USET_FIX_SETUP },
-_IsollMem2 		  { ISET_FIX_SETUP },
+_UsollMem2 		{ USET_FIX_SETUP },
+_IsollMem2 		{ ISET_FIX_SETUP },
 _InSourceMem2   { inAuto },
 _RshuntFineFlag { false },
-_PowActiveStart {	false }
+_PowActiveStart { false }
 {
 
 }

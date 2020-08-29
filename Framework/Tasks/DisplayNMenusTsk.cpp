@@ -17,10 +17,12 @@ void StrtDisplayNMenus(void *argument)
 	UNUSED(argument);
 	displaynmenus::DisplayNMenus::instance().init();
 
-	static uint8_t counter = 0;
+
+	//static uint8_t counter = 0;
+
 	for(;;)
 	{
-		tx_printf("blah blah %i\n", counter++);
+		//swoPrintf("blah blah %i\n", counter++);
 
 		//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 		displaynmenus::DisplayNMenus::instance().cycle();

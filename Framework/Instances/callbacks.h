@@ -21,5 +21,6 @@ public:
 
 void add_uart_callback(UART_HandleTypeDef *huart, ISR_callback* callback);
 void add_rotary_encoder_callback(ISR_callback* callback);
+void add_inaAlertPin_callback(ISR_callback* callback);
 
 #endif /* CALLBACKS_H_ */

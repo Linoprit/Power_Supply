@@ -55,7 +55,7 @@ typedef enum {OK=0, FAIL=-1,
 
 
 //=============================================================================
-class AutoFox_INA226{
+class AutoFox_INA226 {
 public:
 
     enum eOperatingMode {//Shutdown=0,

@@ -17,8 +17,7 @@
 #define EXTERNC
 #endif
 
-EXTERNC int tx_printf(const char *format, ...);
-EXTERNC void tx_buff_clear(void);
+EXTERNC int swoPrintf(const char *format, ...);
 
 #undef EXTERNC
 #ifdef __cplusplus

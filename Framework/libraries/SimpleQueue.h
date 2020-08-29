@@ -11,8 +11,8 @@
 #define SIMPLEQUEUE_H_
 
 #include <cstdlib>
-#include <System/uart_printf.h>
 #include <System/Error_Handler.h>
+#include <System/swo_printf.h>
 
 
 template <class T, std::size_t _Nm = 1> class SimpleQueue {

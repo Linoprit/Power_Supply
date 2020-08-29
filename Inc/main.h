@@ -91,8 +91,8 @@ void Error_Handler(void);
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14
 #define TCK_GPIO_Port GPIOA
-#define SWO_Pin GPIO_PIN_3
-#define SWO_GPIO_Port GPIOB
+#define JLink_SWO_Pin GPIO_PIN_3
+#define JLink_SWO_GPIO_Port GPIOB
 #define Voltage_HI_LO_Pin GPIO_PIN_4
 #define Voltage_HI_LO_GPIO_Port GPIOB
 #define Rotary_Encoder_INT_Pin GPIO_PIN_6

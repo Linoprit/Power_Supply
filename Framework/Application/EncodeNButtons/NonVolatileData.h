@@ -40,21 +40,21 @@ public:
 	void decrementStrtMemoryEnum(StrtMemoryEnum& in);
 
 
-	Adjustment_0pxx& getRshunt()  								{ return _Rshunt; 				};
-	const Adjustment_0pxx getRshunt() 			const { return _Rshunt; 				};
-	bool isRshuntFineFlag() 								const	{ return _RshuntFineFlag;	};
-	StrtMemoryEnum getStrtMemory() 					const	{	return _strtMemory;			};
-	Adjustment_0p0& getTendstufeMax() 						{ return _TendstufeMax;		};
-	Adjustment_0p0& getTtrafoMax() 								{ return _TtrafoMax;			};
-	const Adjustment_0p0 getTendstufeMax() 	const { return _TendstufeMax;		};
-	const Adjustment_0p0 getTtrafoMax() 	 	const	{ return _TtrafoMax;			};
-	bool isPowActiveStart() 								const	{	return _PowActiveStart;	};
-	InSourceEnum getInSourceMem1() 					const	{ return _InSourceMem1; 	};
-	InSourceEnum getInSourceMem2() 					const { return _InSourceMem2; 	};
-	Fixed& getUsollMem1()  												{ return _UsollMem1;			};
-	Fixed& getUsollMem2()  												{ return _UsollMem2;			};
-	Fixed& getIsollMem1()  												{ return _IsollMem1;			};
-	Fixed& getIsollMem2() 		 										{ return _IsollMem2;			};
+	Adjustment_0pxx& getRshunt()  					  	{ return _Rshunt; 				};
+	const Adjustment_0pxx getRshunt() 			const 	{ return _Rshunt; 				};
+	bool isRshuntFineFlag() 					const 	{ return _RshuntFineFlag;	};
+	StrtMemoryEnum getStrtMemory() 				const 	{	return _strtMemory;			};
+	Adjustment_0p0& getTendstufeMax() 				  	{ return _TendstufeMax;		};
+	Adjustment_0p0& getTtrafoMax() 					  	{ return _TtrafoMax;			};
+	const Adjustment_0p0 getTendstufeMax() 		const 	{ return _TendstufeMax;		};
+	const Adjustment_0p0 getTtrafoMax() 	 	const 	{ return _TtrafoMax;			};
+	bool isPowActiveStart() 					const	{	return _PowActiveStart;	};
+	InSourceEnum getInSourceMem1() 				const	{ return _InSourceMem1; 	};
+	InSourceEnum getInSourceMem2() 				const 	{ return _InSourceMem2; 	};
+	Fixed& getUsollMem1()  								{ return _UsollMem1;			};
+	Fixed& getUsollMem2()  								{ return _UsollMem2;			};
+	Fixed& getIsollMem1()  								{ return _IsollMem1;			};
+	Fixed& getIsollMem2() 		 						{ return _IsollMem2;			};
 	void setInSourceMem1(InSourceEnum in) 				{ _InSourceMem1 = in; 		};
 	void setInSourceMem2(InSourceEnum in) 				{ _InSourceMem2 = in; 		};
 
@@ -65,15 +65,15 @@ private:
 	Adjustment_0p0	_TtrafoMax;
 	Adjustment_0p0	_TendstufeMax;
 
-	Fixed						_UsollMem1;
-	Fixed						_IsollMem1;
-	InSourceEnum		_InSourceMem1;
-	Fixed   				_UsollMem2;
-	Fixed   				_IsollMem2;
-	InSourceEnum		_InSourceMem2;
+	Fixed			_UsollMem1;
+	Fixed			_IsollMem1;
+	InSourceEnum	_InSourceMem1;
+	Fixed   		_UsollMem2;
+	Fixed   		_IsollMem2;
+	InSourceEnum	_InSourceMem2;
 
-	bool						_RshuntFineFlag;
-	bool					  _PowActiveStart;
+	bool			_RshuntFineFlag;
+	bool			 _PowActiveStart;
 
 	// ToDo
 	//ExtFloat			_PowOnDynamic;

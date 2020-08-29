@@ -2087,17 +2087,6 @@ void HAL_UART_IRQHandler(UART_HandleTypeDef *huart)
   uint32_t errorflags;
   uint32_t errorcode;
 
-  // <HG_modification>
-     uint32_t tmp_flag = __HAL_UART_GET_FLAG(huart, UART_FLAG_IDLE);
-     uint32_t tmp_it_source = __HAL_UART_GET_IT_SOURCE(huart, UART_IT_IDLE);
-     /* UART RX Idle interrupt --------------------------------------------*/
-     if((tmp_flag != RESET) && (tmp_it_source != RESET))
-     {
-       __HAL_UART_CLEAR_IDLEFLAG(huart);
-       HAL_UART_RxIdleCallback(huart);
-     }
-  // </HG_modification>
-
   /* If no error occurs */
   errorflags = (isrflags & (uint32_t)(USART_ISR_PE | USART_ISR_FE | USART_ISR_ORE | USART_ISR_NE | USART_ISR_RTOF));
   if (errorflags == 0U)
@@ -2287,23 +2276,6 @@ void HAL_UART_IRQHandler(UART_HandleTypeDef *huart)
   }
 
 }
-
-// <HG_modification>
-/**
-  * @brief  Rx idle callback.
-  * @param  huart: Pointer to a UART_HandleTypeDef structure that contains
-  *                the configuration information for the specified UART module.
-  * @retval None
-  */
- __weak void HAL_UART_RxIdleCallback(UART_HandleTypeDef *huart)
-{
-  /* Prevent unused argument(s) compilation warning */
-  UNUSED(huart);
-  /* NOTE: This function should not be modified, when the callback is needed,
-           the HAL_UART_RxIdleCallback can be implemented in the user file
-   */
-}
-// </HG_modification>
 
 /**
   * @brief Tx Transfer completed callback.

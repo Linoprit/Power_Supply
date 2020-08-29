@@ -17,6 +17,7 @@ ISR_callback *uart1_RxCplt_callback   = NULL;
 ISR_callback *uart2_RxCplt_callback   = NULL;
 ISR_callback *uart3_RxCplt_callback   = NULL;
 ISR_callback *rotary_encoder_callback = NULL;
+ISR_callback *inaAlertPin_callback 	  = NULL;
 
 /*void HAL_SYSTICK_Callback(void)
 {
@@ -30,11 +31,18 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 	//UNUSED(GPIO_Pin);
 
   // Rotary Encoder ISR
-  if (GPIO_Pin == Rotary_Encoder_INT_Pin)
-	{
-	  if (rotary_encoder_callback != NULL)
+  if (GPIO_Pin == Rotary_Encoder_INT_Pin) {
+	  if (rotary_encoder_callback != NULL){
 	  	rotary_encoder_callback->ISR_callback_fcn();
+	  }
 	}
+
+  // current limit alert pin
+  if (GPIO_Pin == Ina_ALERT_Pin) {
+	  if(inaAlertPin_callback != NULL) {
+		  inaAlertPin_callback->ISR_callback_fcn();
+	  }
+  }
 
   //HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 }
@@ -115,13 +123,11 @@ void USART2_IRQHandler(void)
 //	HAL_UART_IRQHandler(get_huart3());
 //}
 
-
-
-void add_rotary_encoder_callback(ISR_callback* callback)
-{
+void add_rotary_encoder_callback(ISR_callback* callback) {
   rotary_encoder_callback = callback;
 }
 
-
-
+void add_inaAlertPin_callback(ISR_callback* callback) {
+	inaAlertPin_callback = callback;
+}
 

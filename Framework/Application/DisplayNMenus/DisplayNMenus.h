@@ -27,7 +27,7 @@ public:
 
 private:
 	Char_LCD_socket		_socket;
-	Char_LCD					_charLCD;
+	Char_LCD			_charLCD;
 
 };
 

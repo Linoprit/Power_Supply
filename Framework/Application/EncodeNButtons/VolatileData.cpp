@@ -16,14 +16,14 @@ namespace encodeNButtons {
 VolatileData::VolatileData():
 	_Usoll 					{ USOLL_ADJ_SETUP },
 	_Isoll 					{ ISOLL_ADJ_SETUP },
-	_InSource 			{	inAuto },
-	_PowActive			{ false },
-	_UsollFineFlag	{ false },
-	_IsollFineFlag	{ false },
-	_KeysLocked   	{ false },
-	_LastOnOffButtonEvent { evntNone },
+	_InSource 				{	inAuto },
+	_PowActive				{ false },
+	_UsollFineFlag			{ false },
+	_IsollFineFlag			{ false },
+	_KeysLocked   			{ false },
+	_LastOnOffButtonEvent 	{ evntNone },
 	_MemStoreEvntActive		{ false		 },
-	_MemEvntCounter				{ 0 			 }
+	_MemEvntCounter			{ 0 			 }
 {
 }
 
@@ -66,7 +66,6 @@ void VolatileData::update(
 		_LastOnOffButtonEvent = evntReleased;
 		keyButtonOnOff();
 	}
-
 
 	if( (actScreen == scrValues) || (actScreen == scrThetas) ){
 		updateValues(	actTuple );
@@ -181,14 +180,13 @@ void VolatileData::updateUsource(KeyEventTuple actTuple) {
 	}
 
 	if ( (actTuple.key == keyRotRight) && (actTuple.event == evntDecrement) ) {
-		if ( (actTuple.key == keyRotRight) && (actTuple.event == evntIncrement) ) {
-			if (_InSource == inHigh )
-				_InSource = inAuto;
-			else if (_InSource == inLow)
-				_InSource = inHigh;
-			else if (_InSource == inAuto)
-				_InSource = inLow;
-		}
+		if (_InSource == inHigh )
+			_InSource = inAuto;
+		else if (_InSource == inLow)
+			_InSource = inHigh;
+		else if (_InSource == inAuto)
+			_InSource = inLow;
+
 	}
 }
 

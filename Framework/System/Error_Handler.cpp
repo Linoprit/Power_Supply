@@ -6,10 +6,10 @@
  */
 
 #include <System/Error_Handler.h>
-#include <System/uart_printf.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <main.h>
+#include <System/swo_printf.h>
 
 
 void error_handler(const char* file, uint32_t line)
