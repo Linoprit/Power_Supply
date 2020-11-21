@@ -19,6 +19,8 @@
  - printf("Result is: %d.%d", i/10, i%10);
  */
 
+
+/*
 #define TX_BUFF_LEN 128
 uint16_t tx_act_pos = 0;
 
@@ -53,5 +55,5 @@ int swoPrintf(const char *format, ...)
 
 	return SUCCESS;
 }
-
+*/
 

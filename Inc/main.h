@@ -72,6 +72,14 @@ void Error_Handler(void);
 #define USART_RX_GPIO_Port GPIOA
 #define LD2_Pin GPIO_PIN_5
 #define LD2_GPIO_Port GPIOA
+#define Button_6_Pin GPIO_PIN_6
+#define Button_6_GPIO_Port GPIOA
+#define Button_5_Pin GPIO_PIN_7
+#define Button_5_GPIO_Port GPIOA
+#define Led_EEPROM_Pin GPIO_PIN_4
+#define Led_EEPROM_GPIO_Port GPIOC
+#define LED_State_Pin GPIO_PIN_5
+#define LED_State_GPIO_Port GPIOC
 #define Ina_ALERT_Pin GPIO_PIN_15
 #define Ina_ALERT_GPIO_Port GPIOB
 #define Ina_ALERT_EXTI_IRQn EXTI15_10_IRQn
@@ -83,10 +91,6 @@ void Error_Handler(void);
 #define EEPROM_CS_GPIO_Port GPIOC
 #define EEPROM_SCLK_Pin GPIO_PIN_9
 #define EEPROM_SCLK_GPIO_Port GPIOC
-#define Button_6_Pin GPIO_PIN_11
-#define Button_6_GPIO_Port GPIOA
-#define Button_5_Pin GPIO_PIN_12
-#define Button_5_GPIO_Port GPIOA
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14

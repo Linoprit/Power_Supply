@@ -10,6 +10,7 @@
 #include <Tasks/DisplayNMenusTsk.h>
 #include "main.h"
 #include <stdio.h>
+#include <System/uart_printf.h>
 
 
 void StrtDisplayNMenus(void *argument)
@@ -25,6 +26,11 @@ void StrtDisplayNMenus(void *argument)
 		//swoPrintf("blah blah %i\n", counter++);
 
 		//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+		//HAL_GPIO_TogglePin(LED_State_GPIO_Port, LED_State_Pin);
+		//HAL_GPIO_TogglePin(Led_EEPROM_GPIO_Port, Led_EEPROM_Pin);
+
+		tx_printf("Hello World.\n");
+
 		displaynmenus::DisplayNMenus::instance().cycle();
 		osDelay(100);
 

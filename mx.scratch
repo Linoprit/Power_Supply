@@ -6,7 +6,7 @@
     <WorkspacePath>/home/harald/eclipse_workspaces/cubeIDE/PowerSupply_F303/</WorkspacePath>
     <underRoot>true</underRoot>
     <TrustZone>0</TrustZone>
-    <HAL_Driver>/home/harald/STM32Cube/Repository//STM32Cube_FW_F3_V1.11.0</HAL_Driver>
+    <HAL_Driver>/ext/STM32Cube/Repository/STM32Cube_FW_F3_V1.11.0</HAL_Driver>
     <CMSIS>Drivers/CMSIS</CMSIS>
     <Toolchain>STM32CubeIDE</Toolchain>
     <IocFile>PowerSupply_F303.ioc</IocFile>
@@ -31,7 +31,7 @@
             <memory access="xrw" name="CCMRAM" size="16" start="0x10000000"/>
             <memory access="rx" name="FLASH" size="512" start="0x8000000"/>
           </memories>
-          <startup>/home/harald/STM32Cube/Repository/STM32Cube_FW_F3_V1.11.0/Drivers/CMSIS/Device\ST\STM32F3xx\Source\Templates\gcc\startup_stm32f303xe.s</startup>
+          <startup>/ext/STM32Cube/Repository/STM32Cube_FW_F3_V1.11.0/Drivers/CMSIS/Device\ST\STM32F3xx\Source\Templates\gcc\startup_stm32f303xe.s</startup>
           <LinkSettings>
             <LinkAdditionalLibs/>
           </LinkSettings>

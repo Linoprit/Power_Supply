@@ -5,8 +5,8 @@
  *      Author: harald
  */
 
-#ifndef SWO_PRINTF_H_
-#define SWO_PRINTF_H_
+#ifndef UART_PRINTF_H_
+#define UART_PRINTF_H_
 
 #include "stm32f3xx_hal.h"
 
@@ -17,11 +17,12 @@
 #define EXTERNC
 #endif
 
-EXTERNC int swoPrintf(const char *format, ...);
+EXTERNC int tx_printf(const char *format, ...);
+EXTERNC void tx_buff_clear(void);
 
 #undef EXTERNC
 #ifdef __cplusplus
 // put cpp includes here!!
 
 #endif // C interface
-#endif /* SWO_PRINTF_H_ */
+#endif /* UART_PRINTF_H_ */

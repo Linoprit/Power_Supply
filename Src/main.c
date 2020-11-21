@@ -704,8 +704,8 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, Char_LCD_EN_Pin|Char_LCD_RS_Pin|FAN_out_Pin|EEPROM_DI_Pin
-                          |EEPROM_CS_Pin|EEPROM_SCLK_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, Char_LCD_EN_Pin|Char_LCD_RS_Pin|Led_EEPROM_Pin|LED_State_Pin
+                          |FAN_out_Pin|EEPROM_DI_Pin|EEPROM_CS_Pin|EEPROM_SCLK_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
@@ -733,24 +733,26 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Ina_ALERT_Pin Rotary_Encoder_INT_Pin */
-  GPIO_InitStruct.Pin = Ina_ALERT_Pin|Rotary_Encoder_INT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  /*Configure GPIO pins : Button_6_Pin Button_5_Pin */
+  GPIO_InitStruct.Pin = Button_6_Pin|Button_5_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : FAN_out_Pin EEPROM_DI_Pin EEPROM_SCLK_Pin */
-  GPIO_InitStruct.Pin = FAN_out_Pin|EEPROM_DI_Pin|EEPROM_SCLK_Pin;
+  /*Configure GPIO pins : Led_EEPROM_Pin LED_State_Pin FAN_out_Pin EEPROM_DI_Pin
+                           EEPROM_SCLK_Pin */
+  GPIO_InitStruct.Pin = Led_EEPROM_Pin|LED_State_Pin|FAN_out_Pin|EEPROM_DI_Pin
+                          |EEPROM_SCLK_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : Button_6_Pin Button_5_Pin */
-  GPIO_InitStruct.Pin = Button_6_Pin|Button_5_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  /*Configure GPIO pins : Ina_ALERT_Pin Rotary_Encoder_INT_Pin */
+  GPIO_InitStruct.Pin = Ina_ALERT_Pin|Rotary_Encoder_INT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Voltage_HI_LO_Pin */
   GPIO_InitStruct.Pin = Voltage_HI_LO_Pin;
