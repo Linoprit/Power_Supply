@@ -5,10 +5,8 @@
  *      Author: harald
  */
 
-#ifndef UART_PRINTF_H_
-#define UART_PRINTF_H_
-
-#include "stm32f3xx_hal.h"
+#ifndef USB_PRINTF_H_
+#define USB_PRINTF_H_
 
 // C interface
 #ifdef __cplusplus
@@ -18,11 +16,17 @@
 #endif
 
 EXTERNC int tx_printf(const char *format, ...);
-EXTERNC void tx_buff_clear(void);
+EXTERNC int tx_printBuff(uint8_t* buffer, uint8_t len) ;
+EXTERNC void usb_receive(uint8_t* buf, uint32_t len);
+EXTERNC uint8_t tx_cycle(void);
 
 #undef EXTERNC
 #ifdef __cplusplus
+
 // put cpp includes here!!
 
+
+
+
 #endif // C interface
-#endif /* UART_PRINTF_H_ */
+#endif /* USB_PRINTF_H_ */

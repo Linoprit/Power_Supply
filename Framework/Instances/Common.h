@@ -38,7 +38,7 @@ EXTERNC void mainCycle(void);
 
 // bodies are in main.c
 EXTERNC UART_HandleTypeDef* get_huart1(void);
-EXTERNC UART_HandleTypeDef* get_huart2(void);
+//EXTERNC UART_HandleTypeDef* get_huart2(void);
 EXTERNC UART_HandleTypeDef* get_huart3(void);
 EXTERNC SPI_HandleTypeDef* 	get_hspi3 (void);
 EXTERNC SPI_HandleTypeDef* 	get_hspi3 (void);

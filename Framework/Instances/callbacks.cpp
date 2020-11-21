@@ -113,10 +113,10 @@ void HAL_UART_RxIdleCallback(UART_HandleTypeDef *huart)
 //	HAL_UART_IRQHandler(get_huart1());
 //}
 
-void USART2_IRQHandler(void)
-{
-  HAL_UART_IRQHandler(get_huart2());
-}
+//void USART2_IRQHandler(void)
+//{
+//  HAL_UART_IRQHandler(get_huart2());
+//}
 
 //void USART3_IRQHandler(void)
 //{

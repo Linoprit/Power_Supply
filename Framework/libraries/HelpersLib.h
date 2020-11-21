@@ -18,8 +18,8 @@
 #define DEC_RADIX 10
 #define HEX_RADIX 16
 
-
-
+constexpr uint8_t _SUCCESS = 0;
+constexpr uint8_t _ERROR = 1;
 
 class HelpersLib
 {

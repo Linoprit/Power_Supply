@@ -10,31 +10,40 @@
 #include <Tasks/DisplayNMenusTsk.h>
 #include "main.h"
 #include <stdio.h>
-#include <System/uart_printf.h>
+#include <System/CommandLine/CommandLine.h>
+#include <System/usb_printf.h>
+#include "usb_device.h"
+//#include <usbd_cdc_if.h>
+
 
 
 void StrtDisplayNMenus(void *argument)
 {
 	UNUSED(argument);
+	uint8_t loopCounter = 0;
+	MX_USB_DEVICE_Init();
 	displaynmenus::DisplayNMenus::instance().init();
 
-
-	//static uint8_t counter = 0;
+	cLine::CommandLine::instance().init();
+	osDelay(500);
 
 	for(;;)
 	{
-		//swoPrintf("blah blah %i\n", counter++);
 
 		//HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
 		//HAL_GPIO_TogglePin(LED_State_GPIO_Port, LED_State_Pin);
 		//HAL_GPIO_TogglePin(Led_EEPROM_GPIO_Port, Led_EEPROM_Pin);
 
-		tx_printf("Hello World.\n");
+		cLine::CommandLine::instance().cycle();
+		tx_cycle();
 
-		displaynmenus::DisplayNMenus::instance().cycle();
-		osDelay(100);
+		if (loopCounter >= 10){
+			displaynmenus::DisplayNMenus::instance().cycle();
+			loopCounter = 0;
+		}
+		loopCounter++;
 
-
+		osDelay(10);
 	}
 
 }
