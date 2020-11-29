@@ -49,6 +49,8 @@ typedef StaticSemaphore_t osStaticSemaphoreDef_t;
 ADC_HandleTypeDef hadc3;
 DMA_HandleTypeDef hdma_adc3;
 
+CRC_HandleTypeDef hcrc;
+
 DAC_HandleTypeDef hdac1;
 
 I2C_HandleTypeDef hi2c1;
@@ -87,7 +89,7 @@ const osThreadAttr_t measureNControl_attributes = {
 };
 /* Definitions for encoderNButtons */
 osThreadId_t encoderNButtonsHandle;
-uint32_t encoderNButtonsBuffer[ 128 ];
+uint32_t encoderNButtonsBuffer[ 256 ];
 osStaticThreadDef_t encoderNButtonsControlBlock;
 const osThreadAttr_t encoderNButtons_attributes = {
   .name = "encoderNButtons",
@@ -136,6 +138,7 @@ static void MX_SPI3_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_I2C3_Init(void);
 static void MX_USART3_UART_Init(void);
+static void MX_CRC_Init(void);
 void StrtDisplayNMenus(void *argument);
 extern void StrtMeasureNControl(void *argument);
 extern void StrtEncoderNButtons(void *argument);
@@ -147,15 +150,15 @@ extern void StrtEncoderNButtons(void *argument);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-UART_HandleTypeDef* get_huart1(void) 	{ return &huart1; }
-//UART_HandleTypeDef* get_huart2(void) 	{ return &huart2; }
-UART_HandleTypeDef* get_huart3(void) 	{ return &huart3; }
-SPI_HandleTypeDef* 	get_hspi3 (void)  { return &hspi3;  }
-I2C_HandleTypeDef* 	get_hi2c1 (void) 	{ return &hi2c1;  }
-I2C_HandleTypeDef* 	get_hi2c3 (void) 	{ return &hi2c3;  }
-ADC_HandleTypeDef*  get_hadc3 (void)  { return &hadc3;  }
-DAC_HandleTypeDef*  get_hdac1(void)   { return &hdac1;  }
-
+UART_HandleTypeDef* get_huart1(void) 	{ return &huart1; 	}
+//UART_HandleTypeDef* get_huart2(void) 	{ return &huart2; 	}
+UART_HandleTypeDef* get_huart3(void) 	{ return &huart3; 	}
+SPI_HandleTypeDef* 	get_hspi3 (void)  	{ return &hspi3;  	}
+I2C_HandleTypeDef* 	get_hi2c1 (void) 	{ return &hi2c1;  	}
+I2C_HandleTypeDef* 	get_hi2c3 (void) 	{ return &hi2c3;  	}
+ADC_HandleTypeDef*  get_hadc3 (void)  	{ return &hadc3;  	}
+DAC_HandleTypeDef*  get_hdac1(void)   	{ return &hdac1;  	}
+CRC_HandleTypeDef* 	get_hcrc(void)		{ return &hcrc;		}
 /* USER CODE END 0 */
 
 /**
@@ -194,6 +197,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_I2C3_Init();
   MX_USART3_UART_Init();
+  MX_CRC_Init();
   /* USER CODE BEGIN 2 */
 
   common_init();
@@ -385,6 +389,37 @@ static void MX_ADC3_Init(void)
   /* USER CODE BEGIN ADC3_Init 2 */
 
   /* USER CODE END ADC3_Init 2 */
+
+}
+
+/**
+  * @brief CRC Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_CRC_Init(void)
+{
+
+  /* USER CODE BEGIN CRC_Init 0 */
+
+  /* USER CODE END CRC_Init 0 */
+
+  /* USER CODE BEGIN CRC_Init 1 */
+
+  /* USER CODE END CRC_Init 1 */
+  hcrc.Instance = CRC;
+  hcrc.Init.DefaultPolynomialUse = DEFAULT_POLYNOMIAL_ENABLE;
+  hcrc.Init.DefaultInitValueUse = DEFAULT_INIT_VALUE_ENABLE;
+  hcrc.Init.InputDataInversionMode = CRC_INPUTDATA_INVERSION_NONE;
+  hcrc.Init.OutputDataInversionMode = CRC_OUTPUTDATA_INVERSION_DISABLE;
+  hcrc.InputDataFormat = CRC_INPUTDATA_FORMAT_WORDS;
+  if (HAL_CRC_Init(&hcrc) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN CRC_Init 2 */
+
+  /* USER CODE END CRC_Init 2 */
 
 }
 
@@ -707,7 +742,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pins : Button_6_Pin Button_5_Pin */
   GPIO_InitStruct.Pin = Button_6_Pin|Button_5_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : Led_EEPROM_Pin LED_State_Pin FAN_out_Pin EEPROM_DI_Pin

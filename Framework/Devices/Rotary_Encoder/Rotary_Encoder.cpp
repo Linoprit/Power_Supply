@@ -59,15 +59,15 @@ void Rotary_Encoder::cycle(EventQueue_type& eventQueue)
 				keyRotRight,
 				eventQueue);
 		check_cycle(button_val_left, 	keyBtnLeft,		eventQueue);
-		check_cycle(button_val_right, keyBtnRight, 	eventQueue);
-		check_cycle(button_val_3, 		keyBtnSetup, 			eventQueue);
-		check_cycle(button_val_4, 		keyBtnOnOff, 			eventQueue);
+		check_cycle(button_val_right, 	keyBtnRight, 	eventQueue);
+		check_cycle(button_val_3, 		keyBtnSetup, 	eventQueue);
+		check_cycle(button_val_4, 		keyBtnOnOff, 	eventQueue);
 	}
 
 	check_cycle(button_val_left, 		keyBtnLeft, 	eventQueue);
-	check_cycle(button_val_right, 	keyBtnRight, 	eventQueue);
-	check_cycle(button_val_3, 			keyBtnSetup, 			eventQueue);
-	check_cycle(button_val_4, 			keyBtnOnOff, 			eventQueue);
+	check_cycle(button_val_right, 		keyBtnRight, 	eventQueue);
+	check_cycle(button_val_3, 			keyBtnSetup, 	eventQueue);
+	check_cycle(button_val_4, 			keyBtnOnOff, 	eventQueue);
 }
 
 

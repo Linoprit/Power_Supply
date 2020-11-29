@@ -10,6 +10,8 @@
 #include "NonVolatileData.h"
 #include "main.h"
 
+#include <System/usb_printf.h>
+
 
 namespace encodeNButtons {
 
@@ -68,7 +70,7 @@ void VolatileData::update(
 	}
 
 	if( (actScreen == scrValues) || (actScreen == scrThetas) ){
-		updateValues(	actTuple );
+		updateValues(actTuple );
 	}
 
 	if(actScreen == scrUsource) {
@@ -76,11 +78,13 @@ void VolatileData::update(
 	}
 }
 
+// set displaying "M"
 void VolatileData::setMemEvent(void) {
-	_MemStoreEvntActive = true;
+	_MemStoreEvntActive 	= true;
 	_MemEvntCounter 		= Common::get_tick() + MemEventCount;
 }
 
+// reset displaying "M", if counter is reached
 void VolatileData::updateMemEvent(void) {
 	if (Common::get_tick() > _MemEvntCounter) {
 		_MemStoreEvntActive = false;
@@ -93,7 +97,7 @@ void VolatileData::keyMemory1(NonVolatileData& nonVolatileData, KeyEvent_enum	ev
 		nonVolatileData.getUsollMem1().set(_Usoll.get());
 		nonVolatileData.getIsollMem1().set(_Isoll.get());
 		nonVolatileData.setInSourceMem1(getInSource());
-		// TODO store MEM1 to EEPROM
+		nonVolatileData.storeMemVals();
 		setMemEvent();
 	}
 
@@ -111,7 +115,7 @@ void VolatileData::keyMemory2(NonVolatileData& nonVolatileData, KeyEvent_enum	ev
 		nonVolatileData.getUsollMem2().set(_Usoll.get());
 		nonVolatileData.getIsollMem2().set(_Isoll.get());
 		nonVolatileData.setInSourceMem2(getInSource());
-		// TODO store MEM2 to EEPROM
+		nonVolatileData.storeMemVals();
 		setMemEvent();
 	}
 

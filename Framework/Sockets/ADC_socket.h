@@ -28,9 +28,9 @@ public:
 	void 		cycle_1ms(void);
 
 	// access to all channels measured mean values
-	uint16_t* get_measurement(void);
+	uint16_t* 	get_measurement(void);
 	uint8_t 	get_num_of_channels(void);
-	uint16_t  get_ADC_max(void) { return ADC_MAX; };
+	uint16_t  	get_ADC_max(void) { return ADC_MAX; };
 
 
 protected:

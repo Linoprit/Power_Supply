@@ -26,7 +26,8 @@ public:
 	virtual ~ScreenState() {};
 
 	// only btn_released, btn_pressed, btn_held is taken into account
-	void update(KeyEvent_enum 	scrEvent);
+	// returns true, if the screen with nonVolatile data is left
+	bool update(KeyEvent_enum 	scrEvent);
 
 	ScreenStateEnum getActSreen(void) const { return _actScreen; };
 
@@ -35,7 +36,7 @@ public:
 
 private:
 	ScreenStateEnum 	_actScreen;
-	KeyEvent_enum			_lastEvent;
+	KeyEvent_enum		_lastEvent;
 
 };
 

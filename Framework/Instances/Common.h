@@ -46,6 +46,7 @@ EXTERNC I2C_HandleTypeDef* 	get_hi2c1 (void);
 EXTERNC I2C_HandleTypeDef* 	get_hi2c3 (void);
 EXTERNC ADC_HandleTypeDef*  get_hadc3 (void);
 EXTERNC DAC_HandleTypeDef*  get_hdac1 (void);
+EXTERNC CRC_HandleTypeDef* 	get_hcrc(void);
 
 // semaphores
 EXTERNC osSemaphoreId_t CtrTskDataSemHandle;

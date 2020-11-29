@@ -16,49 +16,54 @@
 #include <Types/Adjustment_0p0.h>
 #include <Types/Adjustment_0pxx.h>
 #include <Types/Typedefs.h>
+#include "EepromApp.h"
+
 
 namespace encodeNButtons {
 using namespace rotaryEncoder;
-
-enum StrtMemoryEnum {
-	strtNone, strtMem1, strtMem2
-};
-
-
 
 class NonVolatileData {
 public:
 	NonVolatileData();
 	virtual ~NonVolatileData() {};
 
+	void initValues(void);
+
 	void update(
-			KeyEventTuple 	actTuple,
-			ScreenStateEnum actScreen,
+			KeyEventTuple 		actTuple,
+			ScreenStateEnum 	actScreen,
 			VolatileData		volatileData);
+	cLine::ExecResult executeCommand(uint32_t hashCode);
 
 	void incrementStrtMemoryEnum(StrtMemoryEnum& in);
 	void decrementStrtMemoryEnum(StrtMemoryEnum& in);
 
 
-	Adjustment_0pxx& getRshunt()  					  	{ return _Rshunt; 				};
-	const Adjustment_0pxx getRshunt() 			const 	{ return _Rshunt; 				};
+	Adjustment_0pxx& getRshunt()  					  	{ return _Rshunt; 			};
+	const Adjustment_0pxx getRshunt() 			const 	{ return _Rshunt; 			};
 	bool isRshuntFineFlag() 					const 	{ return _RshuntFineFlag;	};
-	StrtMemoryEnum getStrtMemory() 				const 	{	return _strtMemory;			};
+	StrtMemoryEnum getStrtMemory() 				const 	{ return _strtMemory;		};
 	Adjustment_0p0& getTendstufeMax() 				  	{ return _TendstufeMax;		};
-	Adjustment_0p0& getTtrafoMax() 					  	{ return _TtrafoMax;			};
+	Adjustment_0p0& getTtrafoMax() 					  	{ return _TtrafoMax;		};
 	const Adjustment_0p0 getTendstufeMax() 		const 	{ return _TendstufeMax;		};
-	const Adjustment_0p0 getTtrafoMax() 	 	const 	{ return _TtrafoMax;			};
-	bool isPowActiveStart() 					const	{	return _PowActiveStart;	};
+	const Adjustment_0p0 getTtrafoMax() 	 	const 	{ return _TtrafoMax;		};
+	bool isPowActiveStart() 					const	{ return _PowActiveStart;	};
 	InSourceEnum getInSourceMem1() 				const	{ return _InSourceMem1; 	};
 	InSourceEnum getInSourceMem2() 				const 	{ return _InSourceMem2; 	};
-	Fixed& getUsollMem1()  								{ return _UsollMem1;			};
-	Fixed& getUsollMem2()  								{ return _UsollMem2;			};
-	Fixed& getIsollMem1()  								{ return _IsollMem1;			};
-	Fixed& getIsollMem2() 		 						{ return _IsollMem2;			};
+	Fixed& getUsollMem1()  								{ return _UsollMem1;		};
+	Fixed& getUsollMem2()  								{ return _UsollMem2;		};
+	Fixed& getIsollMem1()  								{ return _IsollMem1;		};
+	Fixed& getIsollMem2() 		 						{ return _IsollMem2;		};
 	void setInSourceMem1(InSourceEnum in) 				{ _InSourceMem1 = in; 		};
 	void setInSourceMem2(InSourceEnum in) 				{ _InSourceMem2 = in; 		};
+	EepromApp getEeprom(void)							{ return _eeprom;			};
+	void storeMemVals(void);
+	void storeCalibVals(void);
+	void storeStartVals(void);
+
 
 private:
+	EepromApp		_eeprom;
 	StrtMemoryEnum  _strtMemory;
 
 	Adjustment_0pxx _Rshunt;
@@ -73,7 +78,7 @@ private:
 	InSourceEnum	_InSourceMem2;
 
 	bool			_RshuntFineFlag;
-	bool			 _PowActiveStart;
+	bool			_PowActiveStart;
 
 	// ToDo
 	//ExtFloat			_PowOnDynamic;
@@ -82,6 +87,11 @@ private:
 	void updateStrtValues(KeyEventTuple actTuple);
 	void updateCalib(VolatileData	volatileData, KeyEventTuple actTuple);
 	void updateTgrenz(KeyEventTuple actTuple);
+
+	void initStartVals(void);
+	void initCalibVals(void);
+	void initMemVals(void);
+	void writeAllDataUnchecked();
 };
 
 } /* namespace encodeNButtons */

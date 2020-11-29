@@ -10,13 +10,13 @@
 
 namespace eeprom {
 Eeprom_93C86::Eeprom_93C86(void) {
-	_socket = NULL;
+	_EePromSocket = NULL;
 	_nextDataAddress = 0;
 	_numOfJournalEntries = 0;
 }
 
-Eeprom_93C86::Eeprom_93C86(Eeprom_93C86_socket *socket) {
-	_socket = socket;
+Eeprom_93C86::Eeprom_93C86(Eeprom_93C86_socket *EepromSocket) {
+	_EePromSocket = EepromSocket;
 	_nextDataAddress = sizeof(JournalInfoType) + sizeof(JournalEntryType) * JOURNAL_SIZE;
 	_numOfJournalEntries = 0;
 }
@@ -27,13 +27,13 @@ bool Eeprom_93C86::init(void) {
 		return false;
 	}
 
-	_socket->write_enable(); // never forget!
+	_EePromSocket->write_enable(); // never forget!
 
 	// read all journals into the Map-class
 	JournalEntryType journalEntry;
 	for (uint8_t i = 0; i < JOURNAL_SIZE; i++) {
 		if (readJournalEntry(i, journalEntry) == true) {
-			_numOfJournalEntries = i;
+			_numOfJournalEntries = i+1;
 			_nextDataAddress = journalEntry.startAddress + journalEntry.size;
 			_journalEntryMap.put(journalEntry);
 		} else {
@@ -55,7 +55,7 @@ bool Eeprom_93C86::readData(ValueID id, uint8_t *buffer) {
 		return false;
 	}
 
-	_socket->readBlock(journalEntry.startAddress, buffer, journalEntry.size);
+	_EePromSocket->readBlock(journalEntry.startAddress, buffer, journalEntry.size);
 	if (!blockIsValid(buffer, journalEntry.size)) {
 		return false;
 	}
@@ -82,7 +82,7 @@ bool Eeprom_93C86::writeData(ValueID id, uint8_t *buffer, uint8_t size) {
 	CrcType crc = CrcSocket::calc_chksum(buffer,
 			size - sizeof(CrcType));
 	buffer[size - sizeof(CrcType)] = crc;
-	_socket->writeBlock(getNextDataAddress(), buffer, size);
+	_EePromSocket->writeBlock(getNextDataAddress(), buffer, size);
 	_nextDataAddress = _nextDataAddress + size;
 
 	return true;
@@ -97,7 +97,7 @@ bool Eeprom_93C86::writeJournalEntry(JournalEntryType journalEntry) {
 			reinterpret_cast<uint8_t*>(&journalEntry),
 			sizeof(JournalEntryType) - sizeof(CrcType));
 
-	_socket->writeBlock(calcNextJournalAddress(),
+	_EePromSocket->writeBlock(calcNextJournalAddress(),
 			reinterpret_cast<uint8_t*>(&journalEntry),
 			sizeof(JournalEntryType));
 
@@ -112,10 +112,11 @@ bool Eeprom_93C86::readJournalEntry(uint8_t entryNumber,
 
 	uint16_t address = sizeof(JournalInfoType)
 			+ (entryNumber * sizeof(JournalEntryType));
-	_socket->readBlock(address, reinterpret_cast<uint8_t*>(&journalEntry),
+	_EePromSocket->readBlock(address, reinterpret_cast<uint8_t*>(&journalEntry),
 			sizeof(JournalEntryType));
 
-	if (!blockIsValid(reinterpret_cast<uint8_t*>(&journalEntry), journalEntry.size)) {
+	if (!blockIsValid(reinterpret_cast<uint8_t*>(&journalEntry),
+			sizeof(JournalEntryType))) { //journalEntry.size)) {
 		return false;
 	}
 	return true;
@@ -123,7 +124,7 @@ bool Eeprom_93C86::readJournalEntry(uint8_t entryNumber,
 
 void Eeprom_93C86::eraseEeprom(void) {
 
-	_socket->write_enable(); // never forget!
+	_EePromSocket->write_enable(); // never forget!
 
 	// maybe we have to use the _socket-function 'eraseall'
 	// invalidate all journal entries
@@ -132,7 +133,7 @@ void Eeprom_93C86::eraseEeprom(void) {
 
 	for (uint8_t i = 0; i < JOURNAL_SIZE; i++) {
 		uint16_t crcAddress = i * sizeof(JournalEntryType) + startAddress;
-		_socket->write(crcAddress, 255);
+		_EePromSocket->write(crcAddress, 255);
 	}
 	writeJournalInfo();
 
@@ -140,7 +141,6 @@ void Eeprom_93C86::eraseEeprom(void) {
 	_numOfJournalEntries = 0;
 
 	JournalEntryMap _journalEntryMap;
-
 }
 
 uint16_t Eeprom_93C86::calcNextJournalAddress(void) {
@@ -163,7 +163,7 @@ bool Eeprom_93C86::journalInfoIsValid(void) {
 	JournalInfoType journalInfo;
 	uint8_t *journalInfoBuff = reinterpret_cast<uint8_t*>(&journalInfo);
 
-	_socket->readBlock(JOURNAL_INFO_ADDRESS, journalInfoBuff,
+	_EePromSocket->readBlock(JOURNAL_INFO_ADDRESS, journalInfoBuff,
 			journalInfoTypeSize);
 
 	if (blockIsValid(journalInfoBuff, journalInfoTypeSize)) {
@@ -189,7 +189,7 @@ void Eeprom_93C86::writeJournalInfo(void) {
 			reinterpret_cast<uint8_t*>(&journalInfo),
 			sizeof(JournalInfoType) - 1);
 
-	_socket->writeBlock(JOURNAL_INFO_ADDRESS,
+	_EePromSocket->writeBlock(JOURNAL_INFO_ADDRESS,
 			reinterpret_cast<uint8_t*>(&journalInfo), sizeof(JournalInfoType));
 }
 

@@ -18,11 +18,11 @@ public:
 	Interpreter();
 	virtual ~Interpreter() {};
 
-	bool doit(CmdBufferType comLine);
+	uint32_t doit(CmdBufferType comLine);
 
 
 private:
-
+	bool dispatch(uint32_t hashCode);
 
 };
 

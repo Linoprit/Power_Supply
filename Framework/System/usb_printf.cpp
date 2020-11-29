@@ -23,7 +23,7 @@ uint8_t txBuff[TX_BUFF_LEN];
 uint16_t tx_act_pos = 0;
 
 // private
-void tx_buff_clear(void);
+//void tx_buff_clear(void);
 
 /*
  * to enable FLOAT formatted output, see:
@@ -44,6 +44,20 @@ int tx_printf(const char *format, ...) {
 	return _SUCCESS;
 }
 
+// use this one only, if you have to print more than TX_BUFF_LEN in a cycle,
+// i.e. if you dump datasets
+uint8_t txPrintfImm(const char *format, ...) {
+	if(tx_act_pos >= TX_BUFF_LEN-1) {
+		return _ERROR;
+	}
+	va_list arg;
+	va_start (arg, format);
+	tx_act_pos += vsprintf ((char*) &txBuff[tx_act_pos], format, arg);
+	va_end (arg);
+
+	return tx_cycle();
+}
+
 uint8_t tx_cycle(void) {
 	if( tx_act_pos > 0) {
 		uint8_t result = USBD_FAIL;
@@ -58,7 +72,8 @@ uint8_t tx_cycle(void) {
 			}
 		}
 
-		tx_buff_clear();
+		// buffer is in transmission, we must not clear it!
+		tx_act_pos = 0;
 
 		if (result == USBD_OK)
 			return _SUCCESS;
@@ -77,10 +92,11 @@ int tx_printBuff(uint8_t* buffer, uint8_t len) {
 	return _SUCCESS;
 }
 
-void tx_buff_clear(void) {
-	memset(txBuff, '\0', TX_BUFF_LEN);
-	tx_act_pos = 0;
-}
+// not used anymore
+//void tx_buff_clear(void) {
+//	memset(txBuff, '\0', TX_BUFF_LEN);
+//	tx_act_pos = 0;
+//}
 
 /*
  * callback from Cube USB firmware

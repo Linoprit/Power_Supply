@@ -17,6 +17,15 @@
 #define USET_FIX_SETUP  0, 1, 0.0f, 25.4f
 #define ISET_FIX_SETUP  0, 1, 0.0f, 8.2f
 
+namespace encodeNButtons {
+enum PowActive { PowOn = 0, PowOff = 1 };
+enum StrtMemoryEnum { strtNone, strtMem1, strtMem2 };
+enum InSourceEnum { inHigh, inLow, inAuto };
+} // namespace encodeNButtons
 
+namespace cLine {
+enum ExecResult { exNone = 0, exEmptyCom, exSuccess, exUnknown };
+constexpr uint32_t EMPTY_COMLINE_CRC = 2927135660;
+} // namespace cLine
 
 #endif /* TYPES_TYPEDEFS_H_ */

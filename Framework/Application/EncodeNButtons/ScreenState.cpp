@@ -18,15 +18,16 @@ _lastEvent {evntNone}
 }
 
 
-void ScreenState::update(KeyEvent_enum 	scrEvent) {
+bool ScreenState::update(KeyEvent_enum scrEvent) {
+	bool retVal = false;
 
 	if(scrEvent == evntHeld) {
 		if ( isActScreenSetup() ) {
 			_actScreen = scrValues;
+			retVal = true;
 		}
 		else {
 			_actScreen = scrStrtValues;
-			// TODO save to E2P here?
 		}
 	}
 
@@ -63,7 +64,7 @@ void ScreenState::update(KeyEvent_enum 	scrEvent) {
 	_lastEvent = scrEvent;
 	// all other cases are ignored!
 
-
+	return retVal;
 }
 
 } /* namespace encodeNButtons */

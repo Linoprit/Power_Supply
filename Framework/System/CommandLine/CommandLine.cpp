@@ -35,12 +35,13 @@ CommandLine::CommandLine():
 	termDisplayClear();
 }
 
-void CommandLine::cycle(void) {
+uint32_t CommandLine::cycle(void) {
 	uint8_t actChar = '\0';
 
+	uint32_t hashCode = 0;
 	while(readNextChar(actChar) == _SUCCESS) {
 		if(actChar == _KEY_ENTER){
-			procEnter();
+			hashCode = procEnter();
 		} else if(actChar == _KEY_BACKSPACE) {
 			procBackspace();
 		} else if(actChar == _KEY_ESCAPE) {
@@ -62,6 +63,7 @@ void CommandLine::cycle(void) {
 			accumulateChar(actChar);
 		}
 	}
+	return hashCode;
 }
 
 bool CommandLine::readNextChar(uint8_t &chr) {
@@ -145,16 +147,29 @@ void CommandLine::moveCmdLeft(uint8_t startPos) {
 	}
 }
 
-void CommandLine::procEnter(void) {
+uint32_t CommandLine::procEnter(void) {
+	uint32_t hashCode = 0;
 	_history.add(_cmdBuffer);
 	_history.resShowPos();
 
-	_interpret.doit(_cmdBuffer);
-	tx_printf("\n** DONE **\n"); //  remember TI-99/4A?
-	termPrompt();
-
+	tx_printf("\n");
+	hashCode = _interpret.doit(_cmdBuffer);
 	resCmdPos();
 	_cmdBuffer.fill('\0');
+
+	return hashCode;
+}
+
+void CommandLine::prompt(ExecResult execResult) {
+	if(execResult == exSuccess) {
+		tx_printf("\n** DONE **\n"); //  remember TI-99/4A?
+		termPrompt();
+	} else if (execResult == exUnknown){
+		tx_printf("\nunknown Command\n");
+		termPrompt();
+	} else if (execResult == exEmptyCom) {
+		termPrompt();
+	}
 }
 
 void CommandLine::procBackspace(void) {

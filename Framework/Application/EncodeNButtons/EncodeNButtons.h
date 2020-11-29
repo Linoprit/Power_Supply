@@ -16,6 +16,7 @@
 #include "VolatileData.h"
 
 
+
 namespace encodeNButtons {
 using namespace rotaryEncoder;
 
@@ -42,6 +43,9 @@ private:
 	ScreenState				_screenState;
 	NonVolatileData			_nonVolatileData;
 	VolatileData			_volatileData;
+	bool					_isFirstCycle;
+
+	void doFirstCycle(void);
 
 };
 

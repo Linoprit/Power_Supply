@@ -9,12 +9,15 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <main.h>
-#include <System/swo_printf.h>
+#include <System/usb_printf.h>
 
-
+// example: error_handler(__FILE__, __LINE__ );
 void error_handler(const char* file, uint32_t line)
 {
-	printf("Exception in %s, line: %ld\n", file, line);
+
+	HAL_GPIO_WritePin(LED_State_GPIO_Port, LED_State_Pin, GPIO_PIN_SET);
+	tx_printf("Exception in %s, line: %ld\n", file, line);
+
 
 	while (1) { }; // infinite loop
 }

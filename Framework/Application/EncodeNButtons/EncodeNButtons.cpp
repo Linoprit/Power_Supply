@@ -25,15 +25,23 @@ EncodeNButtons& EncodeNButtons::instance(void) {
 
 EncodeNButtons::EncodeNButtons():
 		_socket {get_hi2c1()},
-		_rotEnc {&_socket}
+		_rotEnc {&_socket},
+		_isFirstCycle { true }
 {
 }
 
 void EncodeNButtons::cycle(
 		EventQueue_type& eventQueue, AdditionalButtons  additionalButtons) {
 
-	_rotEnc.cycle(eventQueue);
 	_memoryButtons.cycle(eventQueue, additionalButtons);
+	_rotEnc.cycle(eventQueue);
+
+
+	if(_isFirstCycle == true) {
+		_isFirstCycle = false;
+		eventQueue.reset(); // encoders could cause unintended increment at startup
+		doFirstCycle();
+	}
 
 	osStatus_t status = osSemaphoreAcquire(EncdTskDataSemHandle, 20);
 	if (status != osOK)
@@ -51,7 +59,11 @@ void EncodeNButtons::cycle(
 		}
 
 		if(actTuple.key == keyBtnSetup) {
-			_screenState.update(actTuple.event);
+			bool result = _screenState.update(actTuple.event);
+			if (result == true) {
+				_nonVolatileData.storeStartVals();
+				_nonVolatileData.storeCalibVals();
+			}
 			continue;
 		}
 
@@ -64,8 +76,32 @@ void EncodeNButtons::cycle(
 	}
 
 	osSemaphoreRelease(EncdTskDataSemHandle);
+}
 
+void EncodeNButtons::doFirstCycle(void) {
+	StrtMemoryEnum strtMemory = _nonVolatileData.getStrtMemory();
+	bool isPowActiveStart = _nonVolatileData.isPowActiveStart();
 
+	uint32_t Usoll = 0;
+	uint32_t Isoll = 0;
+	InSourceEnum inSource = InSourceEnum::inAuto;
+
+	if (strtMemory ==  strtMem1) {
+		Usoll = _nonVolatileData.getUsollMem1().get();
+		Isoll = _nonVolatileData.getIsollMem1().get();
+		inSource = _nonVolatileData.getInSourceMem1();
+	}
+	else if (strtMemory ==  strtMem2) {
+		Usoll = _nonVolatileData.getUsollMem2().get();
+		Isoll = _nonVolatileData.getIsollMem2().get();
+		inSource = _nonVolatileData.getInSourceMem2();
+	}
+
+	_volatileData.getUsoll().set(static_cast<int32_t>(Usoll));
+	_volatileData.getIsoll().set(static_cast<int32_t>(Isoll));
+	_volatileData.setInSource(inSource);
+
+	_volatileData.setPowActive(isPowActiveStart);
 }
 
 

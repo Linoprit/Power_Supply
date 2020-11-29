@@ -11,6 +11,8 @@
 #include <stdint.h>
 #include <array>
 #include "Eeprom_93C86_socket.h"
+#include <Sockets/CrcSocket.h>
+
 
 namespace eeprom {
 
@@ -24,7 +26,7 @@ typedef uint8_t CrcType; // change type, if i.e. 16-bit CRC is used
 class Eeprom_93C86 {
 public:
 	Eeprom_93C86(void); // CAUTION: _socket is left uninitialized
-	Eeprom_93C86(Eeprom_93C86_socket *socket);
+	Eeprom_93C86(Eeprom_93C86_socket *EepromSocket );
 	virtual ~Eeprom_93C86(void) {
 	}
 	;
@@ -40,38 +42,13 @@ public:
 	public:
 		uint8_t entryID;		// the "filename"
 		uint16_t startAddress; 	// where data is located
-		uint16_t size;		 	// data size in bytes
+		uint8_t size;		 	// data size in bytes
 		CrcType crc;
 		bool isInvalid(void) {
 			return startAddress == 0;
 		}
 	}__attribute__ ((packed));
 
-	bool init(void); // must be called after hardware is up
-	void eraseEeprom(void);
-	bool readData(ValueID id, uint8_t *buffer);
-	bool writeData(ValueID id, uint8_t *buffer, uint8_t size);
-	// maybe user wants to know before putting data into E2
-	bool isDataWritable(uint16_t dataSize); // in bytes
-
-	uint16_t getNextDataAddress(void) {
-		return _nextDataAddress;
-	}
-	;
-	uint32_t getFreeDataSpace(void) {
-		return _socket->getMaxAddress() - getNextDataAddress();
-	}
-	;
-	uint8_t getNumOfJournalEntries(void) {
-		return _numOfJournalEntries;
-	}
-	;
-	uint16_t getFreeJournalEntries(void) {
-		return JOURNAL_SIZE - getNumOfJournalEntries();
-	}
-	;
-
-protected:
 	class JournalEntryMap {
 	public:
 		JournalEntryMap(void) {
@@ -82,30 +59,49 @@ protected:
 		}
 		JournalEntryType get(ValueID id) {
 			return journalEntryArray.at(static_cast<int>(id));
-		}
-		;
+		};
 		void put(JournalEntryType journalEntry) {
 			uint8_t index = static_cast<uint8_t>(journalEntry.entryID);
 			journalEntryArray[index] = journalEntry;
 		}
-		;
-
 	private:
 		std::array<JournalEntryType,
 				static_cast<int>(ValueID::VALUE_ID_LAST) + 1> journalEntryArray;
 	};
 
-	Eeprom_93C86_socket *_socket;
-	uint16_t _nextDataAddress;
-	uint8_t _numOfJournalEntries;
-	JournalEntryMap _journalEntryMap;
+	bool init(void); // must be called after hardware is up
+	void eraseEeprom(void);
+	bool readData(ValueID id, uint8_t *buffer);
+	bool writeData(ValueID id, uint8_t *buffer, uint8_t size);
+	// maybe user wants to know before putting data into E2
+	bool isDataWritable(uint16_t dataSize); // in bytes
+
+	uint16_t getNextDataAddress(void) {	return _nextDataAddress; };
+	uint32_t getFreeDataSpace(void) {
+		return _EePromSocket->getMaxAddress() - getNextDataAddress();
+	};
+	uint8_t getNumOfJournalEntries(void) { return _numOfJournalEntries; };
+	uint16_t getFreeJournalEntries(void) {
+		return JOURNAL_SIZE - getNumOfJournalEntries();
+	};
+
+	// for debugging, etc.
+	Eeprom_93C86_socket* getEepromSocket(void)	{ return _EePromSocket;	};
+	JournalEntryMap getJournalEntryMap(void) 	{ return _journalEntryMap; };
+	bool readJournalEntry(uint8_t entryNumber, JournalEntryType &journalEntry);
+
+protected:
+	Eeprom_93C86_socket *_EePromSocket;
+	uint16_t 			_nextDataAddress;
+	uint8_t 			_numOfJournalEntries;
+	JournalEntryMap 	_journalEntryMap;
 
 	// Lowest address is sizeof(JournalInfoType); returns 0, if no space left;
 	uint16_t calcNextJournalAddress(void);
 	bool writeJournalEntry(JournalEntryType journalEntry);
 	void writeJournalInfo(void);
 	bool journalInfoIsValid(void);
-	bool readJournalEntry(uint8_t entryNumber, JournalEntryType &journalEntry);
+	//bool readJournalEntry(uint8_t entryNumber, JournalEntryType &journalEntry);
 	bool blockIsValid(uint8_t *buffer, uint8_t buffer_len);
 	void invalidateJournalEntries(void);
 

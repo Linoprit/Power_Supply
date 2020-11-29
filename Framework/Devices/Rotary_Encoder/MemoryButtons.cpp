@@ -7,6 +7,8 @@
 
 #include <Devices/Rotary_Encoder/MemoryButtons.h>
 
+#include <System/usb_printf.h>
+
 namespace rotaryEncoder {
 
 MemoryButtons::MemoryButtons()
@@ -23,8 +25,8 @@ void MemoryButtons::cycle(
 }
 
 void MemoryButtons::check_cycle(
-		uint8_t 					buttonValue,
-		Key_enum	 				key,
+		uint8_t 			buttonValue,
+		Key_enum	 		key,
 		EventQueue_type& 	eventQueue)
 {
 	KeyEvent_enum event = evntNone;
@@ -41,7 +43,6 @@ void MemoryButtons::check_cycle(
 	if(event > evntNone) {
 		eventQueue.enqueue(KeyEventTuple(key, event));
 	}
-
 }
 
 

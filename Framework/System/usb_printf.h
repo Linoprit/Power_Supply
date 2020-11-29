@@ -17,6 +17,7 @@
 
 EXTERNC int tx_printf(const char *format, ...);
 EXTERNC int tx_printBuff(uint8_t* buffer, uint8_t len) ;
+EXTERNC uint8_t txPrintfImm(const char *format, ...) ;
 EXTERNC void usb_receive(uint8_t* buf, uint32_t len);
 EXTERNC uint8_t tx_cycle(void);
 

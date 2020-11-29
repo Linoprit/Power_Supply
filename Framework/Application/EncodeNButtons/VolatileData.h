@@ -22,11 +22,6 @@ constexpr uint32_t MemEventCount = 1500; // [ms]
 
 class NonVolatileData;
 
-enum InSourceEnum {
-	inHigh, inLow, inAuto
-};
-
-
 class VolatileData {
 public:
 	VolatileData();
@@ -52,6 +47,9 @@ public:
 	bool isKeysLocked() 						const 	{ return _KeysLocked; 				}
 	bool isMemStoreEvntActive(void) 			const 	{ return _MemStoreEvntActive; 		}
 	uint32_t getMemEvntCounter(void)			const 	{ return _MemEvntCounter;			}
+	void keyMemory1(NonVolatileData&	nonVolatileData, KeyEvent_enum	event);
+	void keyMemory2(NonVolatileData&	nonVolatileData, KeyEvent_enum	event);
+
 
 private:
 	Adjustment_0p0	_Usoll;
@@ -65,8 +63,7 @@ private:
 	bool			_MemStoreEvntActive;
 	uint32_t        _MemEvntCounter;
 
-	void keyMemory1(NonVolatileData&	nonVolatileData, KeyEvent_enum	event);
-	void keyMemory2(NonVolatileData&	nonVolatileData, KeyEvent_enum	event);
+
 	void keyButtonOnOff(void);
 	void updateValues  (KeyEventTuple actTuple);
 	void updateUsource (KeyEventTuple actTuple);

@@ -10,6 +10,7 @@
 
 #include "ComLineConfig.h"
 #include <libraries/SimpleQueue.h>
+#include <Types/Typedefs.h>
 #include <System/CommandLine/History.h>
 #include <System/CommandLine/Interpreter.h>
 #include <System/usb_printf.h>
@@ -48,8 +49,11 @@ public:
 
 	void init(void);
 	static CommandLine& instance(void);
-	void splash(void);
-	void cycle(void);
+	//void splash(void); // unused
+
+	// returns zero, if no char was to process, returns hashCode EMPTY_COMLINE_CRC, enter
+	// was pressed with an empty command-line
+	uint32_t cycle(void);
 
 	void putChar(uint8_t chr) { _keyBuffer.enqueue(chr); }
 
@@ -81,8 +85,9 @@ public:
 	//	0 erase from cursor to end of line,
 	//  1 erase from start of line to cursor,
 	//  2 erase line
-	void termEraseLine (uint8_t n) { tx_printf("\033[%dK", n); };
-	void termPrompt()	{ tx_printf(">"); };
+	void termEraseLine (uint8_t n) 	{ tx_printf("\033[%dK", n); };
+	void termPrompt(void)			{ tx_printf(">"); };
+	void prompt(ExecResult execResult);
 
 protected:
 	SimpleQueue<uint8_t> _keyBuffer;
@@ -100,7 +105,7 @@ protected:
 	void accumulateChar(uint8_t chr);
 	void procSqrEscKeys(void);
 	void procFourByteEscKeys(uint8_t actChar);
-	void procEnter(void);
+	uint32_t procEnter(void);
 	void procBackspace(void);
 	void procEscape(void);
 	void procArrowUp(void);
