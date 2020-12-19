@@ -8,11 +8,12 @@
 #ifndef DEVICES_ROTARY_ENCODER_ROTARY_ENCODER_SOCKET_H_
 #define DEVICES_ROTARY_ENCODER_ROTARY_ENCODER_SOCKET_H_
 
-#include <Interfaces/RX_interface.h>
+#include <System/RX_interface.h>
 #include "Instances/callbacks.h"
 #include "Instances/callbacks.h"
 #include "stm32f3xx_hal.h"
 
+namespace rotaryEncoder {
 
 /* in this special case, we use a
    standard device, with zero address */
@@ -36,30 +37,32 @@
 #define HW_ADDRESS_7 0x07 /* A2=1 A1=1 A0=1 */
 
 
+constexpr uint32_t Timeout			  			= 10; // ms?
+constexpr uint8_t  socketQueueLen				= 8;
+constexpr uint8_t  device_address		  	= ( BASE_ADDRESS | (HW_ADDRESS << 1) );
+
 
 class Rotary_Encoder_socket:
-	ISR_callback,
-	RX_interface
+		ISR_callback,
+		RX_interface
 {
 public:
-  Rotary_Encoder_socket (I2C_HandleTypeDef* i2c_handle);
-  virtual
-  ~Rotary_Encoder_socket ();
+			Rotary_Encoder_socket ();
+			Rotary_Encoder_socket (I2C_HandleTypeDef* i2c_handle);
+			virtual
+			~Rotary_Encoder_socket ();
 
-  // ISR_callback
-  void ISR_callback_fcn(void);
+			// ISR_callback
+			void ISR_callback_fcn(void);
 
-  // RX_interface
-  simpleRingbuffer* rx_ringbuffer();
+			// RX_interface
+			SimpleQueue<uint8_t>* get_rx_queue();
 
 private:
-  simpleRingbuffer* 	ringbuffer = NULL;
-  I2C_HandleTypeDef* 	i2c_handle;
-
-  const uint32_t Timeout			  = 10; // ms?
-  const uint8_t  simpleRingbuffer_len = 8;
-  const uint8_t  device_address		  = ( BASE_ADDRESS | (HW_ADDRESS << 1) );
+			SimpleQueue<uint8_t> 	_ringbuffer;
+			I2C_HandleTypeDef* 		_i2c_handle;
 
 };
 
+}
 #endif /* DEVICES_ROTARY_ENCODER_ROTARY_ENCODER_SOCKET_H_ */

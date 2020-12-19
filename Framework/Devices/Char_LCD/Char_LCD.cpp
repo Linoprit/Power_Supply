@@ -36,7 +36,7 @@ void Char_LCD::init()
   // send data to initialize the lcd
   lcd_socket->select_instruction_register();
   lcd_socket->reset_lcd_en_line();
-  lcd_socket->delay_ms(LCD_WAIT_DELAY);
+  OsHelpers::delay(LCD_WAIT_DELAY);
 
   for (i=0; i < INIT_LENGTH; i++)
 	lcd_socket->put_byte_2_lcd_initonly(
@@ -177,10 +177,5 @@ void Char_LCD::clear(void)
 
   for (i=0; i < LCD_LINES; i++)
 	memset(&buffer_lines[i][0], ' ', LCD_BUFFER_LEN);
-}
-
-buffer_lines_type * Char_LCD::get_buffer_lines_ptr(void)
-{
-  return &buffer_lines;
 }
 

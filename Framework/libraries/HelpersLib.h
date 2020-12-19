@@ -18,8 +18,8 @@
 #define DEC_RADIX 10
 #define HEX_RADIX 16
 
-
-
+constexpr uint8_t _SUCCESS = 0;
+constexpr uint8_t _ERROR = 1;
 
 class HelpersLib
 {
@@ -30,8 +30,9 @@ public:
   static void value2char(
       char* result_buff, uint8_t result_buff_len,
       uint8_t exp, long int value);
-
-
+  static uint16_t swapBytes(uint16_t value);
+  static uint8_t hibyte(uint16_t value);
+  static uint8_t lobyte(uint16_t value);
 };
 
 #endif /* LIBRARIES_HELPERSLIB_H_ */

@@ -9,20 +9,18 @@
 #define CALLBACKS_H_
 
 #include <stdlib.h>
+#include "stm32f3xx_hal.h"
 
 
 class ISR_callback {
 public:
-  virtual void ISR_callback_fcn (void) = 0;
+  virtual void ISR_callback_fcn () = 0;
   virtual ~ISR_callback(void) { };
 };
 
 
-void keypad_callback_set(ISR_callback* callback);
-void keypad_callback_clear(void);
-
-void uart1_callback_set(ISR_callback* callback);
-
-void rotary_encoder_callback_set(ISR_callback* callback);
+void add_uart_callback(UART_HandleTypeDef *huart, ISR_callback* callback);
+void add_rotary_encoder_callback(ISR_callback* callback);
+void add_inaAlertPin_callback(ISR_callback* callback);
 
 #endif /* CALLBACKS_H_ */

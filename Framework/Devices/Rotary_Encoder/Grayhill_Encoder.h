@@ -8,7 +8,10 @@
 #ifndef DEVICES_ROTARY_ENCODER_GRAYHILL_ENCODER_H_
 #define DEVICES_ROTARY_ENCODER_GRAYHILL_ENCODER_H_
 
-#include "System/SoftwareEvents.h"
+#include "Rotary_Encoder_Types.h"
+
+
+namespace rotaryEncoder {
 
 
 class Grayhill_Encoder
@@ -17,7 +20,7 @@ public:
   Grayhill_Encoder ();
   virtual ~Grayhill_Encoder ();
 
-  SoftwareEvents::Event_Names_enum cycle(uint8_t rotary_val);
+  KeyEvent_enum cycle(uint8_t rotary_val);
 
 private:
   // lookup table previous / next
@@ -30,5 +33,7 @@ private:
 	uint8_t get_previous(uint8_t encoder_val);
 
 };
+
+}
 
 #endif /* DEVICES_ROTARY_ENCODER_GRAYHILL_ENCODER_H_ */

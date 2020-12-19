@@ -8,32 +8,28 @@
 #include <Devices/Rotary_Encoder/Rotary_Encoder.h>
 #include "stm32f3xx_hal.h"
 
+namespace rotaryEncoder {
+
+Rotary_Encoder::Rotary_Encoder()
+{
+	_socket 			= NULL;
+
+	button_val_left  = 0;
+	button_val_right = 0;
+	button_val_3     = 0;
+	button_val_4     = 0;
+
+}
 
 Rotary_Encoder::Rotary_Encoder (Rotary_Encoder_socket* socket_in)
 {
-  socket = socket_in;
+	_socket = socket_in;
 
-#ifdef ALPS
-  enc_left 		= new ALPS_Encoder();
-  enc_right  	= new ALPS_Encoder();
-#endif
-#ifdef GRAYHILL
-  enc_left 		= new Grayhill_Encoder();
-  enc_right		= new Grayhill_Encoder();
-#endif
+	button_val_left  = 0;
+	button_val_right = 0;
+	button_val_3     = 0;
+	button_val_4     = 0;
 
-  button_left	= new Button_Machine();
-  button_right	= new Button_Machine();
-  button_3		= new Button_Machine();
-  button_4		= new Button_Machine();
-
-  button_val_left  = 0;
-  button_val_right = 0;
-  button_val_3     = 0;
-  button_val_4     = 0;
-
-  last_key 		   = none;
-  cycle();
 }
 
 
@@ -41,71 +37,71 @@ Rotary_Encoder::~Rotary_Encoder ()
 { }
 
 
-void Rotary_Encoder::cycle(void)
+void Rotary_Encoder::cycle(EventQueue_type& eventQueue)
 {
-  uint8_t input = 0;
+	uint8_t input = 0;
 
-  while(socket->rx_ringbuffer()->HasData())
+	while(!_socket->get_rx_queue()->isEmpty())
 	{
-	  input = socket->rx_ringbuffer()->Read();
+		input = _socket->get_rx_queue()->dequeue();
 
-	  button_val_left 	= (uint8_t)((input & mask_button_1) >> offset_button_1);
-	  button_val_right 	= (uint8_t)((input & mask_button_2) >> offset_button_2);
-	  button_val_3 		= (uint8_t)((input & mask_button_3) >> offset_button_3);
-	  button_val_4 		= (uint8_t)((input & mask_button_4) >> offset_button_4);
+		button_val_left 	= (uint8_t)((input & mask_button_1) >> offset_button_1);
+		button_val_right 	= (uint8_t)((input & mask_button_2) >> offset_button_2);
+		button_val_3 			= (uint8_t)((input & mask_button_3) >> offset_button_3);
+		button_val_4 			= (uint8_t)((input & mask_button_4) >> offset_button_4);
 
-	  check_cycle((uint8_t)((input & mask_encoder_1)>> offset_encoder_1),
-					  rotenc_left);
-	  check_cycle((uint8_t)((input & mask_encoder_2) >> offset_encoder_2),
-					  rotenc_right);
-	  check_cycle(button_val_left, btn_left);
-	  check_cycle(button_val_right, btn_right);
-	  check_cycle(button_val_3, btn_3);
-	  check_cycle(button_val_4, btn_4);
+		check_cycle(
+				(uint8_t)((input & mask_encoder_1)>> offset_encoder_1),
+				keyRotLeft,
+				eventQueue);
+		check_cycle(
+				(uint8_t)((input & mask_encoder_2) >> offset_encoder_2),
+				keyRotRight,
+				eventQueue);
+		check_cycle(button_val_left, 	keyBtnLeft,		eventQueue);
+		check_cycle(button_val_right, 	keyBtnRight, 	eventQueue);
+		check_cycle(button_val_3, 		keyBtnSetup, 	eventQueue);
+		check_cycle(button_val_4, 		keyBtnOnOff, 	eventQueue);
 	}
 
-  check_cycle(button_val_left, btn_left);
-  check_cycle(button_val_right, btn_right);
-  check_cycle(button_val_3, btn_3);
-  check_cycle(button_val_4, btn_4);
+	check_cycle(button_val_left, 		keyBtnLeft, 	eventQueue);
+	check_cycle(button_val_right, 		keyBtnRight, 	eventQueue);
+	check_cycle(button_val_3, 			keyBtnSetup, 	eventQueue);
+	check_cycle(button_val_4, 			keyBtnOnOff, 	eventQueue);
 }
 
 
-bool Rotary_Encoder::check_cycle(uint8_t masked_value, last_key_enum key)
+void Rotary_Encoder::check_cycle(
+		uint8_t 					masked_value,
+		Key_enum	 				key,
+		EventQueue_type& 	eventQueue)
 {
-  SoftwareEvents::Event_Names_enum
-  last_event = SoftwareEvents::None;
+	KeyEvent_enum last_event = evntNone;
 
-  if(key == rotenc_left)
-	last_event = enc_left->cycle(masked_value);
+	if(key == keyRotLeft)
+		last_event = enc_left.cycle(masked_value);
 
-  if(key == rotenc_right)
-	last_event = enc_right->cycle(masked_value);
+	if(key == keyRotRight)
+		last_event = enc_right.cycle(masked_value);
 
-  if (key == btn_left)
-	last_event = button_left->cycle(masked_value);
+	if (key == keyBtnLeft)
+		last_event = button_left.cycle(masked_value);
 
-  if (key == btn_right)
-	last_event = button_right->cycle(masked_value);
+	if (key == keyBtnRight)
+		last_event = button_right.cycle(masked_value);
 
-  if (key == btn_3)
-	last_event = button_3->cycle(masked_value);
+	if (key == keyBtnSetup)
+		last_event = button_3.cycle(masked_value);
 
-  if (key == btn_4)
-	last_event = button_4->cycle(masked_value);
+	if (key == keyBtnOnOff)
+		last_event = button_4.cycle(masked_value);
 
-
-  if (last_event > SoftwareEvents::None)
-	{
-	  SoftwareEvents::sendEvent(last_event);
-	  last_key = key;
-	  return true;
+	if (last_event > evntNone) {
+		eventQueue.enqueue(KeyEventTuple(key, last_event));
 	}
 
-  return false;
 }
 
-Rotary_Encoder::last_key_enum Rotary_Encoder::get_last_key(void)
-{
-  return last_key;
+
+
 }

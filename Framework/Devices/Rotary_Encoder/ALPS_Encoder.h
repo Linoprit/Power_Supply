@@ -8,9 +8,9 @@
 #ifndef DEVICES_ROTARY_ENCODER_ALPS_ENCODER_H_
 #define DEVICES_ROTARY_ENCODER_ALPS_ENCODER_H_
 
-#include "System/SoftwareEvents.h"
+#include "Rotary_Encoder_Types.h"
 
-
+namespace rotaryEncoder {
 
 class ALPS_Encoder
 {
@@ -19,7 +19,7 @@ public:
   virtual
   ~ALPS_Encoder ();
 
-  SoftwareEvents::Event_Names_enum cycle(uint8_t rotary_val);
+  KeyEvent_enum cycle(uint8_t rotary_val);
 
 private:
   enum state_enum
@@ -29,5 +29,7 @@ private:
   uint8_t old_rotary_val;
 
 };
+
+}
 
 #endif /* DEVICES_ROTARY_ENCODER_ALPS_ENCODER_H_ */
